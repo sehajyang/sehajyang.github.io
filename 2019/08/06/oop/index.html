@@ -107,7 +107,7 @@
 <meta property="og:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://sehajyang.github.io/images/blogpost/scala_type_hierarchy.png">
-<meta property="og:updated_time" content="2019-08-06T14:46:38.793Z">
+<meta property="og:updated_time" content="2019-08-06T16:46:12.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="스칼라 번역 - 객체지향 (Object Oriented Programming)">
 <meta name="twitter:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
@@ -440,12 +440,24 @@
                 
               
 
-              <time title="Post created: 2019-08-06 23:46:00 / Updated at: 23:46:38" itemprop="dateCreated datePublished" datetime="2019-08-06T23:46:00+09:00">2019-08-06</time>
+              <time title="Post created: 2019-08-06 23:46:00" itemprop="dateCreated datePublished" datetime="2019-08-06T23:46:00+09:00">2019-08-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-07 01:46:12" itemprop="dateModified" datetime="2019-08-07T01:46:12+09:00">2019-08-07</time>
               
             
           </span>
@@ -596,17 +608,18 @@
 <ul>
 <li>x 과 y가 정수인 <code>x+y</code>를 작성했지만, </li>
 <li><code>r.add(s)</code>의 경우 r과 s 는 분수입니다.</li>
-<li>역자추가) x와 y는 정수라서 +가 되는데 r과 s는 분수라 +가 없어서 add 메소드를 씀. 근데 원칙적으로 분수는 정수인데 뭐지? 라는 차이점이 있다는 뜻 </li>
+<li>역자추가) x와 y는 정수라서 +가 되는데 r과 s는 분수라 +가 없어서 add 메소드를 씀니다.<br>근데 원칙적으로 분수는 정수인데 뭐지? 라는 차이점이 있다는 뜻 입니다. </li>
 </ul>
 <p>스칼라에선, 연산자를 식별자로 사용할 수 있으므로 이 차이를 없앨 수 있습니다.<br>식별자는 다음과 같습니다:</p>
 <ul>
 <li>Alphanumeric : 문자로 시작하고 문자 또는 숫자 시퀀스</li>
 <li>심볼릭 : 연산자 기호로 시작하고, 그 뒤에 다른 연산자 기호가 옵니다.</li>
 <li>밑줄 문자 <code>_</code>는 문자로 계산됩니다.</li>
-<li>Alphanumeric 식별자는 밑줄로 끝나며 일부 연산자 기호가 이어질 수 있습니다.<br>식별자 예제:<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1 * +?%&amp; vector_++ counter_=</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>Alphanumeric 식별자는 밑줄로 끝나며 일부 연산자 기호가 이어질 수 있습니다.</li>
 </ul>
+<p>식별자 예제:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1 * +?%&amp; vector_++ counter_=</span><br></pre></td></tr></table></figure>
+
 <h3 id="분수를-위한-연산자"><a href="#분수를-위한-연산자" class="headerlink" title="분수를 위한 연산자"></a>분수를 위한 연산자</h3><p>여기 Rational 클래스에 대한 보다 자연스러운 정의가 있습니다:</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = <span class="keyword">if</span> (b == <span class="number">0</span>) a <span class="keyword">else</span> gcd(b, a % b)</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> g = gcd(x, y)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x / g</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y / g</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">+</span> </span>(r: <span class="type">Rational</span>) =</span><br><span class="line">    <span class="keyword">new</span> <span class="type">Rational</span>(</span><br><span class="line">      numer * r.denom + r.numer * denom,</span><br><span class="line">      denom * r.denom</span><br><span class="line">    )</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">-</span> </span>(r: <span class="type">Rational</span>) = ...</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">*</span> </span>(r: <span class="type">Rational</span>) = ...</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -706,9 +719,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/scala-exercises/" rel="tag"># scala-exercises</a>
-          
             <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+            <a href="/tags/scala-exercises/" rel="tag"># scala-exercises</a>
           
         </div>
       
