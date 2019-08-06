@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+<meta name="keywords" content="scala,scala 번역,스칼라 라이브러리">
+<meta property="og:type" content="article">
+<meta property="og:title" content="스칼라 번역- 표준 라이브러리 (Standard Library)">
+<meta property="og:url" content="https://sehajyang.github.io/2019/07/16/standard-library/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-02T14:41:53.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="스칼라 번역- 표준 라이브러리 (Standard Library)">
+<meta name="twitter:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/07/16/standard-library/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>스칼라 번역- 표준 라이브러리 (Standard Library) | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/07/16/standard-library/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">스칼라 번역- 표준 라이브러리 (Standard Library)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-07-16 09:00:00" itemprop="dateCreated datePublished" datetime="2019-07-16T09:00:00+09:00">2019-07-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-02 23:41:53" itemprop="dateModified" datetime="2019-08-02T23:41:53+09:00">2019-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Scala/" itemprop="url" rel="index"><span itemprop="name">Scala</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>이 포스팅은 <a href="https://sehajyang.github.io/tags/scala-exercises/">[scala-exercises 번역 시리즈]</a>로 <code>scala-exercises</code> 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.<br><a href="https://www.scala-exercises.org/scala_tutorial" target="_blank" rel="noopener">scala-exercises</a> 는 스칼라 창시자인 <a href="https://www.coursera.org/learn/progfun1?action=enroll" target="_blank" rel="noopener">마틴 오더스키가 만든 강의</a>의 강의자료입니다.<br>따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.<br>직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은 코멘트로 알려주세요 😄<br>원문 : <a href="https://www.scala-exercises.org/scala_tutorial/standard_library" target="_blank" rel="noopener">[scala tutorial higher order functions]</a></p>
+<hr>
+<h1 id="표준-라이브러리-STANDARD-LIBRARY"><a href="#표준-라이브러리-STANDARD-LIBRARY" class="headerlink" title="표준 라이브러리 (STANDARD LIBRARY)"></a>표준 라이브러리 (STANDARD LIBRARY)</h1><h2 id="LIST"><a href="#LIST" class="headerlink" title="LIST"></a>LIST</h2><p>함수형 프로그림에서 리스트는 기본적인 데이터 구조입니다.<br><code>x1, ..., xn</code> 요소(element)를 가지고 있는 리스트는 <code>List(x1, ..., xn)</code> 로 작성되어집니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> fruit = <span class="type">List</span>(apples, oranges, pears)</span><br><span class="line"><span class="keyword">val</span> nums = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="keyword">val</span> diag3 = <span class="type">List</span>(<span class="type">List</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>), <span class="type">List</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line"><span class="keyword">val</span> empty = <span class="type">List</span>()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>리스트는 불변입니다 — 리스트의 요소들은 변경될 수 없습니다.</li>
+<li>리스트는 재귀적입니다(다음 섹션에서 볼 수 있습니다) </li>
+<li>리스트는 동질적(homogeneous) 입니다: 리스트의 요소들은 반드시 같은 타입이어야 합니다.</li>
+</ul>
+<p><code>요소(element)</code>들의 타입이 <code>T</code>인 리스트는 <code>List[T]</code>로 작성되어집니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> fruit: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(apples, oranges, pears)</span><br><span class="line"><span class="keyword">val</span> nums: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="keyword">val</span> diag3: <span class="type">List</span>[<span class="type">List</span>[<span class="type">Int</span>]] = <span class="type">List</span>(<span class="type">List</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>), <span class="type">List</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line"><span class="keyword">val</span> empty: <span class="type">List</span>[<span class="type">Nothing</span>] = <span class="type">List</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="리스트의-생성자"><a href="#리스트의-생성자" class="headerlink" title="리스트의 생성자"></a>리스트의 생성자</h2><p>사실 스칼라의 모든 리스트는 이렇게 구성되어집니다:</p>
+<ul>
+<li><code>Nil</code> (빈 리스트)</li>
+<li><code>::</code> 메소드: <code>x::xs</code>는 첫번째 요소(<code>x</code>)에 새 리스트를 지정하고, 그 뒤에 <code>xs</code> 목록(리스트 목록 자체)이 뒤따릅니다.</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> fruit = apples :: (oranges :: (pears :: <span class="type">Nil</span>))</span><br><span class="line"><span class="keyword">val</span> nums = <span class="number">1</span> :: (<span class="number">2</span> :: (<span class="number">3</span> :: (<span class="number">4</span> :: <span class="type">Nil</span>)))</span><br><span class="line"><span class="keyword">val</span> empty = <span class="type">Nil</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>오른쪽과의 연관성</strong><br>규칙 : <code>:</code> 로 끝나는 작업은 오른쪽과 연결됩니다. 따라서 <code>A :: B :: C</code> 는 <code>A :: (B :: C)</code>라고 해석됩니다.<br>그러나 다음처럼 괄호를 생략할 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> nums = <span class="number">1</span> :: <span class="number">2</span> :: <span class="number">3</span> :: <span class="number">4</span> :: <span class="type">Nil</span></span><br></pre></td></tr></table></figure>
+
+<p>하지만 <code>:</code>로 끝나는 작업은 오른쪽 피연산자의 메소드 호출과는 다릅니다. (역: 1이 2 요소를 호출하진 않습니다 라는 뜻 입니다)<br>사실 위 표현식은 다음과 같습니다.  </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> nums = <span class="type">Nil</span>.::(<span class="number">4</span>).::(<span class="number">3</span>).::(<span class="number">2</span>).::(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(역자추가) 왜 이런일이 일어났냐면, 스칼라에서 <strong>이름이 콜론(:)으로 끝나는 메소드는 오른쪽 피연산자의 것으로 호출하기 때문</strong>입니다.       </li>
+<li><code>Nil</code>가 왜 있냐면 <code>::</code> 메소드가 리스트 클래스의 멤버이기 때문입니다.<br>만약 <code>1::2::3</code> 이라고 하면 마지막 <code>3</code>이 Int 형이라서 <code>::</code>메소드가 없기 때문에 리스트로 인식이 안됩니다.<br><code>1::2::3</code> 는 <code>Nil.(3).::(2).::(1)</code>라는 뜻이기 때문이죠.<br>마지막 요소에 <code>Nil</code>을 넣어주면 <code>Nil</code>은 리스트의 멤버이기 때문에 타입을 추론해 리스트로 만들어 줍니다. <a href="https://hamait.tistory.com/556" target="_blank" rel="noopener">[출처]</a></li>
+</ul>
+<h2 id="리스트-조작"><a href="#리스트-조작" class="headerlink" title="리스트 조작"></a>리스트 조작</h2><p>패턴 매칭으로 리스트를 분해(decompose) 할 수 있습니다.  </p>
+<ul>
+<li><code>Nil</code>: <code>Nil</code>은 고정값 입니다.  </li>
+<li><code>p :: ps</code> :  리스트의 패턴인 <code>head</code> 는 <code>p</code>와 <code>tail</code>은 <code>ps</code> 과 매칭됩니다.  </li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">nums <span class="keyword">match</span> &#123;</span><br><span class="line">  <span class="comment">// 1 그리고 2로 시작하는 Int 리스트</span></span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span> :: <span class="number">2</span> :: xs =&gt; …</span><br><span class="line">  <span class="comment">// 리스트의 길이 1</span></span><br><span class="line">  <span class="keyword">case</span> x :: <span class="type">Nil</span> =&gt; …</span><br><span class="line">  <span class="comment">// `x :: Nil`과 같습니다</span></span><br><span class="line">  <span class="keyword">case</span> <span class="type">List</span>(x) =&gt; …</span><br><span class="line">  <span class="comment">// 빈 리스트는 `Nil` 과 같습니다</span></span><br><span class="line">  <span class="keyword">case</span> <span class="type">List</span>() =&gt;</span><br><span class="line">  <span class="comment">// 2로 시작하는 또 다른 리스트를 요소로 포함하는 리스트</span></span><br><span class="line">  <span class="keyword">case</span> <span class="type">List</span>(<span class="number">2</span> :: xs) =&gt; …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="연습-리스트-정렬"><a href="#연습-리스트-정렬" class="headerlink" title="연습 : 리스트 정렬"></a>연습 : 리스트 정렬</h2><p>리스트의 숫자들을 오름차순으로 정렬해야 된다고 가정해봅시다:<br>리스트를 정렬하기 위한 방법 중 중 한가지 방법으로 해보겠습니다.  </p>
+<ul>
+<li><code>List(7, 3, 9, 2)</code> 리스트를 정렬하려면 우선 <code>List(2, 3, 9)</code>를 얻기위해 tail 인 <code>List(3, 9, 2)</code> 를 정렬합니다.  </li>
+<li>그 다음 head 인 <code>7</code>을 올바른 자리에 삽입해 <code>List(2, 3, 7, 9)</code>를 얻습니다.  </li>
+</ul>
+<p>이 아이디어를 <code>삽입 정렬(Insertion Sort)</code> 이라고 합니다.  </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionSort</span></span>(xs: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] = xs <span class="keyword">match</span> &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="type">List</span>() =&gt; <span class="type">List</span>()</span><br><span class="line">  <span class="keyword">case</span> y :: ys =&gt; insert(y, insertionSort(ys))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> cond: (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Boolean</span> = (x, y) =&gt; x &lt; y</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span></span>(x: <span class="type">Int</span>, xs: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] =</span><br><span class="line">  xs <span class="keyword">match</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">List</span>() =&gt; x :: <span class="type">Nil</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> y :: ys =&gt;</span><br><span class="line">      <span class="keyword">if</span> (cond(x, y)) x :: y :: ys</span><br><span class="line">      <span class="keyword">else</span> y :: insert(x, ys)</span><br><span class="line">  &#125;</span><br><span class="line">insert(<span class="number">2</span>, <span class="number">1</span> :: <span class="number">3</span> :: <span class="type">Nil</span>) shouldBe (<span class="number">1</span> :: <span class="number">2</span> :: <span class="number">3</span> :: <span class="type">Nil</span>)</span><br><span class="line">insert(<span class="number">1</span>, <span class="number">2</span> :: <span class="number">3</span> :: <span class="type">Nil</span>) shouldBe (<span class="number">1</span> :: <span class="number">2</span> :: <span class="number">3</span> :: <span class="type">Nil</span>)</span><br><span class="line">insert(<span class="number">3</span>, <span class="number">1</span> :: <span class="number">2</span> :: <span class="type">Nil</span>) shouldBe (<span class="number">1</span> :: <span class="number">2</span> :: <span class="number">3</span> :: <span class="type">Nil</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="리스트에-대한-일반적인-작업-Common-Operations"><a href="#리스트에-대한-일반적인-작업-Common-Operations" class="headerlink" title="리스트에 대한 일반적인 작업(Common Operations)"></a>리스트에 대한 일반적인 작업(Common Operations)</h2><p><code>map</code>을 사용해 요소를 바꿉니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).map(x =&gt; x + <span class="number">1</span>) == <span class="type">List</span>(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>filter</code>를 사용해 요소를 조건에 맞게 걸러냅니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).filter(x =&gt; x % <span class="number">2</span> == <span class="number">0</span>) == <span class="type">List</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>리스트 안의 각 요소들을 변환 후 리스트에 담고, <code>flatMap</code>을 사용해 결과를 단일 리스트로 만듭니다. </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> xs =</span><br><span class="line">  <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).flatMap &#123; x =&gt;</span><br><span class="line">    <span class="type">List</span>(x, <span class="number">2</span> * x, <span class="number">3</span> * x)</span><br><span class="line">  &#125;</span><br><span class="line">xs == <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="옵션-값-Option-Values"><a href="#옵션-값-Option-Values" class="headerlink" title="옵션 값(Option Values)"></a>옵션 값(Option Values)</h2><p> <code>Option[A]</code>로 <code>A</code> 타입의 <code>옵션 값(Option Values)</code>을 표현할 수 있습니다.<br>이것은 부분적으로 정의된 함수 구현시 유용합니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The `sqrt` function is not defined for negative values</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sqrt</span></span>(x: <span class="type">Double</span>): <span class="type">Option</span>[<span class="type">Double</span>] = …</span><br></pre></td></tr></table></figure>
+
+<p><code>Option[A]</code>는 <code>None</code>(값이 없음) 혹은 <code>Some[A]</code>(값이 있음)이 될 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sqrt</span></span>(x: <span class="type">Double</span>): <span class="type">Option</span>[<span class="type">Double</span>] =</span><br><span class="line">  <span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="type">None</span> <span class="keyword">else</span> <span class="type">Some</span>(…)</span><br></pre></td></tr></table></figure>
+
+<h2 id="옵션-조작-Manipulating-Options"><a href="#옵션-조작-Manipulating-Options" class="headerlink" title="옵션 조작(Manipulating Options)"></a>옵션 조작(Manipulating Options)</h2><p>패턴 매칭으로 리스트를 분해(decompose) 할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span></span>(x: <span class="type">Double</span>): <span class="type">String</span> =</span><br><span class="line">  sqrt(x) <span class="keyword">match</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">None</span> =&gt; no result</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Some</span>(y) =&gt; y.toString</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="옵션에-대한-일반적인-작업"><a href="#옵션에-대한-일반적인-작업" class="headerlink" title="옵션에 대한 일반적인 작업"></a>옵션에 대한 일반적인 작업</h2><p><code>map</code>을 사용해 요소를 바꿉니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Some</span>(<span class="number">1</span>).map(x =&gt; x + <span class="number">1</span>) shouldBe <span class="type">Some</span>(<span class="number">2</span>)</span><br><span class="line"><span class="type">None</span>.map((x: <span class="type">Int</span>) =&gt; x + <span class="number">1</span>) shouldBe <span class="type">None</span></span><br></pre></td></tr></table></figure>
+
+<p><code>filter</code>를 사용해 요소를 조건에 맞게 걸러냅니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Some</span>(<span class="number">1</span>).filter(x =&gt; x % <span class="number">2</span> == <span class="number">0</span>) shouldBe <span class="type">None</span></span><br><span class="line"><span class="type">Some</span>(<span class="number">2</span>).filter(x =&gt; x % <span class="number">2</span> == <span class="number">0</span>) shouldBe <span class="type">Some</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>flatMap</code>으로 값을 옵션 값(Option value)으로 변환합니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Some</span>(<span class="number">1</span>).flatMap(x =&gt; <span class="type">Some</span>(x + <span class="number">1</span>)) shouldBe <span class="type">Some</span>(<span class="number">2</span>)</span><br><span class="line"><span class="type">None</span>.flatMap((x: <span class="type">Int</span>) =&gt; <span class="type">Some</span>(x + <span class="number">1</span>)) shouldBe <span class="type">None</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="에러-핸들링"><a href="#에러-핸들링" class="headerlink" title="에러 핸들링"></a>에러 핸들링</h3><p>이 서브섹션은 오류를 핸들링하는데에 유용한 타입들을 소개합니다.</p>
+<h4 id="Try"><a href="#Try" class="headerlink" title="Try"></a>Try</h4><p><code>Try[A]</code>는 A 를 리턴하려고 시도한 계산을 표현합니다. 이것은 <code>Success[A]</code> 과 <code>Failure</code> 중 하나 입니다.<br>None과 Failure사이엔 중요한 차이점이 있는데, Failure는 실패에 대한 이유를 알려줍니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sqrt</span></span>(x: <span class="type">Double</span>): <span class="type">Try</span>[<span class="type">Double</span>] =</span><br><span class="line">  <span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="type">Failure</span>(<span class="keyword">new</span> <span class="type">IllegalArgumentException</span>(x must be positive))</span><br><span class="line">  <span class="keyword">else</span> <span class="type">Success</span>(…)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Try[A] 값 조작하기</strong><br>Options 와 리스트처럼, <code>Try[A]</code>는 대수적인 데이터 타입입니다.<br>따라서 패턴 매칭으로 리스트를 분해(decompose) 할 수 있습니다.<br>또한 <code>Try[A]</code>는 map, filter, flatMap 을 가지고 있습니다.<br>따라서 실행중 발생한 오류는 Failure 로 변환된다는 점을 제외하면, 마치 <code>Option[A]</code> 처럼 동작합니다.  </p>
+<h4 id="Either"><a href="#Either" class="headerlink" title="Either"></a>Either</h4><p><code>Either</code>또한 예외 처리하는데에 유용하며, 기본적으로 타입 <code>Either[A, B]</code>는 A 혹은 B 타입 일 수 있는 값을 나타냅니다.<br>이것은 <code>Left</code> 혹은 <code>Right</code>라는 두가지 경우로 나뉘어집니다.<br>한가지 경우는 Failure를 나타내고 다른 하나는 SUCCESS를 나타낼 수 있습니다.<br>한가지 차이점은, <code>Try</code>는 Throwable 이 아닌 다른 타입을 선택해 예외를 나타낼 수 있습니다.<br>또 다른 차이점은 <code>Either</code>값을 변환할 때 발생하는 예외는 Failure 로 변환되지 않는다는 점 입니다. </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sqrt</span></span>(x: <span class="type">Double</span>): <span class="type">Either</span>[<span class="type">String</span>, <span class="type">Double</span>] =</span><br><span class="line">  <span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="type">Left</span>(x must be positive)</span><br><span class="line">  <span class="keyword">else</span> <span class="type">Right</span>(…)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Either[A, B] 값 조작</strong><br>스칼라 2.12 이후로 <code>Either</code> 는 map과 flatMap을 갖게 되었습니다. 이 메소드들은 <code>Right</code> 케이스로만 변환됩니다.<br>따라서 <code>Either</code>는 우편향(right biased) 라고 할 수 있습니다. (<code>Right</code> 로만 가기 때문이죠)</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Right</span>(<span class="number">1</span>).map((x: <span class="type">Int</span>) =&gt; x + <span class="number">1</span>) shouldBe <span class="type">Right</span>(<span class="number">2</span>)</span><br><span class="line"><span class="type">Left</span>(foo).map((x: <span class="type">Int</span>) =&gt; x + <span class="number">1</span>) shouldBe <span class="type">Left</span>(foo)</span><br></pre></td></tr></table></figure>
+
+<p>또한 <code>Either</code> 는 filterOrElse 메소드도 갖고 있습니다.<br>이 메소드는 만약 <code>Right</code>값이 predicate(술어) 를 만족하지 못하는 경우 <code>Left</code>로 만들어줍니다.<br>(역 : 여기서 predicate 는 <code>(A) ⇒ B</code> 같은 것을 의미합니다. <a href="https://stackoverflow.com/questions/40009857/scala-predicates" target="_blank" rel="noopener">[참고]</a>)</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Right</span>(<span class="number">1</span>).filterOrElse(x =&gt; x % <span class="number">2</span> == <span class="number">0</span>, <span class="type">Odd</span> value) shouldBe <span class="type">Left</span>(<span class="type">Odd</span> value)</span><br></pre></td></tr></table></figure>
+
+<p>그러나 스칼라 2.12 이전에는, <code>Either</code>는 편향되지 않았습니다(unbiased).<br>무슨 뜻이냐면, 스칼라 2.12 이전엔 map 사용시 <code>Side(Right or Left)</code>를 명시적으로 지정해야 했습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">triple</span></span>(x: <span class="type">Int</span>): <span class="type">Int</span> = <span class="number">3</span> * x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tripleEither</span></span>(x: <span class="type">Either</span>[<span class="type">String</span>, <span class="type">Int</span>]): <span class="type">Either</span>[<span class="type">String</span>, <span class="type">Int</span>] =</span><br><span class="line">  x.right.map(triple)</span><br><span class="line">  </span><br><span class="line">tripleEither(<span class="type">Right</span>(<span class="number">1</span>)) shouldBe <span class="type">Right</span>(<span class="number">3</span>)</span><br><span class="line">tripleEither(<span class="type">Left</span>(not a number)) shouldBe <span class="type">Left</span>(not a number)</span><br></pre></td></tr></table></figure>
+
+<p>읽어주셔서 감사합니다. 혹 글에 오역/추가할 내용이 있다면 코멘트 남겨주세요!🙆</p>
+<p>같이 보면 좋은 포스팅</p>
+<ul>
+<li><a href="https://hamait.tistory.com/556" target="_blank" rel="noopener">HAMA 블로그 | 스칼라 강좌 (3) - List</a></li>
+<li><a href="https://hamait.tistory.com/649" target="_blank" rel="noopener">HAMA 블로그 | 스칼라 강좌 (21) - Option 과 Either</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/scala-exercises/" rel="tag"># scala-exercises</a>
+          
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/11/tail-recursion/" rel="next" title="스칼라 번역- 꼬리재귀 (Tail Recursion)">
+                <i class="fa fa-chevron-left"></i> 스칼라 번역- 꼬리재귀 (Tail Recursion)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/18/syntactic-conveniences/" rel="prev" title="스칼라 번역- 편리한 문법들 (Syntactic Conveniences)">
+                스칼라 번역- 편리한 문법들 (Syntactic Conveniences) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#표준-라이브러리-STANDARD-LIBRARY"><span class="nav-number">1.</span> <span class="nav-text">표준 라이브러리 (STANDARD LIBRARY)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIST"><span class="nav-number">1.1.</span> <span class="nav-text">LIST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#리스트의-생성자"><span class="nav-number">1.2.</span> <span class="nav-text">리스트의 생성자</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#리스트-조작"><span class="nav-number">1.3.</span> <span class="nav-text">리스트 조작</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#연습-리스트-정렬"><span class="nav-number">1.4.</span> <span class="nav-text">연습 : 리스트 정렬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#리스트에-대한-일반적인-작업-Common-Operations"><span class="nav-number">1.5.</span> <span class="nav-text">리스트에 대한 일반적인 작업(Common Operations)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#옵션-값-Option-Values"><span class="nav-number">1.6.</span> <span class="nav-text">옵션 값(Option Values)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#옵션-조작-Manipulating-Options"><span class="nav-number">1.7.</span> <span class="nav-text">옵션 조작(Manipulating Options)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#옵션에-대한-일반적인-작업"><span class="nav-number">1.8.</span> <span class="nav-text">옵션에 대한 일반적인 작업</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#에러-핸들링"><span class="nav-number">1.8.1.</span> <span class="nav-text">에러 핸들링</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Try"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">Try</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Either"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">Either</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

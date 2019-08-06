@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - 단위테스트(Service) Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock   최근 사내 프로젝">
+<meta name="keywords" content="스프링부트 테스트코드,스프링부트 TDD,springboot testcode">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Springboot 에서 test code 작성하기 1편 - 통합테스트">
+<meta property="og:url" content="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-1.html/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - 단위테스트(Service) Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock   최근 사내 프로젝">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://sehajyang.github.io/images/blogpost/springboot-testcode1-1.JPG">
+<meta property="og:updated_time" content="2019-08-02T14:41:53.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Springboot 에서 test code 작성하기 1편 - 통합테스트">
+<meta name="twitter:description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - 단위테스트(Service) Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock   최근 사내 프로젝">
+<meta name="twitter:image" content="https://sehajyang.github.io/images/blogpost/springboot-testcode1-1.JPG">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Springboot 에서 test code 작성하기 1편 - 통합테스트 | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-1.html/index.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Springboot 에서 test code 작성하기 1편 - 통합테스트
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+09:00">2019-04-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-02 23:41:53" itemprop="dateModified" datetime="2019-08-02T23:41:53+09:00">2019-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/" itemprop="url" rel="index"><span itemprop="name"></span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<h4 id="Springboot-에서-test-code-작성하기-시리즈"><a href="#Springboot-에서-test-code-작성하기-시리즈" class="headerlink" title="Springboot 에서 test code 작성하기 시리즈"></a>Springboot 에서 test code 작성하기 시리즈</h4><ul>
+<li><a href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-1.html">Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC)</a></li>
+<li>Springboot 에서 test code 작성하기 2편 - 단위테스트(Service)</li>
+<li><a href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-3.html">Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock</a></li>
+</ul>
+</blockquote>
+<p>최근 사내 프로젝트에 테스트 코드를 작성할 기회가 있었다.<br>컨트롤러는 운영 환경과 비슷하게 테스트 하기 위해 통합 테스트, 서비스는 의존성을 줄이고 해당 서비스의 목표에만 집중하기 위해 단위테스트를 하기로 결정했다.<br>목표는 해당 컨트롤러의 메소드가 잘 동작하는지(요청을 잘 보내고 예상한 응답을 잘 받는지), 서비스가 개별적으로 잘 동작하는지 확인하는 것 이다.  </p>
+<p>테스트에 관한 글을 찾아보던 중 우아한형제들 기술블로그에서 테스트 메소드의 이름을 한글로 짓는다는 것을 알게 되었다.<br>테스트가 실패했을 때 어느 기능에서 오류가 났는지 직관적으로 알 수 있어 좋은 것 같아서 테스트 메소드 명을 한글로 작성했다.  </p>
+<h3 id="1-MVC-컨트롤러-통합-테스트"><a href="#1-MVC-컨트롤러-통합-테스트" class="headerlink" title="1. MVC 컨트롤러 통합 테스트"></a>1. MVC 컨트롤러 통합 테스트</h3><p>목표는 고객 정보를 조회 및 등록하는 메소드를 통합테스트 하는 것 이다.<br>컨트롤러 통합 테스트는 클래스 상단에 <code>@SpringbootTest</code> 을 선언한다.<br>모든 Bean을 올리는 것으로 다른 테스트에 비해 테스트 시간이 오래 소요되지만 운영환경과 비슷하게 테스트 할 수 있다.<br>따라서 클래스에 선언한 어노테이션은 다음과 같다.  </p>
+<table>
+<thead>
+<tr>
+<th>어노테이션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@RunWith(SpringRunner.class)</td>
+<td>테스트를 실행하기 위해 참조하는 클래스(SpringRunner)</td>
+</tr>
+<tr>
+<td>@AutoConfigureWebMvc</td>
+<td>MVC와 관련된 Bean을 올린다</td>
+</tr>
+<tr>
+<td>@Transactional</td>
+<td>테스트 후 DB 롤백</td>
+</tr>
+<tr>
+<td>@Ignore</td>
+<td>실제로 실행할 필요가 없기 때문에 Ignore를 선언</td>
+</tr>
+<tr>
+<td>@SpringBootTest</td>
+<td>모든 Bean을 올리는 통합 테스트</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> sehajyang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019-04-05</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class) </span><br><span class="line"><span class="meta">@AutoConfigureWebMvc</span> </span><br><span class="line"><span class="meta">@Transactional</span> </span><br><span class="line"><span class="meta">@Ignore</span> </span><br><span class="line"><span class="meta">@SpringBootTest</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerControllerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> MockMvc mvc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebApplicationContext webApplicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SpyBean</span></span><br><span class="line">    <span class="keyword">private</span> CustomerService customerService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ObjectMapper objectMapper;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockHttpSession session = <span class="keyword">new</span> MockHttpSession();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockHttpServletRequest request = <span class="keyword">new</span> MockHttpServletRequest();</span><br></pre></td></tr></table></figure>
+
+<p><code>@SpyBean</code>은 해당 객체를 주입받아 사용하다 given을 주면 선언한 해당 기능으로 동작하는 Bean 이다.  </p>
+<p>고객정보를 조회 및 등록하는 메소드가 있는 도메인 인 <code>CustomerController</code> 가 있다.<br>아래 코드는 예시입니다.  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"customer"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    CustomerService customerService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">""</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">getCustomerList</span><span class="params">(HttpSession session, HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        ModelAndView mav = <span class="keyword">new</span> ModelAndView(<span class="string">"customerListPage"</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Customer&gt; customerList = customerService.getCustomerList();</span><br><span class="line">        mav.addObject(<span class="string">"customerList"</span>, customerList);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">""</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">regCustomerData</span><span class="params">(@RequestBody Customer customer, </span></span></span><br><span class="line"><span class="function"><span class="params">                                    HttpSession session, HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 기존에 해당 유저가 있는지 확인후 등록하는 메소드 (이렇게 하면 안됩니다(예시일뿐!))</span></span><br><span class="line">        <span class="keyword">int</span> result;                        </span><br><span class="line">        <span class="keyword">int</span> userExist = shopService.getCustomerByCustno(customer.getCustno(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(userExist &lt; <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> Constant.RESULT_FAIL;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            result = shopService.regCustomerData(customer);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (result &gt; <span class="number">0</span>) ? Constant.RESULT_SUCCESS : Constant.RESULT_FAIL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>코드상엔 없지만 <code>CustomerController</code>의 모든 메소드의 session과 header에는 특정 값이 셋팅되어 있어야 한다고 가정한다.<br>따라서 위 <code>getCustomerList</code> 를 테스트 하는 코드는 다음과 같다.  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span> <span class="comment">//테스트 수행시 실행</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//Integration Test</span></span><br><span class="line">        <span class="keyword">this</span>.mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)</span><br><span class="line">                .dispatchOptions(<span class="keyword">true</span>) <span class="comment">//HTTP TRACE 요청을 디스패치할지 여부를 설정 (default는 false)</span></span><br><span class="line">                .alwaysDo(print())</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        session.setAttribute(<span class="string">"Id"</span>, <span class="string">"셋팅 값"</span>);</span><br><span class="line">        request.addHeader(<span class="string">"X-FORWARDED-FOR"</span>, <span class="string">"셋팅 값"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> 고객리스트_조회가_정상적으로_되어야한다() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        List&lt;Customer&gt; customerList = customerService.getCustomerList();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.mvc.perform(get(<span class="string">"/customer"</span>)</span><br><span class="line">                    .session(session)</span><br><span class="line">                    .header(<span class="string">"X-FORWARDED-FOR"</span>, request.getHeader(<span class="string">"X-FORWARDED-FOR"</span>))</span><br><span class="line">                    )</span><br><span class="line">                .andExpect(status().isOk()) <span class="comment">// 200 return</span></span><br><span class="line">                .andExpect(view().name(<span class="string">"customerListPage"</span>)) <span class="comment">// 리턴할 view page name</span></span><br><span class="line">                .andExpect(model().attribute(<span class="string">"customerList"</span>, customerList)); <span class="comment">// 리턴할 model attribute name</span></span><br><span class="line">              <span class="comment">// redirect 리턴일 경우</span></span><br><span class="line">              <span class="comment">//.andExpect(redirectedUrl("/")) </span></span><br><span class="line">              <span class="comment">//.andExpect(status().is3xxRedirection())</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> 고객정보_등록이_예외없이_되어야한다() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer(<span class="string">"1"</span>,<span class="string">"sehajyang"</span>); <span class="comment">// Customer(custno, custname)</span></span><br><span class="line"></span><br><span class="line">        given(customerService.getCustomerByCustno(customer.getCustno())).willReturn(<span class="number">1</span>); <span class="comment">// getCustomerByCustno 의 result는 1을 리턴</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.mvc.perform(post(<span class="string">"/customer"</span>)</span><br><span class="line">                    .contentType(MediaType.APPLICATION_JSON)</span><br><span class="line">                    .content(objectMapper.writeValueAsString(customer)) <span class="comment">// JSON으로 만들어준다</span></span><br><span class="line">                    .session(session)</span><br><span class="line">                    .header(<span class="string">"X-FORWARDED-FOR"</span>, request.getHeader(<span class="string">"X-FORWARDED-FOR"</span>))</span><br><span class="line">                    )</span><br><span class="line">                .andExpect(status().isOk())</span><br><span class="line">                .andExpect(content().string(<span class="string">"SUCCESS"</span>))</span><br><span class="line">                .andReturn()</span><br><span class="line">                .getResponse();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>그 밖에도 <code>param()</code> 등 으로 파라미터를 넘길수도 있다.<br>이렇게 Controller를 통합테스트 를 실행해 전체 플로우를 테스트 할 수 있다.  </p>
+<p><code>@SessionAttributes</code>를 사용하는 방법도 있는데 이 경우엔 테스트 코드에서 <code>requestAttr()</code> 대신 <code>sessionAttr()</code>을 사용할 수 있다.<br>이 방법은 <a href="https://www.petrikainulainen.net/programming/spring-framework/integration-testing-of-spring-mvc-applications-forms/" target="_blank" rel="noopener">이곳</a>의 예제로 확인할 수 있다.  </p>
+<p>만약    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">""</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">regCustomerData</span><span class="params">(Customer customer, </span></span></span><br><span class="line"><span class="function"><span class="params">                                HttpSession session, HttpServletRequest request)</span></span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 DTO에 <code>@RequestBody</code>가 없는 도메인을 테스트하려면 조금 복잡해진다.<br>나는 회사 코드의 POST 도메인 파라미터 DTO에 일부 <code>@RequestBody</code>가 없었고, <code>@RequestBody</code>를 추가 할 경우 문제가 생길 수 있었기 때문에<br>기존 코드를 변경하지 않고 테스트 하는 방법을 찾아보았다.  </p>
+<p>우선 <a href="https://stackoverflow.com/questions/17143116/integration-testing-posting-an-entire-object-to-spring-mvc-controller/20926205" target="_blank" rel="noopener">Spring에서는 권장하지 않는다</a> 그 이유는 아래와 같다.<br><img src="/images/blogpost/springboot-testcode1-1.JPG" alt="img_1"><br>대략 이렇게 이해할 수 있다.  </p>
+<blockquote>
+<p>통합 테스트의 주 목적 중 하나는 MockMvc 모델 객체가 Object 데이터로 바뀌었는지 확인하는 것 이다.<br>NewObject(DTO)를 자동으로 변환하면 NewObject(DTO)가 실제 form과 호환되지 않는 문제가 있는데, 이러한 문제가 있는 파라미터는 테스트에서 제외되기 때문이다.  </p>
+</blockquote>
+<p>그래서 <code>@RequestBody</code>가 없는 도메인의 DTO 파라미터는 십중팔구 넘어가지 않으며 null이된다.<br>이것을 해결하기 위한 방법은 두가지 정도가 있다.  </p>
+<h3 id="HttpClient-사용"><a href="#HttpClient-사용" class="headerlink" title="HttpClient 사용"></a>HttpClient 사용</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> 고객정보_등록이_예외없이_되어야한다() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer(<span class="string">"1"</span>,<span class="string">"sehajyang"</span>); <span class="comment">// Customer(custno, custname)</span></span><br><span class="line"></span><br><span class="line">        given(customerService.getCustomerByCustno(customer.getCustno())).willReturn(<span class="number">1</span>); <span class="comment">// getCustomerByCustno 의 result는 1을 리턴</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.mvc.perform(post(<span class="string">"/customer"</span>)</span><br><span class="line">                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)</span><br><span class="line">                    .content(EntityUtils.toString(<span class="keyword">new</span> UrlEncodedFormEntity(Arrays.asList(</span><br><span class="line">                            <span class="keyword">new</span> BasicNameValuePair(<span class="string">"custno"</span>, <span class="string">"1"</span>),</span><br><span class="line">                            <span class="keyword">new</span> BasicNameValuePair(<span class="string">"custname"</span>, <span class="string">"sehajyang"</span>)</span><br><span class="line">                    )))))</span><br><span class="line">                    .andExpect(status().isOk())</span><br><span class="line">                    .andExpect(content().string(<span class="string">"SUCCESS"</span>))</span><br><span class="line">                    .andReturn()</span><br><span class="line">                    .getResponse();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="buildUrlEncodedFormEntity-이용"><a href="#buildUrlEncodedFormEntity-이용" class="headerlink" title="buildUrlEncodedFormEntity() 이용"></a>buildUrlEncodedFormEntity() 이용</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> 고객정보_등록이_예외없이_되어야한다() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer(<span class="string">"1"</span>,<span class="string">"sehajyang"</span>); <span class="comment">// Customer(custno, custname)</span></span><br><span class="line"></span><br><span class="line">        given(customerService.getCustomerByCustno(customer.getCustno())).willReturn(<span class="number">1</span>); <span class="comment">// getCustomerByCustno 의 result는 1을 리턴</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.mvc.perform(post(<span class="string">"/customer"</span>)</span><br><span class="line">                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)</span><br><span class="line">                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)</span><br><span class="line">                                .content(buildUrlEncodedFormEntity(</span><br><span class="line">                                <span class="string">"custno"</span>,<span class="string">"1"</span>,</span><br><span class="line">                                <span class="string">"custname"</span>,<span class="string">"sehajyang"</span> </span><br><span class="line">                    ))))</span><br><span class="line">                    .andExpect(status().isOk())</span><br><span class="line">                    .andExpect(content().string(<span class="string">"SUCCESS"</span>))</span><br><span class="line">                    .andReturn()</span><br><span class="line">                    .getResponse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">buildUrlEncodedFormEntity</span><span class="params">(String... params)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( (params.length % <span class="number">2</span>) &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Need to give an even number of parameters"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;params.length; i+=<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>( i &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">            result.append(<span class="string">'&amp;'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            result.</span><br><span class="line">            append(URLEncoder.encode(params[i], StandardCharsets.UTF_8.name())).</span><br><span class="line">            append(<span class="string">'='</span>).</span><br><span class="line">            append(URLEncoder.encode(params[i+<span class="number">1</span>], StandardCharsets.UTF_8.name()));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result.toString();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><a href="https://stackoverflow.com/questions/36568518/testing-form-posts-through-mockmvc" target="_blank" rel="noopener">Testing Form posts through MockMVC</a>에서 더 알아볼 수 있다. </p>
+<hr>
+<p>위 시리즈는 3부로 나뉘어 통합테스트, 단위테스트, spock를 사용한 테스트로 작성 될 예정입니다.<br>많이 미숙하지만 지속적으로 알아가고 있습니다.<br>혹 틀린 부분 혹은 궁금한 점이 있다면 댓글 부탁드리겠습니다 읽어주셔서 감사합니다!🙏  </p>
+<p>참고자료</p>
+<ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/mock/mockito" target="_blank" rel="noopener">Mokito 공식 문서</a>  </li>
+<li><a href="https://github.com/mockito/mockito/wiki" target="_blank" rel="noopener">Mokito github wiki</a>  </li>
+<li><a href="https://github.com/cheese10yun/spring-guide/blob/master/docs/test-guide.md" target="_blank" rel="noopener">Yun 님의 Test Guide</a>  </li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/" rel="tag"># </a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Springboot-에서-test-code-작성하기-시리즈"><span class="nav-number">1.</span> <span class="nav-text">Springboot 에서 test code 작성하기 시리즈</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#1-MVC-컨트롤러-통합-테스트"><span class="nav-number"></span> <span class="nav-text">1. MVC 컨트롤러 통합 테스트</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpClient-사용"><span class="nav-number"></span> <span class="nav-text">HttpClient 사용</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#buildUrlEncodedFormEntity-이용"><span class="nav-number"></span> <span class="nav-text">buildUrlEncodedFormEntity() 이용</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

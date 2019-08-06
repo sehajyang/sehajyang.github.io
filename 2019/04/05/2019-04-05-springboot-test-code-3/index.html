@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - 단위테스트(Service) 추후 작성 Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock   1.">
+<meta name="keywords" content="스프링부트 테스트코드,스프링부트 TDD,springboot testcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock">
+<meta property="og:url" content="https://sehajyang.github.io/2019/04/05/2019-04-05-springboot-test-code-3/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - 단위테스트(Service) 추후 작성 Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock   1.">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://sehajyang.github.io/images/blogpost/springboot-test-code-3-1.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/blogpost/springboot-test-code-3-2.JPG">
+<meta property="og:updated_time" content="2019-07-15T14:11:55.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock">
+<meta name="twitter:description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - 단위테스트(Service) 추후 작성 Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock   1.">
+<meta name="twitter:image" content="https://sehajyang.github.io/images/blogpost/springboot-test-code-3-1.JPG">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/04/05/2019-04-05-springboot-test-code-3/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/05/2019-04-05-springboot-test-code-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+09:00">2019-04-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<h4 id="Springboot-에서-test-code-작성하기-시리즈"><a href="#Springboot-에서-test-code-작성하기-시리즈" class="headerlink" title="Springboot 에서 test code 작성하기 시리즈"></a>Springboot 에서 test code 작성하기 시리즈</h4><ul>
+<li><a href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-1.html">Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC)</a></li>
+<li>Springboot 에서 test code 작성하기 2편 - 단위테스트(Service) 추후 작성</li>
+<li><a href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-3.html">Springboot 에서 test code 작성하기 3편 - assetThat이 중복되는 테스트와 Spock</a></li>
+</ul>
+</blockquote>
+<h3 id="1-그-외의-메소드-테스트와-Spock"><a href="#1-그-외의-메소드-테스트와-Spock" class="headerlink" title="1. 그 외의 메소드 테스트와 Spock"></a>1. 그 외의 메소드 테스트와 Spock</h3><p>프로덕션엔 CommonUtil이라는 클래스가 있다.<br>그 클래스엔 문자열을 조작한다던가, 리스트를 조작하거나 어떠한 값을 검증하는 등의 메소스들이 있는데 그 클래스 내의 메소드들이 잘 동작하는지 테스트하기 위해선 많은 assertThat 이 필요했고, 그러한 중복코드를 없애기 위해 검색을 하던 중 <a href="https://jojoldu.tistory.com/228" target="_blank" rel="noopener">Spock 소개 및 튜토리얼</a>라는 튜토리얼을 보게 되었다.  </p>
+<blockquote>
+<p><strong>BDD(Behaviour-Driven Development)</strong>는 TDD가 진화한 테스트 코드 작성 방식이며<br>사람이 쉽게 이해하기 쉬운 작성, 즉 테스트의 동작 및 의도를 직관적으로 알 수 있다는 장점이 있다.<br><strong>Spock는 groovy 로 작성된 프레임워크</strong>인데 JVM에서 실행되며 <strong>테스팅을 하기 위한 BDD 프레임워크</strong>이다.<br>따라서 Given-When-Then-Expect_Where 로 시나리오를 작성하게 된다.<br>또한 <strong>테스트 실패 시 상세하게 이유가 출력 된다</strong>  </p>
+</blockquote>
+<p>예를들어 <strong>특정 시간의 예약 가능 여부를 True/False 로 리턴</strong>하는 <code>checkReserveYN</code> 라는 함수가 있다고 가정한다.<br>일반적으론 그 함수를 테스트 할 때</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> data1 = CommonUtil.checkReserveYN(<span class="string">"월요일 09:00~19:00, 토요일 13:00~16:00"</span>);</span><br><span class="line">    assertTrue(data1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> data2 = CommonUtil.checkReserveYN(<span class="string">"금요일 09:00~24:00"</span>);</span><br><span class="line">    assertTrue(data2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> data3 = CommonUtil.checkReserveYN(<span class="string">"월,화 13:00~16:00"</span>);</span><br><span class="line">    assertTrue(data3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 작성하게 되는데 테스트 케이스 하나를 만들 때 마다 중복이 발생하고 있는 것을 알 수 있다.<br>하지만 spock를 사용하면 이 부분을 해결할 수 있다.</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Unroll</span></span><br><span class="line"><span class="keyword">def</span> <span class="string">"#time 시간의 예약 가능 여부 : #result"</span>() &#123;</span><br><span class="line"><span class="symbol">    expect:</span></span><br><span class="line">    result <span class="keyword">as</span> Boolean == CommonUtil.checkReserveYN(time <span class="keyword">as</span> String)</span><br><span class="line"></span><br><span class="line"><span class="symbol">    where:</span></span><br><span class="line">    time                                   | result</span><br><span class="line">    <span class="string">"월요일 09:00~19:00,토요일 13:00~16:00"</span> | <span class="literal">true</span></span><br><span class="line">    <span class="string">"금요일 09:00~24:00"</span>                   | <span class="literal">false</span></span><br><span class="line">    <span class="string">"월,화 13:00~16:00"</span>                    | <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>@Unroll</code> 어노테이션은 메소드 명에 where의 객체값을 대입해 테스트를 수행해 위의 테스트의 결과는<br><img src="/images/blogpost/springboot-test-code-3-1.JPG" alt="image1"><br>이렇게 나타난다.  </p>
+<p>만약 테스트가 실패한 경우 아래와 같이 상세하게 테스트 실패 이유를 출력한다.<br><img src="/images/blogpost/springboot-test-code-3-2.JPG" alt="image2"><br>또한 request 나 session값 등은 메소드 필드에 그냥 선언해서 사용할 수 없다.<br>즉 이렇게 사용하면 안된다.  </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">"세션 Id가 없으면 false를 리턴해야한다"</span>() &#123;</span><br><span class="line"><span class="symbol">        given:</span></span><br><span class="line">        MockHttpSession session = <span class="literal">null</span></span><br><span class="line">        MockHttpSession sessionNossId = <span class="literal">null</span></span><br><span class="line">        session.setAttribute(<span class="string">"ssId"</span>, <span class="string">"1"</span>)</span><br><span class="line"></span><br><span class="line"><span class="symbol">        expect:</span></span><br><span class="line">        result <span class="keyword">as</span> <span class="keyword">boolean</span> == CommonUtil.SessionIdCheck(ss <span class="keyword">as</span> MockHttpSession)</span><br><span class="line"></span><br><span class="line"><span class="symbol">        where:</span></span><br><span class="line">        ss | result</span><br><span class="line">        session | <span class="literal">true</span></span><br><span class="line">        sessionNossId | <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위 코드는 <code>groovy.lang.MissingPropertyException : No such property session</code> 가 발생한다.<br>생성한 session 객체를 공유 하기 위해선 <code>@shared</code> 어노테이션을 사용하거나 static 변수로 선언하는 방법이 있다.<br><code>@shared</code>는 메소드간의 객체를 공유할 수 있게 해준다.<br>하지만 공유 객체를 만들고 사용하는 것 보다 더 좋은 방법이 있다.   </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">"세션 Id가 없으면 false를 리턴해야한다"</span>() &#123;</span><br><span class="line"><span class="symbol">    expect:</span></span><br><span class="line">    result <span class="keyword">as</span> <span class="keyword">boolean</span> == CommonUtil.SessionIdCheck(ss <span class="keyword">as</span> MockHttpSession)</span><br><span class="line"></span><br><span class="line"><span class="symbol">    where:</span></span><br><span class="line">    ss &lt;&lt; &#123;</span><br><span class="line">        MockHttpSession session = <span class="keyword">new</span> MockHttpSession()</span><br><span class="line">        MockHttpSession sessionNossId = <span class="keyword">new</span> MockHttpSession()</span><br><span class="line">        session.setAttribute(<span class="string">"sessionId"</span>, <span class="string">"1"</span>)</span><br><span class="line">        [session, sessionNossId]</span><br><span class="line">    &#125;()</span><br><span class="line">    result &lt;&lt; [<span class="literal">true</span>, <span class="literal">false</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>where 내 에서 session 객체를 생성한다.<br>위와 같이 작성하면 <code>@shared</code> 없이 깔끔하게 코드를 작성할 수 있다.<br>또한 <code>result &lt;&lt; [_,false]</code> 등으로 무시할 수 있다.<br>자세한 내용은 <a href="https://www.pluralsight.com/guides/introduction-to-testing-with-bdd-and-the-spock-framework" target="_blank" rel="noopener">링크</a> 에서 확인할 수 있다.  </p>
+<p>참고자료</p>
+<ul>
+<li><a href="http://spockframework.org/spock/docs/1.0/spock_primer.html" target="_blank" rel="noopener">Spock Framework Reference Documentation</a></li>
+<li><a href="https://jojoldu.tistory.com/228" target="_blank" rel="noopener">Spock 소개 및 튜토리얼</a> </li>
+<li><a href="http://woowabros.github.io/study/2018/03/01/spock-test.html" target="_blank" rel="noopener">Spock으로 테스트코드를 짜보자</a> </li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/TDD/" rel="tag"># TDD</a>
+          
+            <a href="/tags/Springboot/" rel="tag"># Springboot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/05/2019-04-05-springboot-test-code-1/" rel="next" title="Springboot 에서 test code 작성하기 1편 - 통합테스트">
+                <i class="fa fa-chevron-left"></i> Springboot 에서 test code 작성하기 1편 - 통합테스트
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/07/2019-04-07-190325~190407/" rel="prev" title="190325-190407 주간 회고">
+                190325-190407 주간 회고 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Springboot-에서-test-code-작성하기-시리즈"><span class="nav-number">1.</span> <span class="nav-text">Springboot 에서 test code 작성하기 시리즈</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#1-그-외의-메소드-테스트와-Spock"><span class="nav-number"></span> <span class="nav-text">1. 그 외의 메소드 테스트와 Spock</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

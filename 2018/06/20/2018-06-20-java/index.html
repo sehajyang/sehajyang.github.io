@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1. Java 란객체지향(OPP) 프로그래밍 언어 JVM 을 이용(운영체제에 독립적).  자바에서 컴파일 시 바이트코드(.class)로 출력되며 그 바이트코드는 기계코드로 변경되어 실행된다. 자동으로 메모리 관리(Garbage collector)를 해준다. 다중 쓰레드를 제공한다. C언어와의 차이점 C 하드웨어를 직접 제어가능하다. 절차지향 구조화된 프로그">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 정리">
+<meta property="og:url" content="https://sehajyang.github.io/2018/06/20/2018-06-20-java/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="1. Java 란객체지향(OPP) 프로그래밍 언어 JVM 을 이용(운영체제에 독립적).  자바에서 컴파일 시 바이트코드(.class)로 출력되며 그 바이트코드는 기계코드로 변경되어 실행된다. 자동으로 메모리 관리(Garbage collector)를 해준다. 다중 쓰레드를 제공한다. C언어와의 차이점 C 하드웨어를 직접 제어가능하다. 절차지향 구조화된 프로그">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-02T14:41:53.796Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 정리">
+<meta name="twitter:description" content="1. Java 란객체지향(OPP) 프로그래밍 언어 JVM 을 이용(운영체제에 독립적).  자바에서 컴파일 시 바이트코드(.class)로 출력되며 그 바이트코드는 기계코드로 변경되어 실행된다. 자동으로 메모리 관리(Garbage collector)를 해준다. 다중 쓰레드를 제공한다. C언어와의 차이점 C 하드웨어를 직접 제어가능하다. 절차지향 구조화된 프로그">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2018/06/20/2018-06-20-java/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java 정리 | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/06/20/2018-06-20-java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 정리
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-06-20 00:00:00" itemprop="dateCreated datePublished" datetime="2018-06-20T00:00:00+09:00">2018-06-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-02 23:41:53" itemprop="dateModified" datetime="2019-08-02T23:41:53+09:00">2019-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-Java-란"><a href="#1-Java-란" class="headerlink" title="1. Java 란"></a>1. Java 란</h3><p><a href="#2-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dobject-oriented-programming">객체지향(OPP)</a> 프로그래밍 언어</p>
+<p><a href="#8-jvm-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0">JVM</a> 을 이용(운영체제에 독립적). </p>
+<p>자바에서 컴파일 시 바이트코드(.class)로 출력되며 그 바이트코드는 기계코드로 변경되어 실행된다.</p>
+<p>자동으로 <a href="#9-garbage-colloetion">메모리 관리(Garbage collector)</a>를 해준다.</p>
+<p><a href="#7-%EC%93%B0%EB%A0%88%EB%93%9Cthread">다중 쓰레드</a>를 제공한다.</p>
+<h5 id="C언어와의-차이점"><a href="#C언어와의-차이점" class="headerlink" title="C언어와의 차이점"></a>C언어와의 차이점</h5><ul>
+<li><p>C</p>
+<p>하드웨어를 직접 제어가능하다.</p>
+<p>절차지향</p>
+<p>구조화된 프로그램 개발이 가능하다.</p>
+</li>
+<li><p>java</p>
+<p>중간코드(바이트코드)를 생성해 어느 플랫폼이나 사용 가능하다.</p>
+<p>객체지향</p>
+<p>C언어에 비해 메모리와 속도가 느리다(JVM을 사용하기 때문).</p>
+</li>
+</ul>
+<h3 id="2-객체지향-프로그래밍-Object-Oriented-Programming"><a href="#2-객체지향-프로그래밍-Object-Oriented-Programming" class="headerlink" title="2. 객체지향 프로그래밍(Object Oriented Programming)"></a>2. 객체지향 프로그래밍(Object Oriented Programming)</h3><p>실 생활의 특징을 모델링 해 소프트웨어로 옮겨오는것</p>
+<p>객체란 실 생활의 사물에 대한 추상화 한 것이며, 그에 필요한 멤버변수와 메소드를 정의한다. </p>
+<p>추상화, 캡슐화,다형성등의 특징이 있다.</p>
+<p>이미 작성한 코드에대한 재사용성이 높다( 로직을 라이브러리로 만든다던지).</p>
+<p>라이브러리 생성시 버그를 잡기 때문에 버그가 발생할 확률이 낮아진다.(디버깅이 쉽고 유지보수가 용이)</p>
+<p>또한 라이브러리가 제공하는 기능을 사용하게되면 생산성 또한 높아진다.</p>
+<h5 id="추상화란"><a href="#추상화란" class="headerlink" title="추상화란?"></a>추상화란?</h5><p>굳이 구현할 필요없는 부분을 생략하고 필요한 부분만을 나타내는 것.</p>
+<h5 id="다형성이란"><a href="#다형성이란" class="headerlink" title="다형성이란?"></a>다형성이란?</h5><p>하나의 메소드나 클래스가 다양한 방법으로 동작하게하는 요소</p>
+<p>단순한 상속이나 인터페이스가 구현이 된 클래스</p>
+<p>계층적으로 다단계 상속을 이루고 있는 클래스</p>
+<p>여려개의 인터페이스를 한번에 구현한 클래스 등으로 표현된다.</p>
+<p>Overriding, Overloading 이 있다.</p>
+<ul>
+<li><p>Overriding</p>
+<p>자식클래스에서 부모클래스 메소드를 재정의한다.</p>
+<p>super()를 쓰면 부모클래스 메소드를 사용한다.</p>
+</li>
+<li><p>Overloading</p>
+<p>같은 이름이지만 매개변수의 종류 및 숫자가 다른 메소드</p>
+<p>같은 기능이지만 다른 인자를 수행하는 메소드 정의시 사용.</p>
+</li>
+</ul>
+<h5 id="캡슐화-encapsulation-란"><a href="#캡슐화-encapsulation-란" class="headerlink" title="캡슐화(encapsulation)란?"></a>캡슐화(encapsulation)란?</h5><p>메소드의 기능만 알며, 어떻게 동작하는지는 알필요 없이 사용하는 것</p>
+<p>외부에서 변경 불가하게 private로 선언하고 setter getter 메소드를 통해서만 접근 가능하다.</p>
+<p>=&gt; 무결성을 보장한다.</p>
+<h5 id="상속이란"><a href="#상속이란" class="headerlink" title="상속이란?"></a>상속이란?</h5><p>부모클래스의 속성과 메소드를 자식클래스가 물려받아 사용할 수 있는 것.</p>
+<p>부모클래스에서 private로 선언시 자식클래스는 상속받아도 사용하지 못한다.</p>
+<p>다중상속(extends)이 불가능하므로 <a href="https://github.com/sehajyang/TIL/blob/master/Java/README.md#6-%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4abstract-class%EC%99%80-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4interface" target="_blank" rel="noopener">interface</a>를 사용해 다중상속을 한다.</p>
+<h3 id="3-자료형-Data-type"><a href="#3-자료형-Data-type" class="headerlink" title="3. 자료형(Data type)"></a>3. 자료형(Data type)</h3><h4 id="기본-자료형"><a href="#기본-자료형" class="headerlink" title="기본 자료형"></a>기본 자료형</h4><p>사용전 선언되어야한다.</p>
+<p>생성한 변수에는 하나의 값을 저장한다.</p>
+<p>call-by-value에 의해 메소드의 인자값을 전달한다.</p>
+<ul>
+<li><p>종류 </p>
+<p>byte, char, short, int, double, long, float, boolean</p>
+</li>
+<li><p><a href "">WrapperClass</a> </p>
+<p>기본 데이터타입을 참조자료형으로 만든것(Class 화 한 것)</p>
+<p>참조 자료형을 매개변수로 받거나, 객체자료형으로 저장해야하거나 객체간 비교가 필요할 경우 사용</p>
+</li>
+</ul>
+<h4 id="참조-자료형-Reference-Data-Type"><a href="#참조-자료형-Reference-Data-Type" class="headerlink" title="참조 자료형(Reference Data Type)"></a>참조 자료형(Reference Data Type)</h4><p>주소값을 저장한다.</p>
+<p> call-by-reference에 의해 메소드의 인자값을 전달한다.</p>
+<ul>
+<li><p>종류</p>
+<p> class, interface, array, enum</p>
+</li>
+<li><p>명명 규칙</p>
+<p>알파벳 대소문자, 숫자, 한글가능.</p>
+<p>특수문자 사용 X (예외 : _ $ 가능)</p>
+<p>숫자로 시작 불가능하다.</p>
+<p>클래스는 대문자로, 메소드와 변수는 소문자로 시작.</p>
+<p>합성어의 경우 첫 문자는 대문자로</p>
+<p>예약어는 사용 불가능하다.</p>
+</li>
+</ul>
+<h3 id="4-접근제어자-Access-modifire"><a href="#4-접근제어자-Access-modifire" class="headerlink" title="4. 접근제어자(Access modifire)"></a>4. 접근제어자(Access modifire)</h3><p>접근 영역을 제한시 사용한다 선언 생략시 default로 setting</p>
+<ul>
+<li><p>종류</p>
+<p>public         :    제한없이 사용 가능</p>
+<p>default        :    private + 같은 패키지 내에서 사용가능</p>
+<p>protected   :    default  + 상속이면 사용가능</p>
+<p>private        :    자신의 클래서 내 에서만 사용 가능</p>
+</li>
+</ul>
+<h3 id="5-FrameWork"><a href="#5-FrameWork" class="headerlink" title="5. FrameWork"></a>5. FrameWork</h3><p>소프트웨어 설계와 구현을 재사용 가능하도록 해주는 뼈대</p>
+<p>구체적, 확장 가능한 기반코드를 가지고 설계자의 의도에 따르는 여러 디자인 패턴 집합으로 구성되어있다.</p>
+<p>완성된 도구가 아니라는 점에서 라이브러리와 다르다.</p>
+<h3 id="6-Collection"><a href="#6-Collection" class="headerlink" title="6. Collection"></a>6. Collection</h3><ul>
+<li><p>종류</p>
+<p>List 계열 : AbstractList, ArrayList, LinkedList, Vector </p>
+<p>Set계열 : AbstractSet, HashSet, LinkedHashSet, TreeSet</p>
+<p>Map 계열 : AbstractMap, Attributes, HashMap, Hashtable, IdentityHashMap,RenderingHints, TreeMap, WeakHashMap , Properties</p>
+</li>
+<li><p>List</p>
+<p>순서가 있다(순차적 데이터 저장). 동일 데이터 중복 가능</p>
+<p>데이터 순차 검색시 용이하다.</p>
+<ul>
+<li><p>Vector</p>
+<p>동기화(Synchronized)</p>
+</li>
+<li><p>ArrayList</p>
+<p>동기화 안함</p>
+</li>
+</ul>
+</li>
+<li><p>Set</p>
+<p>순서 없음. 중복 불가능</p>
+<p>순차 접근을 위해 Iterator을 사용한다.</p>
+</li>
+<li><p>Map</p>
+<p>Key와 Value 형태로 입력</p>
+<p>순서 없음, Key값 중복 안됨</p>
+<p>특정 데이터 검색시 용이하다.</p>
+<ul>
+<li><p>HashMap</p>
+<p>데이터 입출력 동기화 안됨, 처리속도 빠름</p>
+</li>
+<li><p>HashTable</p>
+<p>모든 입출력이 동기화(토큰을 부여받아 순차접근)되나 처리속도는 떨어진다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-추상-클래스-Abstract-Class-와-인터페이스-Interface"><a href="#6-추상-클래스-Abstract-Class-와-인터페이스-Interface" class="headerlink" title="6. 추상 클래스(Abstract Class)와 인터페이스(Interface)"></a>6. 추상 클래스(Abstract Class)와 인터페이스(Interface)</h3><h5 id="추상클래스-abstract"><a href="#추상클래스-abstract" class="headerlink" title="- 추상클래스(abstract)"></a>- 추상클래스(abstract)</h5><p>extends이용해 상속을 진행한다.</p>
+<p>단일 상속</p>
+<p>형태만 정의(미완성 메소드)함으로 자식클래스에선 미완성 메소드를 재정의 해야한다.</p>
+<h5 id="인터페이스-interface"><a href="#인터페이스-interface" class="headerlink" title="- 인터페이스(interface)"></a>- 인터페이스(interface)</h5><p>implements 를 이용해 상속을 진행한다.</p>
+<p>다중 상속</p>
+<p>추상클래스보다 추상화 정도가 높다. 기능의 재정의에 큰 의미를 둔다</p>
+<p>상수와 추상 메소드만 선언 가능하다.</p>
+<p>자식클래스에서 반드시 메소드를 재정의(overriding) 해야한다</p>
+<h3 id="7-쓰레드-Thread"><a href="#7-쓰레드-Thread" class="headerlink" title="7. 쓰레드(Thread)"></a>7. 쓰레드(Thread)</h3><p>프로세스내에서 동시에 실행되는 독립적인 실행 단위 </p>
+<p>쓰레드는 각자의 스택 메모리영역을 갖고있으며 다른 쓰레드들과 전역 메모리를 공유한다.</p>
+<h5 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h5><p>자원을 많이 사용하지않고 구현이 쉬우며 범용성이 높다.</p>
+<h5 id="구현방법-2가지"><a href="#구현방법-2가지" class="headerlink" title="구현방법(2가지)"></a>구현방법(2가지)</h5><ol>
+<li>Thread 클래스를 상속받는다.</li>
+<li>Runnable interface를 상속받아 run 메소드 재정의</li>
+</ol>
+<h5 id="Thread의-동기화-synchronized-와-데드락-deadlock"><a href="#Thread의-동기화-synchronized-와-데드락-deadlock" class="headerlink" title="Thread의 동기화(synchronized)와 데드락(deadlock)"></a>Thread의 동기화(synchronized)와 데드락(deadlock)</h5><ul>
+<li><p>synchronized</p>
+<p>2개이상 쓰래드가 공유자원에 접근해 값 변경하려 할 수가 있으므로 공유변수에 synchronized를 사용해야한다.</p>
+<p>synchronized를 사용하면 하나의 쓰레드가 공유자원 점유시 타 쓰레드가 대기상태에 머문다.</p>
+</li>
+<li><p>deadlock</p>
+<p>두 쓰레드가 서로 공유변수에 lock걸고 작업중 서로의 것에 필요한 코드가 있으나</p>
+<p>각자 선점중이므로 둘다 대기상태에 계속 머무르게 되는 현상</p>
+<p>망에선 사용 가능한 버퍼가 없어 노드들이 패킷을 전송할 수 없는 상태이다.</p>
+</li>
+</ul>
+<h5 id="process와의-차이점"><a href="#process와의-차이점" class="headerlink" title="process와의 차이점"></a>process와의 차이점</h5><p>쓰레드와 달리 프로세스는 자기자신의 메모리 영역을 가진다.</p>
+<p>자원쓰기시 복사(copy on write) 방식으로 자식프로레스에게 복사하여 사용하는 방식이다. </p>
+<p>thread에 비해 느린 수행능력을 보여준다.</p>
+<h5 id="Thread-사용여부"><a href="#Thread-사용여부" class="headerlink" title="Thread 사용여부"></a>Thread 사용여부</h5><p>지나친 다중화는 각 스레드를 스케줄링하는데에 대부분의 CPU 타임을 소모하며</p>
+<p>Thrashing과 같은 문제가 생길 수 있다. </p>
+<p>각 스레드는 다른 스레드가 끝날 때까지 대기상태에 있기 때문에 병행적이지 않은 프로그램은 더 느려지고 복잡해질 수 있다.</p>
+<h5 id="사용해야하는-예"><a href="#사용해야하는-예" class="headerlink" title="사용해야하는 예"></a>사용해야하는 예</h5><p>병렬적으로 다수의 작업을 수행하며 다중프로세서 하드웨어등에서 동작하는 프로그램</p>
+<p>중복될 수 있는 많은 입출력을 수행하는 프로그램</p>
+<h3 id="8-JVM-메모리-구조"><a href="#8-JVM-메모리-구조" class="headerlink" title="8. JVM 메모리 구조"></a>8. JVM 메모리 구조</h3><p>class, stack, heap, native 메소드, PC 레지스터로 구성되어있다.</p>
+<h5 id="Class-영역"><a href="#Class-영역" class="headerlink" title="Class 영역"></a>Class 영역</h5><p>프레임(호출된 메소드를 위한 공간)이 생성되어 각종 값이 임시로 저장된다</p>
+<p>메소드 실행 종료시 프레임삭제가 진행된다.</p>
+<h5 id="heap-영역"><a href="#heap-영역" class="headerlink" title="heap 영역"></a>heap 영역</h5><p>new 로 생성된 객체와 배열이 저장된다.</p>
+<p>permanent geration, new, old 영역으로 나뉜다.</p>
+<ul>
+<li>permanent geration = 객체의 주소값 저장</li>
+<li>new <ul>
+<li>eden = 객체 최초 생성영역</li>
+<li>survivor = 참조되는 객체 저장 영역</li>
+</ul>
+</li>
+<li>old = new영역에서 참조되고있는 객체 저장공간</li>
+</ul>
+<h5 id="native-메소드-영역"><a href="#native-메소드-영역" class="headerlink" title="native 메소드 영역"></a>native 메소드 영역</h5><p>자바 외 타 언어에서 제공되는 메소드가 저장</p>
+<h5 id="PC-레지스터-영역"><a href="#PC-레지스터-영역" class="headerlink" title="PC 레지스터 영역"></a>PC 레지스터 영역</h5><p>쓰레드 생성시 생성되는 영역</p>
+<p>쓰레드의 현재 실행되는 부분의 명령 및 주소를 실행할지 저장</p>
+<h3 id="9-Garbage-Colloetion"><a href="#9-Garbage-Colloetion" class="headerlink" title="9. Garbage Colloetion"></a>9. Garbage Colloetion</h3><p>garbage를 회수해 사용할 수 있는 메모리공간을 늘리는 것</p>
+<p>garbage collector가 수행</p>
+<p>JVM이 자동 실행해주지만 System.gc() 로 수동으로도 가비지 컬랙션을 요청할 수 있다.</p>
+<h3 id="10-NIO-new-input-output"><a href="#10-NIO-new-input-output" class="headerlink" title="10. NIO(new input-output)"></a>10. NIO(new input-output)</h3><p>자바 IO(input-output)의 단점을 보완한 새로운 IO 패키지</p>
+<p>기존의 모든 IO에 대해 쓰레드를 생성하는 방식이 아닌 채널관리자(selector)를 사용해</p>
+<p>실제 IO가 발생한 채널만 쓰레드를 생성해 관리.</p>
+<p>하지만 기존의 다중쓰레드 이용한 방식보다 구현하기 어렵다.</p>
+<h5 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h5><p><a href="https://github.com/devetude/Java-Interview-QnA" target="_blank" rel="noopener">JongMin Kim님 repository</a></p>
+<p><a href="https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Development_common_sense" target="_blank" rel="noopener">HanjaeYeop님 reposiroty</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/17/2018-07-17-deploying-java-applications-on-aws/" rel="prev" title="빠르고 쉽게 AWS에 웹 어플리케이션 배포하기">
+                빠르고 쉽게 AWS에 웹 어플리케이션 배포하기 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Java-란"><span class="nav-number">1.</span> <span class="nav-text">1. Java 란</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#C언어와의-차이점"><span class="nav-number">1.0.1.</span> <span class="nav-text">C언어와의 차이점</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#2-객체지향-프로그래밍-Object-Oriented-Programming"><span class="nav-number">2.</span> <span class="nav-text">2. 객체지향 프로그래밍(Object Oriented Programming)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#추상화란"><span class="nav-number">2.0.1.</span> <span class="nav-text">추상화란?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#다형성이란"><span class="nav-number">2.0.2.</span> <span class="nav-text">다형성이란?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#캡슐화-encapsulation-란"><span class="nav-number">2.0.3.</span> <span class="nav-text">캡슐화(encapsulation)란?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#상속이란"><span class="nav-number">2.0.4.</span> <span class="nav-text">상속이란?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-자료형-Data-type"><span class="nav-number">3.</span> <span class="nav-text">3. 자료형(Data type)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#기본-자료형"><span class="nav-number">3.1.</span> <span class="nav-text">기본 자료형</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#참조-자료형-Reference-Data-Type"><span class="nav-number">3.2.</span> <span class="nav-text">참조 자료형(Reference Data Type)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-접근제어자-Access-modifire"><span class="nav-number">4.</span> <span class="nav-text">4. 접근제어자(Access modifire)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-FrameWork"><span class="nav-number">5.</span> <span class="nav-text">5. FrameWork</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Collection"><span class="nav-number">6.</span> <span class="nav-text">6. Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-추상-클래스-Abstract-Class-와-인터페이스-Interface"><span class="nav-number">7.</span> <span class="nav-text">6. 추상 클래스(Abstract Class)와 인터페이스(Interface)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#추상클래스-abstract"><span class="nav-number">7.0.1.</span> <span class="nav-text">- 추상클래스(abstract)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#인터페이스-interface"><span class="nav-number">7.0.2.</span> <span class="nav-text">- 인터페이스(interface)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-쓰레드-Thread"><span class="nav-number">8.</span> <span class="nav-text">7. 쓰레드(Thread)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#특징"><span class="nav-number">8.0.1.</span> <span class="nav-text">특징</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#구현방법-2가지"><span class="nav-number">8.0.2.</span> <span class="nav-text">구현방법(2가지)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Thread의-동기화-synchronized-와-데드락-deadlock"><span class="nav-number">8.0.3.</span> <span class="nav-text">Thread의 동기화(synchronized)와 데드락(deadlock)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#process와의-차이점"><span class="nav-number">8.0.4.</span> <span class="nav-text">process와의 차이점</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Thread-사용여부"><span class="nav-number">8.0.5.</span> <span class="nav-text">Thread 사용여부</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#사용해야하는-예"><span class="nav-number">8.0.6.</span> <span class="nav-text">사용해야하는 예</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-JVM-메모리-구조"><span class="nav-number">9.</span> <span class="nav-text">8. JVM 메모리 구조</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Class-영역"><span class="nav-number">9.0.1.</span> <span class="nav-text">Class 영역</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#heap-영역"><span class="nav-number">9.0.2.</span> <span class="nav-text">heap 영역</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#native-메소드-영역"><span class="nav-number">9.0.3.</span> <span class="nav-text">native 메소드 영역</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PC-레지스터-영역"><span class="nav-number">9.0.4.</span> <span class="nav-text">PC 레지스터 영역</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Garbage-Colloetion"><span class="nav-number">10.</span> <span class="nav-text">9. Garbage Colloetion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-NIO-new-input-output"><span class="nav-number">11.</span> <span class="nav-text">10. NIO(new input-output)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#참고"><span class="nav-number">11.0.1.</span> <span class="nav-text">참고</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

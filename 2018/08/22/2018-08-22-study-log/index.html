@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="형식: 공부내용 / 사용한 컨텐츠(ex: 책, 강의 등)  [18.06.26] Host scanning Study [18.06.27] Reversing Study [18.06.27] Spring Web Project ‘Devlink’ front home,network 등 구현 [18.06.27] Docker 및 OpenStack Study  [18.06.">
+<meta name="keywords" content="studylog,daily">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Study logs">
+<meta property="og:url" content="https://sehajyang.github.io/2018/08/22/2018-08-22-study-log/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="형식: 공부내용 / 사용한 컨텐츠(ex: 책, 강의 등)  [18.06.26] Host scanning Study [18.06.27] Reversing Study [18.06.27] Spring Web Project ‘Devlink’ front home,network 등 구현 [18.06.27] Docker 및 OpenStack Study  [18.06.">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-07-15T14:11:55.564Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Study logs">
+<meta name="twitter:description" content="형식: 공부내용 / 사용한 컨텐츠(ex: 책, 강의 등)  [18.06.26] Host scanning Study [18.06.27] Reversing Study [18.06.27] Spring Web Project ‘Devlink’ front home,network 등 구현 [18.06.27] Docker 및 OpenStack Study  [18.06.">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2018/08/22/2018-08-22-study-log/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Study logs | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/08/22/2018-08-22-study-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Study logs
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-08-22 00:00:00" itemprop="dateCreated datePublished" datetime="2018-08-22T00:00:00+09:00">2018-08-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>형식: 공부내용 / 사용한 컨텐츠(ex: 책, 강의 등)</li>
+</ul>
+<p>[18.06.26] Host scanning Study</p>
+<p>[18.06.27] Reversing Study</p>
+<p>[18.06.27] Spring Web Project ‘Devlink’ front home,network 등 구현</p>
+<p>[18.06.27] Docker 및 OpenStack Study </p>
+<p>[18.06.28] OpenInfraDay day1 2018 &amp; SmartTech day2 2018 attendance로 참가 </p>
+<p>[18.06.28] Docker 설치 및 테스트 / 강의, 웹</p>
+<p>[18.06.29] Spring Web Project ‘Devlink’ Spring Security Login 개발중</p>
+<p>[18.06.29] OpenInfraDay 2018 에서 들은 내용 정리 / OneNote</p>
+<p>[18.06.29] Reversing Study</p>
+<p>[18.06.30] Cloud computing Service Types: Saas, IaaS, PaaS 공부 및 정리/ 책, OneNote</p>
+<p>[18.06.30] Reversing Study</p>
+<p>[18.07.01] AWS 계정생성, 암호화 학습 / 강의</p>
+<p>[18.07.02] Docker network, Linux Oracle 설치 및 세팅 삽질</p>
+<p>[18.07.02] Spring Web Project ‘Devlink’ 개발중</p>
+<p>[18.07.04] Spring Web Project ‘Devlink’ 개발중</p>
+<p>[18.07.05] Spring Web Project ‘Devlink’ 개발중</p>
+<p>[18.07.05] Port Scanning, Vulnerability scanner Study/ 강의, OneNote</p>
+<p>[18.07.06] Spring Web Project ‘Devlink’ 개발중</p>
+<p>[18.07.08] 개발자의 생존전략 세미나 참석</p>
+<p>[18.07.11] Spring Web Project ‘Devlink’ AWS 배포 테스트</p>
+<p>[18.07.13] Spring Web Project ‘Devlink’ 개발완료</p>
+<p>[18.07.14] Node.js + Web 공부 시작</p>
+<p>[18.07.15] 웹 취약점분석 세미나 참석</p>
+<p>[18.07.16] Kitware, devlink Web project vulnerability analysis </p>
+<p>[18.07.17] Node.js, Express.js Study, Spring Toy Project Board Create</p>
+<p>[18.07.18] BaekJoon Algorithm Quiz 풀이, Data Structure, Algorithm /강의</p>
+<p>[18.07.19] Node.js, Express.js Study, Spring MVC Study /강의, 책</p>
+<p>[18.07.20] Node.js, MongoDB, WAS(Tomcat) Structure Study</p>
+<p>[18.07.22] WAS structure Study</p>
+<p>[18.07.23] Node.js, MongoDB Study (Test Web Project Start)</p>
+<p>[18.07.23] Spring MVC Study</p>
+<p>[18.07.24] Node.js Study /강의</p>
+<p>[18.07.26] Node.js, Spring, gitLab Study</p>
+<p>[18.07.27] Seoul.js Lightning Talk 참석, Algorithm Quiz 풀이</p>
+<p>[18.07.28] Algorithm Quiz 풀이, Java Study 및 포스팅</p>
+<p>[18.07.29] Toy Project 기능 추가, Node.js Study, Blog comment Add &amp; Custom</p>
+<p>[18.07.31] Node.js Study /Head First 책</p>
+<p>[18.08.01] Node.js, Java Study, Algorithm Quiz 풀이 /Head First 책, 알고리즘 문제해결전략</p>
+<p>[18.08.01] Node.js, React.js, Java Study /강의, 책</p>
+<p>[18.08.02] Java Study Complete /Head First 책</p>
+<p>[18.08.03] Node.js Study /강의</p>
+<p>[18.08.04] React Movie Project /Nomad coders</p>
+<p>[18.08.05] Design Pattern Study / HeadFiest 책</p>
+<p>[18.08.06] React Movie Project, Node.js Express.js Router Study /Nomad coders, 강의</p>
+<p>[18.08.07] Node.js Study /강의</p>
+<p>[18.08.08] React-Native DEV ENV Setting &amp; TODO App Project Start /Nodam coder</p>
+<p>[18.08.09] Okky 오픈소스 세미나 참석</p>
+<p>[18.08.10] React-Native ToDo App Project, Node.js passport Study</p>
+<p>[18.08.12] React.js , Node.js Study</p>
+<p>[18.08.13] React-Native Project</p>
+<p>[18.08.14] Node.js Study</p>
+<p>[18.08.15] Spring ToyProject Start, RESTful Study, 챗봇 만들기 시작(AWS Rambda, Travis CI, telegram)</p>
+<p>[18.08.16] Spring ToyProject, 챗봇 전체발송 기능 삽질</p>
+<p>[18.08.17] <a href="https://github.com/sehajyang/Gradle-Jenkins-Test" target="_blank" rel="noopener">Docker로 CI 구축 연습 (Gradle + Docker + Jenkins + Slack)</a>, 챗봇 삽질</p>
+<p>[18.08.18] Docker, Jenkins 삽질</p>
+<p>[18.08.19] Design pattern Study, Node.js 기초 Study /책</p>
+<p>[18.08.20] Spring Toy Project, Node.js Study</p>
+<p>[18.08.21] Spring Toy Project, Node.js Study 및 정리</p>
+<p>[18.08.22] 알고리즘 및 웹 크롤링 공부 /책</p>
+<p>[18.08.23] 웹 크롤링 공부 /책</p>
+<p>[18.08.24] AWS 삽질, 웹 크롤링 공부</p>
+<p>[18.08.26] 알고리즘 공부</p>
+<p>[18.08.27 ~ 18.08.28] Node.js Study</p>
+<p>[18.08.29] Node.js Study, SpringBoot Study Start</p>
+<p>[18.08.30] Springboot Setting Study</p>
+<p>[18.08.31] Springboot Study</p>
+<p>[18.09.01] Springboot Project, C 포인터 세미나 참석</p>
+<p>[18.09.02] Springboot Project</p>
+<p>[18.09.04] <a href="http://www.kocw.net/home/search/kemView.do?kemId=1046323" target="_blank" rel="noopener">운영체제 공부</a>, Python Study /강의</p>
+<p>[18.09.05] 운영체제 공부, Python Django Study /강의</p>
+<p>[18.09.06] 운영체제 공부, Python Study /강의</p>
+<p>[18.09.07 ~ 18.09.12] Python Study /책</p>
+<p>[18.09.13] Springboot Study</p>
+<p>[18.09.14 ~ 18.09.15] Java, JS, Typescript Study</p>
+<p>[18.09.16] Node Crawling Project Start</p>
+<p>[18.09.17] Java, DB Study</p>
+<p>[18.09.19] <a href="https://www.meetup.com/ko-KR/awskrug/events/254611413/" target="_blank" rel="noopener">[AUSG Seminar Series] 2018 F/W 초보자를 위한 AWS 뿌시기</a></p>
+<p>[18.09.20] <a href="https://tacademy.skplanet.com/front/tacademy/courseinfo/campus.action" target="_blank" rel="noopener">[T academy]스프링부트를 이용한 웹 서비스 개발하기</a></p>
+<p>[18.09.21] Algorithm Study, Node project CI(travis CI, Jenkins+Slack) 구축</p>
+<p>[18.09.23 ~ 18.09.26] Algotithm Study (Python)</p>
+<p>[18.09.29~18.10.01] Algotithm Study, Springboot Study</p>
+<p>[18.10.02] Springboot 강의, Node.js project</p>
+<p>[18.10.04] Node.js project</p>
+<p>[18.10.05] Node.js project, React Study /책</p>
+<p>[18.10.06] Node.js project, React Study, Daily Algorithm</p>
+<p>[18.10.07] Dev Django 세미나 참석</p>
+<hr>
+12월 이후 로그 기록
+
+<p>[18.12.11] springboot 수강 후 TIL 기록</p>
+<p>[18.12.12] springboot 수강 후 TIL 기록</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/studylog/" rel="tag"># studylog</a>
+          
+            <a href="/tags/daily/" rel="tag"># daily</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/19/2018-08-19-180813~180819/" rel="next" title="180813-180819 주간 회고">
+                <i class="fa fa-chevron-left"></i> 180813-180819 주간 회고
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/26/2018-08-26-180820~180826/" rel="prev" title="180820-180826 주간 회고">
+                180820-180826 주간 회고 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

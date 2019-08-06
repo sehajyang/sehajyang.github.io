@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+<meta name="keywords" content="scala,스칼라 문법,스칼라 편리한 문법,스칼라 SYNTACTIC CONVENIENCES,스칼라 exercises">
+<meta property="og:type" content="article">
+<meta property="og:title" content="스칼라 번역- 편리한 문법들 (Syntactic Conveniences)">
+<meta property="og:url" content="https://sehajyang.github.io/2019/07/18/syntactic-conveniences/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-06T14:31:35.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="스칼라 번역- 편리한 문법들 (Syntactic Conveniences)">
+<meta name="twitter:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/07/18/syntactic-conveniences/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>스칼라 번역- 편리한 문법들 (Syntactic Conveniences) | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/07/18/syntactic-conveniences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">스칼라 번역- 편리한 문법들 (Syntactic Conveniences)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-07-18 21:47:06" itemprop="dateCreated datePublished" datetime="2019-07-18T21:47:06+09:00">2019-07-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-06 23:31:35" itemprop="dateModified" datetime="2019-08-06T23:31:35+09:00">2019-08-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Scala/" itemprop="url" rel="index"><span itemprop="name">Scala</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>이 포스팅은 <a href="https://sehajyang.github.io/tags/scala-exercises/">[scala-exercises 번역 시리즈]</a>로 <code>scala-exercises</code> 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.<br><a href="https://www.scala-exercises.org/scala_tutorial" target="_blank" rel="noopener">scala-exercises</a> 는 스칼라 창시자인 <a href="https://www.coursera.org/learn/progfun1?action=enroll" target="_blank" rel="noopener">마틴 오더스키가 만든 강의</a>의 강의자료입니다.<br>따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.<br>직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은 코멘트로 알려주세요 😄<br>원문 : <a href="https://www.scala-exercises.org/scala_tutorial/syntactic_conveniences" target="_blank" rel="noopener">[scala-exercises syntactic_conveniences]</a></p>
+<hr>
+<h1 id="편리한-문법들-SYNTACTIC-CONVENIENCES"><a href="#편리한-문법들-SYNTACTIC-CONVENIENCES" class="headerlink" title="편리한 문법들(SYNTACTIC CONVENIENCES)"></a>편리한 문법들(SYNTACTIC CONVENIENCES)</h1><p>이 섹션에선 언어가 지원하는 몇가지 문법적 설탕에 대해 소개합니다.</p>
+<h2 id="문자열-인터폴레이션-INTERPOLATION"><a href="#문자열-인터폴레이션-INTERPOLATION" class="headerlink" title="문자열 인터폴레이션(INTERPOLATION)"></a>문자열 인터폴레이션(INTERPOLATION)</h2><p>런타임에서 String 에 값을 붙일 시 문자열 인터폴레이션을 사용할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span></span>(name: <span class="type">String</span>): <span class="type">String</span> =</span><br><span class="line">  <span class="string">s"Hello, <span class="subst">$name</span>!"</span></span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Scala"</span>) shouldBe <span class="string">"Hello, Scala!"</span></span><br><span class="line">greet(<span class="string">"Functional Programming"</span>) shouldBe <span class="string">"Hello, Functional Programming!"</span></span><br></pre></td></tr></table></figure>
+
+<p>문자열 리터럴 접미사로 <code>s</code>를 붙이면 <code>$</code>으로 동적값을 그 안에서 사용할 수 있습니다.<br>만약 복잡한 식을 연결할시엔 중괄호로 둘러쌉니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span></span>(name: <span class="type">String</span>): <span class="type">String</span> =</span><br><span class="line">  <span class="string">s"Hello, <span class="subst">$&#123;name.toUpperCase&#125;</span>!"</span></span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Scala"</span>) shouldBe <span class="string">"Hello, SCALA!"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="튜플"><a href="#튜플" class="headerlink" title="튜플"></a>튜플</h2><p>우리는 이전 섹션들을 통해 케이스 클래스는 정보를 모으는데에 유용하다는 것을 알게되었습니다.<br>그러나 때로는 완전한 케이스 클래스를 정의할 필요 없이 정보를 모을 수 있습니다. 튜플로 말이죠</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pair</span></span>(i: <span class="type">Int</span>, s: <span class="type">String</span>): (<span class="type">Int</span>, <span class="type">String</span>) = (i, s)</span><br><span class="line"></span><br><span class="line">pair(<span class="number">42</span>, <span class="string">"foo"</span>) shouldBe (<span class="number">42</span>, <span class="string">"foo"</span>)</span><br><span class="line">pair(<span class="number">0</span>, <span class="string">"bar"</span>) shouldBe (<span class="number">0</span>, <span class="string">"bar"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>위 예제에서의 타입은 (Int, String)로 첫번째 요소(element)의 타입은 Int 두번째 요소는 String 입니다.<br>비슷하게, <code>(i, s)</code> 쌍의 첫번째 요소는 i, 두번째 요소는 s 입니다.<br>일반적으로, <code>(T1, …, Tn)</code>의 타입은 i번째 요소는 Ti 타입을 가진, n개의 요소가 있는 튜플입니다.<br>그리고 값은 n개 요소 <code>(t1, …, tn)</code>의 튜플 값 입니다.  </p>
+<ul>
+<li>(역자추가) 튜플의 각 요소들은 타입이 각자 다를 수 있습니다. <code>(&quot;a&quot;,1,&#39;b&#39;)</code> 튜플의 타입은 <code>Tuple[String,Int,Char]</code> 입니다.<br>즉, 튜플의 타입은 요소의 개수와 각각의 타입에 따라 달라집니다. <a href="https://hamait.tistory.com/557" target="_blank" rel="noopener">[출처]</a></li>
+</ul>
+<h3 id="튜플-조작하기"><a href="#튜플-조작하기" class="headerlink" title="튜플 조작하기"></a>튜플 조작하기</h3><p>튜플 패턴을 사용해 튜플의 요소를 검색할 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> is: (<span class="type">Int</span>, <span class="type">String</span>) = (<span class="number">42</span>, <span class="string">"foo"</span>)</span><br><span class="line"></span><br><span class="line">is <span class="keyword">match</span> &#123;</span><br><span class="line">  <span class="keyword">case</span> (i, s) =&gt;</span><br><span class="line">    i shouldBe <span class="number">42</span></span><br><span class="line">    s shouldBe <span class="string">"foo"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>또는 심플하게 다음과 같이 작성할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> is: (<span class="type">Int</span>, <span class="type">String</span>) = (<span class="number">42</span>, <span class="string">"foo"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> (i, s) = is</span><br><span class="line">i shouldBe <span class="number">42</span></span><br><span class="line">s shouldBe <span class="string">"foo"</span></span><br></pre></td></tr></table></figure>
+
+<p>또는 <code>_1</code>멤버로 첫번째 요소를, <code>_2</code>멤버로 두번째 요소를 검색할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> is: (<span class="type">Int</span>, <span class="type">String</span>) = (<span class="number">42</span>, <span class="string">"foo"</span>)</span><br><span class="line">is._1 shouldBe <span class="number">42</span></span><br><span class="line">is._2 shouldBe <span class="string">"foo"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="객체로서의-함수"><a href="#객체로서의-함수" class="headerlink" title="객체로서의 함수"></a>객체로서의 함수</h2><p>우리는 스칼라의 넘버릭 타입들과 <code>Boolean</code> 타입이 일반 클래스처럼 상속될 수 있음을 보았습니다.<br>그러나 함수는 어떨까요?<br>실제로 스칼라에서 함수의 값은 객체로 다뤄집니다.<br>타입이 <code>A = B</code> 인 함수는 사실 <code>scala.Function1[A, B]</code> 가 생략된 것 이며 다음과 같이 정의됩니다:  </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> scala</span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Function1</span>[<span class="type">A</span>, <span class="type">B</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">A</span>): <span class="type">B</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>그래서, 함수는 <code>apply</code> 메소드를 가지고있는 객체입니다.<br>또한 Function2, Function3… , 등 더 많은 매개변수를 취하는 함수(튜플..최대 22개)가 있습니다.</p>
+<h3 id="함수값의-확장"><a href="#함수값의-확장" class="headerlink" title="함수값의 확장"></a>함수값의 확장</h3><p>아래의 익명함수는:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x: <span class="type">Int</span>) =&gt; x * x</span><br></pre></td></tr></table></figure>
+
+<p>다음과 같이 확장됩니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AnonFun</span> <span class="keyword">extends</span> <span class="title">Function1</span>[<span class="type">Int</span>, <span class="type">Int</span>] </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>) = x * x</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">new</span> <span class="type">AnonFun</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>또는 익명 클래스 문법을 사용해 짧아집니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="type">Function1</span>[<span class="type">Int</span>, <span class="type">Int</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>) = x * x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="함수호출의-확장"><a href="#함수호출의-확장" class="headerlink" title="함수호출의 확장"></a>함수호출의 확장</h3><p><code>f(a, b)</code> (<code>f</code>는 일부 클래스 타입의 값) 함수의 호출은 다음과 같이 확장됩니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f.apply(a, b)</span><br></pre></td></tr></table></figure>
+
+<p>그래서 객체지향(OO)으로 변환하면</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> f = (x: <span class="type">Int</span>) =&gt; x * x</span><br><span class="line">f(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<p>아래와 같을 것 입니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> f = <span class="keyword">new</span> <span class="type">Function1</span>[<span class="type">Int</span>, <span class="type">Int</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>) = x * x</span><br><span class="line">&#125;</span><br><span class="line">f.apply(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="함수와-메소드"><a href="#함수와-메소드" class="headerlink" title="함수와 메소드"></a>함수와 메소드</h3><p>다음과 같은 메소드 자체는 함수 값이 아닙니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span></span>(x: <span class="type">Int</span>): <span class="type">Boolean</span> = …</span><br></pre></td></tr></table></figure>
+
+<p>그러나 만약 함수 유형이 예상되는 곳에 <code>f</code> 가 사용되면, 자동으로 함수값으로 변환됩니다. </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x: <span class="type">Int</span>) =&gt; f(x)</span><br></pre></td></tr></table></figure>
+
+<h2 id="FOR-표현"><a href="#FOR-표현" class="headerlink" title="FOR 표현"></a>FOR 표현</h2><p>표준 라이브러리의 여러 데이터 타입은 <code>map, flatMap, filter</code>라는 메소드를 갖고있음을 알 수 있습니다.<br>이 메소드들이 실제로 사용되는 경우가 많기 때문에 스칼라는 표현식에 대한 전용 문법을 지원합니다:  </p>
+<p><code>map</code> 대신:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xs.map(x =&gt; x + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>다음과 같이 작성할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (x &lt;- xs) <span class="keyword">yield</span> x + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>그리고 “<code>xs</code>의 모든 요소 <code>x</code>에 <code>x+1</code> 하고 리턴합니다”라고 읽습니다.</p>
+<ul>
+<li>(역자추가) <code>xs</code>의 요소들에 대해 <code>x</code> 라고 명명하며 <code>xs</code>를 순회하며 <code>x+1</code> 을 하고, 그 결과를 새로운 리스트로 리턴합니다.</li>
+</ul>
+<p><code>filter</code> 대신:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xs.filter(x =&gt; x % <span class="number">2</span> == <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>다음과 같이 작성할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (x &lt;- xs <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">yield</span> x</span><br></pre></td></tr></table></figure>
+
+<p>이 문법의 이점은 이전 문법과 같이 보면 더욱 분명해집니다(가독성이 향상되었습니다):</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (x &lt;- xs <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">yield</span> x + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Equivalent to the following:</span></span><br><span class="line">xs.filter(x =&gt; x % <span class="number">2</span> == <span class="number">0</span>).map(x =&gt; x + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>마지막으로 <code>flatMap</code> 대신:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xs.flatMap(x =&gt; ys.map(y =&gt; (x, y)))</span><br></pre></td></tr></table></figure>
+
+<p>다음과 같이 작성할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (x &lt;- xs; y &lt;- ys) <span class="keyword">yield</span> (x, y)</span><br></pre></td></tr></table></figure>
+
+<p>그리고 “<code>xs</code>의 모든 요소 <code>x</code> 와 <code>ys</code>의 모든 요소<code>y</code>를 <code>(x,y)</code>하고 (그 결과를 새로운 리스트로) 리턴합니다” 라고 읽습니다.</p>
+<h3 id="한꺼번에-값-넣기"><a href="#한꺼번에-값-넣기" class="headerlink" title="한꺼번에 값 넣기"></a>한꺼번에 값 넣기</h3><p>다음은 한꺼번에 값을 넣는 예제입니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> &#123;</span><br><span class="line">  x &lt;- xs <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span></span><br><span class="line">  y &lt;- ys</span><br><span class="line">&#125; <span class="keyword">yield</span> (x, y)</span><br></pre></td></tr></table></figure>
+
+<p>문법적 설탕을 해제한 코드는 이렇습니다: </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xs.filter &#123; x =&gt;</span><br><span class="line">  x % <span class="number">2</span> == <span class="number">0</span></span><br><span class="line">&#125;.flatMap &#123; x =&gt;</span><br><span class="line">  ys.map &#123; y =&gt;</span><br><span class="line">    (x, y)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="메소드의-파라미터"><a href="#메소드의-파라미터" class="headerlink" title="메소드의 파라미터"></a>메소드의 파라미터</h2><h3 id="명명된-파라미터"><a href="#명명된-파라미터" class="headerlink" title="명명된 파라미터"></a>명명된 파라미터</h3><p>때때로 함수에 전달된 몇몇 파라미터의 의미가 무엇인지 파악하기 어려울 수 있습니다.<br>다음 예제를보며 생각해봅시다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Range</span>(<span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>이것은 무슨 뜻 일까요? <code>명명된 파라미터(named parameter)</code>를 사용해 읽기 쉽게 만들 수 있습니다.<br>사실 위의 코드에서 <code>Range</code> 는 다음과 같이 정의되어 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Range</span>(<span class="params">start: <span class="type">Int</span>, end: <span class="type">Int</span>, step: <span class="type">Int</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>그리고 다음과 재작성 할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Range</span>(start = <span class="number">1</span>, end = <span class="number">10</span>, step = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>이제 위 코드는 <code>1 부터 10까지 2씩 증가시킨다</code> 는 정의를 했음이 명확해졌습니다.</p>
+<h3 id="기본-값"><a href="#기본-값" class="headerlink" title="기본 값"></a>기본 값</h3><p>메소드의 파라미터는 기본값을 가질 수 있습니다.<br><code>Range</code>를 재정의 해 봅시다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Range</span>(<span class="params">start: <span class="type">Int</span>, end: <span class="type">Int</span>, step: <span class="type">Int</span> = 1</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>위 코드에서, <code>step</code> 파라미터는 기본값으로 1을 가집니다.<br>그 뒤, <code>step</code> 파라미터를 생략할 수 있으며, 생략할 시 컴파일러는 해당 파라미터의 기본값으로 지정한 값을 사용하게 됩니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Range</span>(<span class="params">start: <span class="type">Int</span>, end: <span class="type">Int</span>, step: <span class="type">Int</span> = 1</span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">val</span> <span class="title">xs</span> </span>= <span class="type">Range</span>(start = <span class="number">1</span>, end = <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">xs.step shouldBe <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="반복된-파라미터"><a href="#반복된-파라미터" class="headerlink" title="반복된 파라미터"></a>반복된 파라미터</h3><p>다음과 같이 임의의 수의 파라미터(동일한 타입의)를 받을 수 있는 함수를 정의할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">average</span></span>(x: <span class="type">Int</span>, xs: <span class="type">Int</span>*): <span class="type">Double</span> =</span><br><span class="line">  (x :: xs.to[<span class="type">List</span>]).sum.toDouble / (xs.size + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">average(<span class="number">1</span>) shouldBe <span class="number">1.0</span></span><br><span class="line">average(<span class="number">1</span>, <span class="number">2</span>) shouldBe <span class="number">1.5</span></span><br><span class="line">average(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) shouldBe <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p><code>average</code> 함수는 최소한 하나의 <code>Int</code> 파라미터와 임의의 수의 파라미터의 값들을 가져와 평균을 계산합니다.<br>또한, 사용자가 적어도 하나의 파라미터를 제공하도록 함으로써 빈 숫자 리스트의 평균을 계산할 수 없도록 만듭니다.<br>때로는 리스트의 각 요소를 많은 파라미터로 제공하려면, <code>: _*</code>를 추가합니다:<br> <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> xs: <span class="type">List</span>[<span class="type">Int</span>] = …</span><br><span class="line">average(<span class="number">1</span>, xs: _*)</span><br></pre></td></tr></table></figure></p>
+<h2 id="타입-엘리어스-TYPE-ALIASES"><a href="#타입-엘리어스-TYPE-ALIASES" class="headerlink" title="타입 엘리어스(TYPE ALIASES)"></a>타입 엘리어스(TYPE ALIASES)</h2><p> 비슷하게, <code>타입 표현식(type expressions)</code> 으로 표현식에 의미있는 이름을 줄 수 있습니다.<br> <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="title">Result</span> </span>= <span class="type">Either</span>[<span class="type">String</span>, (<span class="type">Int</span>, <span class="type">Int</span>)]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">divide</span></span>(dividend: <span class="type">Int</span>, divisor: <span class="type">Int</span>): <span class="type">Result</span> =</span><br><span class="line">  <span class="keyword">if</span> (divisor == <span class="number">0</span>) <span class="type">Left</span>(<span class="string">"Division by zero"</span>)</span><br><span class="line">  <span class="keyword">else</span> <span class="type">Right</span>((dividend / divisor, dividend % divisor))</span><br><span class="line">divide(<span class="number">6</span>, <span class="number">4</span>) shouldBe <span class="type">Right</span>((<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">divide(<span class="number">2</span>, <span class="number">0</span>) shouldBe <span class="type">Left</span>(<span class="string">"Division by zero"</span>)</span><br><span class="line">divide(<span class="number">8</span>, <span class="number">4</span>) shouldBe <span class="type">Right</span>((<span class="number">2</span>,<span class="number">0</span>))</span><br></pre></td></tr></table></figure></p>
+<p>읽어주셔서 감사합니다. 혹 글에 오역/추가할 내용이 있다면 코멘트 남겨주세요!🙆</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/scala-exercises/" rel="tag"># scala-exercises</a>
+          
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/16/standard-library/" rel="next" title="스칼라 번역- 표준 라이브러리 (Standard Library)">
+                <i class="fa fa-chevron-left"></i> 스칼라 번역- 표준 라이브러리 (Standard Library)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/23/190708-190721/" rel="prev" title="190708-190721 2주간 회고">
+                190708-190721 2주간 회고 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#편리한-문법들-SYNTACTIC-CONVENIENCES"><span class="nav-number">1.</span> <span class="nav-text">편리한 문법들(SYNTACTIC CONVENIENCES)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#문자열-인터폴레이션-INTERPOLATION"><span class="nav-number">1.1.</span> <span class="nav-text">문자열 인터폴레이션(INTERPOLATION)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#튜플"><span class="nav-number">1.2.</span> <span class="nav-text">튜플</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#튜플-조작하기"><span class="nav-number">1.2.1.</span> <span class="nav-text">튜플 조작하기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체로서의-함수"><span class="nav-number">1.3.</span> <span class="nav-text">객체로서의 함수</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#함수값의-확장"><span class="nav-number">1.3.1.</span> <span class="nav-text">함수값의 확장</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#함수호출의-확장"><span class="nav-number">1.3.2.</span> <span class="nav-text">함수호출의 확장</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#함수와-메소드"><span class="nav-number">1.3.3.</span> <span class="nav-text">함수와 메소드</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FOR-표현"><span class="nav-number">1.4.</span> <span class="nav-text">FOR 표현</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#한꺼번에-값-넣기"><span class="nav-number">1.4.1.</span> <span class="nav-text">한꺼번에 값 넣기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#메소드의-파라미터"><span class="nav-number">1.5.</span> <span class="nav-text">메소드의 파라미터</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#명명된-파라미터"><span class="nav-number">1.5.1.</span> <span class="nav-text">명명된 파라미터</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#기본-값"><span class="nav-number">1.5.2.</span> <span class="nav-text">기본 값</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#반복된-파라미터"><span class="nav-number">1.5.3.</span> <span class="nav-text">반복된 파라미터</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#타입-엘리어스-TYPE-ALIASES"><span class="nav-number">1.6.</span> <span class="nav-text">타입 엘리어스(TYPE ALIASES)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

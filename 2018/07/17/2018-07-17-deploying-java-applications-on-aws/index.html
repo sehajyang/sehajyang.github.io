@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="목차 RDS 생성 및 세팅 sqldeveloper에 RDS 계정 연결 및 테이블 구성 EC2 생성 및 세팅  java 및 tomcat 설치 war 파일 배포   사용하는 프로그램Sql Developer, Putty, Eclipse, FileZila  시작하기 전 AWS 계정이 있고, 사용하는 프로그램이 미리 설치 되어 있다고 가정합니다. EC2 생성 및 세">
+<meta name="keywords" content="AWS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="빠르고 쉽게 AWS에 웹 어플리케이션 배포하기">
+<meta property="og:url" content="https://sehajyang.github.io/2018/07/17/2018-07-17-deploying-java-applications-on-aws/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="목차 RDS 생성 및 세팅 sqldeveloper에 RDS 계정 연결 및 테이블 구성 EC2 생성 및 세팅  java 및 tomcat 설치 war 파일 배포   사용하는 프로그램Sql Developer, Putty, Eclipse, FileZila  시작하기 전 AWS 계정이 있고, 사용하는 프로그램이 미리 설치 되어 있다고 가정합니다. EC2 생성 및 세">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/1.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/2.jpg">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/3.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/4.jpg">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/5.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/6.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/7.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/8.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/9.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/11.JPG">
+<meta property="og:image" content="https://sehajyang.github.io/images/awspost/10.JPG">
+<meta property="og:updated_time" content="2019-07-15T14:11:55.557Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="빠르고 쉽게 AWS에 웹 어플리케이션 배포하기">
+<meta name="twitter:description" content="목차 RDS 생성 및 세팅 sqldeveloper에 RDS 계정 연결 및 테이블 구성 EC2 생성 및 세팅  java 및 tomcat 설치 war 파일 배포   사용하는 프로그램Sql Developer, Putty, Eclipse, FileZila  시작하기 전 AWS 계정이 있고, 사용하는 프로그램이 미리 설치 되어 있다고 가정합니다. EC2 생성 및 세">
+<meta name="twitter:image" content="https://sehajyang.github.io/images/awspost/1.JPG">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2018/07/17/2018-07-17-deploying-java-applications-on-aws/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>빠르고 쉽게 AWS에 웹 어플리케이션 배포하기 | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/07/17/2018-07-17-deploying-java-applications-on-aws/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">빠르고 쉽게 AWS에 웹 어플리케이션 배포하기
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-07-17 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-17T00:00:00+09:00">2018-07-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h2><ol>
+<li>RDS 생성 및 세팅</li>
+<li>sqldeveloper에 RDS 계정 연결 및 테이블 구성</li>
+<li>EC2 생성 및 세팅 </li>
+<li>java 및 tomcat 설치</li>
+<li>war 파일 배포</li>
+</ol>
+<ul>
+<li>사용하는 프로그램<br>Sql Developer, Putty, Eclipse, FileZila</li>
+</ul>
+<p>시작하기 전 AWS 계정이 있고, 사용하는 프로그램이 미리 설치 되어 있다고 가정합니다.</p>
+<h2 id="EC2-생성-및-세팅"><a href="#EC2-생성-및-세팅" class="headerlink" title="EC2 생성 및 세팅"></a>EC2 생성 및 세팅</h2><h3 id="EC2-생성"><a href="#EC2-생성" class="headerlink" title="EC2 생성"></a>EC2 생성</h3><p><img src="/images/awspost/1.JPG" alt="aws1"></p>
+<p>서비스 항목에 들어가면 위와 같은 화면을 볼 수 있는데<br>우리가 이 중 사용할건 컴퓨팅의 EC2 와 RDS 입니다<br>EC2에는 Tomcat8을 설치할 것이고, RDS에는 oracle를 구성할 것 입니다.</p>
+<p><img src="/images/awspost/2.jpg" alt="aws2"></p>
+<p>EC2를 클릭 후 인스턴스 시작을 누르게 되면 위와같은 화면이 나옵니다</p>
+<p>ubuntu를 선택후 프리티어 사용가능 표시가 있는 인스턴스 유형을 선택한 후 검토및 시작을 누릅니다.</p>
+<p>7단계로 건너뛰게 됩니다.</p>
+<p><img src="/images/awspost/3.JPG" alt="aws3"></p>
+<p>새 키 페어 생성을 선택후 이름을 정합니다.<br>그 뒤 키페어 다운로드를 하게 됩니다 ~.pem 이며 분실시 재발급이 되지 않으므로 잘 보관하도록 합시다.</p>
+<p>1~2분정도 기다리면 EC2 인스턴스를 사용할 수 있게됩니다.</p>
+<h3 id="EC2-셋팅"><a href="#EC2-셋팅" class="headerlink" title="EC2 셋팅"></a>EC2 셋팅</h3><p>만들어진 EC2 인스턴스에 java나 tomcat등을 설치해줘야합니다.</p>
+<p>puttygen을 실행합니다.</p>
+<p>Load를 선택후 All file로 탐색해 아까 생성한 새로운 키 페어.pem 파일을 선택합니다.  </p>
+<p><img src="/images/awspost/4.jpg" alt="aws4"></p>
+<p>그 후 Save private key를 선택하고 key.ppk를 저장할 위치 및 이름을 지정합니다.</p>
+<p>putty 를 실행합니다. </p>
+<p>HostName에 ubuntu@퍼블릭DNS 를 넣어줍시다.</p>
+<p><img src="/images/awspost/5.JPG" alt="aws4"></p>
+<p>퍼블릭DNS 는 인스턴스에서 볼 수 있습니다</p>
+<p>Port 는 SSH, 22입니다. </p>
+<p>왼쪽사이드바 중 Connection &gt; SSH &gt; Auth 를 들어갑니다. </p>
+<p><img src="/images/awspost/6.JPG" alt="aws6"></p>
+<p>Private key file for …의 Browse 에서 아까 생성한 ppk 파일을 넣어줍니다. </p>
+<p>초기화면으로 돌아와서 Seved Sessions을 해 접속하기 편하게 저장해두고 Open을 선택합니다.</p>
+<p><img src="/images/awspost/7.JPG" alt="aws7"></p>
+<p>위와 같은 화면이 뜬다면 성공입니다.</p>
+<h2 id="Java-및-Tomcat-설치"><a href="#Java-및-Tomcat-설치" class="headerlink" title="Java 및 Tomcat 설치"></a>Java 및 Tomcat 설치</h2><h4 id="Java-설치"><a href="#Java-설치" class="headerlink" title="Java 설치"></a>Java 설치</h4><p>계속해서 java와 tomcat을 설치해보도록 하겠습니다.</p>
+<p>일단 root 권한으로 접속하겠습니다</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure>
+
+<p>패스워드 설정을 합니다</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su</span><br></pre></td></tr></table></figure>
+
+<p>설정한 패스워드를 입력하고 root 권한으로 실행을 합니다. </p>
+<p>만약을 대비해 root 권한으로 실행하기보다 sudo를 사용하는 방법이 있는데, </p>
+<p>저는 root권한으로 진행하도록 하겠습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<p>업데이트를 시켜줍니다.</p>
+<p>EC2 ubuntu 엔 java가 설치되어있지 않기 때문에 java를 설치하겠습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install openjdk-8-jre-headless</span><br></pre></td></tr></table></figure>
+
+<p>설치 후 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<p>으로 설치가 잘 되었는지 확인해봅니다.</p>
+<h4 id="Tomcat-설치-및-EC2-포트추가"><a href="#Tomcat-설치-및-EC2-포트추가" class="headerlink" title="Tomcat 설치 및 EC2 포트추가"></a>Tomcat 설치 및 EC2 포트추가</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install tomcat8</span><br></pre></td></tr></table></figure>
+
+<p>톰캣을 설치합니다.</p>
+<p>기본 설치 path는 /var/lib/tomcat8 입니다.</p>
+<p><img src="/images/awspost/8.JPG" alt="aws8"></p>
+<p>8080 포트를 열어주기 위해 네트워크 및 보안&gt; 보안그룹으로 갑니다.</p>
+<p>보안그룹 생성을 합니다. 이름 및 설명은 자유입니다.</p>
+<p><img src="/images/awspost/9.JPG" alt="aws9"></p>
+<p>하는김에 80번과 1521포트도 추가합니다.</p>
+<p><img src="/images/awspost/11.JPG" alt="aws11"></p>
+<p>보안그룹 변경을 눌러 방금 추가한 보안그룹을 체크 후 보안그룹 할당을 눌러 추가시켜 줍니다.</p>
+<p>그 후, 인스턴스를 재시작 후 인스턴스 IPv4 퍼블릭 IP로 접속합니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://IPv4퍼블릭IP:8080</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/awspost/10.JPG" alt="aws10"></p>
+<p>위와같은 화면이 보인다면 성공입니다.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/AWS/" rel="tag"># AWS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/20/2018-06-20-java/" rel="next" title="Java 정리">
+                <i class="fa fa-chevron-left"></i> Java 정리
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/30/2018-07-30-180723~180729/" rel="prev" title="180723-180729 주간 회고">
+                180723-180729 주간 회고 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#목차"><span class="nav-number">1.</span> <span class="nav-text">목차</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EC2-생성-및-세팅"><span class="nav-number">2.</span> <span class="nav-text">EC2 생성 및 세팅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EC2-생성"><span class="nav-number">2.1.</span> <span class="nav-text">EC2 생성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EC2-셋팅"><span class="nav-number">2.2.</span> <span class="nav-text">EC2 셋팅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-및-Tomcat-설치"><span class="nav-number">3.</span> <span class="nav-text">Java 및 Tomcat 설치</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-설치"><span class="nav-number">3.0.1.</span> <span class="nav-text">Java 설치</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tomcat-설치-및-EC2-포트추가"><span class="nav-number">3.0.2.</span> <span class="nav-text">Tomcat 설치 및 EC2 포트추가</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

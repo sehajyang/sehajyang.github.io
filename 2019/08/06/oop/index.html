@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+<meta name="keywords" content="scala,scala 번역,스칼라 객체지향">
+<meta property="og:type" content="article">
+<meta property="og:title" content="스칼라 번역 - 객체지향 (Object Oriented Programming)">
+<meta property="og:url" content="https://sehajyang.github.io/2019/08/06/oop/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://sehajyang.github.io/images/blogpost/scala_type_hierarchy.png">
+<meta property="og:updated_time" content="2019-08-06T14:46:38.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="스칼라 번역 - 객체지향 (Object Oriented Programming)">
+<meta name="twitter:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
+<meta name="twitter:image" content="https://sehajyang.github.io/images/blogpost/scala_type_hierarchy.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/08/06/oop/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>스칼라 번역 - 객체지향 (Object Oriented Programming) | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/08/06/oop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">스칼라 번역 - 객체지향 (Object Oriented Programming)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-08-06 23:46:00 / Updated at: 23:46:38" itemprop="dateCreated datePublished" datetime="2019-08-06T23:46:00+09:00">2019-08-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Scala/" itemprop="url" rel="index"><span itemprop="name">Scala</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>이 포스팅은 <a href="https://sehajyang.github.io/tags/scala-exercises/">[scala-exercises 번역 시리즈]</a>로 <code>scala-exercises</code> 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.<br><a href="https://www.scala-exercises.org/scala_tutorial" target="_blank" rel="noopener">scala-exercises</a> 는 스칼라 창시자인 <a href="https://www.coursera.org/learn/progfun1?action=enroll" target="_blank" rel="noopener">마틴 오더스키가 만든 강의</a>의 강의자료입니다.<br>따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.<br>직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은 코멘트로 알려주세요 😄<br>원문 : <a href="https://www.scala-exercises.org/scala_tutorial/object_oriented_programming" target="_blank" rel="noopener">[scala-exercises object_oriented_programming]</a></p>
+<hr>
+<h1 id="객체지향-프로그래밍"><a href="#객체지향-프로그래밍" class="headerlink" title="객체지향 프로그래밍"></a>객체지향 프로그래밍</h1><h2 id="함수와-데이터"><a href="#함수와-데이터" class="headerlink" title="함수와 데이터"></a>함수와 데이터</h2><p>어떻게 함수가 생성되고 데이터 구조를 캡슐화 하는지 살펴보겠습니다.<br>우린 산술연산을 위한 패키지를 만들려 합니다.<br>분수 <code>x/y</code>는 두가지 정수로 표현됩니다:</p>
+<ul>
+<li>분자 x 그리고 분모 y</li>
+</ul>
+<h2 id="유리수-덧셈"><a href="#유리수-덧셈" class="headerlink" title="유리수 덧셈"></a>유리수 덧셈</h2><p>두 분수의 덧셈을 하고 싶다고 가정해봅시다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addRationalNumerator</span></span>(n1: <span class="type">Int</span>, d1: <span class="type">Int</span>, n2: <span class="type">Int</span>, d2: <span class="type">Int</span>): <span class="type">Int</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addRationalDenominator</span></span>(n1: <span class="type">Int</span>, d1: <span class="type">Int</span>, n2: <span class="type">Int</span>, d2: <span class="type">Int</span>): <span class="type">Int</span></span><br></pre></td></tr></table></figure>
+
+<p>이 많은 분자와 분모를 관리하기는 어렵습니다!.<br>이렇게 하기보단, 데이터구조 안에서 분자와 분모를 결합하는 것이 더 낫습니다.</p>
+<h2 id="클래스"><a href="#클래스" class="headerlink" title="클래스"></a>클래스</h2><p>스칼라에서, 클래스를 이렇게 정의할 수 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이 정의는 두가지 엔티티를 나타냅니다:</p>
+<ul>
+<li>Rational 이라는 새로운 타입</li>
+<li>이러한 타입으로 요소를 생성하기 위한 Rational 생성자<br>스칼라는 서로 다른 네임스페이스에 타입과 생성된 값을 보관합니다. 따라서 Rational에 대한 두 정의끼리 충돌하지 않습니다. </li>
+</ul>
+<h2 id="객체"><a href="#객체" class="headerlink" title="객체"></a>객체</h2><p>클래스 타입의 요소(element)는 객체라고 불리며 클래스 생성자의 어플리케이션 앞에 new 연산자를 붙여 객체를 생성합니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="객체의-멤버"><a href="#객체의-멤버" class="headerlink" title="객체의 멤버"></a>객체의 멤버</h2><p>Rational 클래스 의 객체는 numer 과 denom 라는 두 멤버를 갖고 있습니다.<br>자바처럼 <code>.</code> 연산자를 객체에 붙여 멤버를 호출할 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// x: Rational = Rational@2abe0e27</span></span><br><span class="line">x.numer <span class="comment">// 1</span></span><br><span class="line">x.denom <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="분수-연산"><a href="#분수-연산" class="headerlink" title="분수 연산"></a>분수 연산</h2><p>이제 스탠다드 룰에 따른 분수를 연산하는 함수를 정의할 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">n1 / d1 + n2 / d2 = (n1 * d2 + n2 * d1) / (d1 * d2)</span><br><span class="line">n1 / d1 - n2 / d2 = (n1 * d2 - n2 * d1) / (d1 * d2)</span><br><span class="line">n1 / d1 * n2 / d2 = (n1 * n2) / (d1 * d2)</span><br><span class="line">n1 / d1 / n2 / d2 = (n1 * d2) / (d1 * n2)</span><br><span class="line">n1 / d1 = n2 / d2 iff n1 * d2 = d1 * n2</span><br></pre></td></tr></table></figure>
+
+<h2 id="분수-연산-구현"><a href="#분수-연산-구현" class="headerlink" title="분수 연산 구현"></a>분수 연산 구현</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addRational</span></span>(r: <span class="type">Rational</span>, s: <span class="type">Rational</span>): <span class="type">Rational</span> =</span><br><span class="line">  <span class="keyword">new</span> <span class="type">Rational</span>(</span><br><span class="line">    r.numer * s.denom + s.numer * r.denom,</span><br><span class="line">    r.denom * s.denom</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeString</span></span>(r: <span class="type">Rational</span>) =</span><br><span class="line">  r.numer + <span class="string">"/"</span> + r.denom</span><br></pre></td></tr></table></figure>
+
+<p>그런다음 : </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">makeString(addRational(<span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>), <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">2</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+
+<h2 id="메소드"><a href="#메소드" class="headerlink" title="메소드"></a>메소드</h2><p>더 나아가 데이터 추상화 자체에서 데이터 추상화에 따라 작동하는 기능도 패키징할 수 있습니다.<br>이러한 함수를 메소드 라고 합니다.<br>Rational 클래스는 numer 과 denom 함수 뿐 만 아니라 add, sub, mul, div, equal, toString 함수도 있습니다.<br>구현은 다음과 같습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(r: <span class="type">Rational</span>) =</span><br><span class="line">    <span class="keyword">new</span> <span class="type">Rational</span>(numer * r.denom + r.numer * denom, denom * r.denom)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span></span>(r: <span class="type">Rational</span>) = ...</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">toString</span> </span>= numer + <span class="string">"/"</span> + denom</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>수정자 <code>override</code> 선언은 <code>java.lang.Object</code> 클래스에 있던 <code>toString</code> 메소드를 재정의 합니다.<br>다음은 new Rational 을 사용하는 방법 입니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">val</span> y = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">5</span>, <span class="number">7</span>)</span><br><span class="line"><span class="keyword">val</span> z = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">x.add(y).mul(z)</span><br></pre></td></tr></table></figure>
+
+<h2 id="데이터-추상화"><a href="#데이터-추상화" class="headerlink" title="데이터 추상화"></a>데이터 추상화</h2><p>위의 분수 예제는 항상 가장 단순한 형태로 표현된 것이 아닙니다.<br>역자 추가) 42/77 은 6/11로 약분될 수 있지만, 위의 분수 예제는 42/77 을 나타내므로 가장 단순한 형태(약분이 다 된 상태) 가 아니란 뜻<br>따라서 분수가 약분될 수 있음을 예상할 수 있습니다:</p>
+<ul>
+<li>최대공약수로 나눠서 가장 작은 분자와 분모로 줄입니다</li>
+</ul>
+<p>우린 분수 연산을 할 때 마다 약분을 할 수 있지만 약분해야 한다는 걸 금방 까먹을 것 입니다.<br>그러니 다음과 같이 객체가 생성될 때 클래스의 약분함수를 거쳐 객체가 생성되는게 더 낫습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = <span class="keyword">if</span> (b == <span class="number">0</span>) a <span class="keyword">else</span> gcd(b, a % b)</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> g = gcd(x, y)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x / g</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y / g</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>gcd와 d</code>는 private 멤버이므로, Rational 클래스 안에서만 접근할 수 있습니다.<br>이 예제에서, gcd 함수를 즉시 계산하며, 그 값을 numer과 denom의 계산에서 재사용할 수 있습니다.<br>또한 numer과 denom 코드안에서 gcd 호출이 가능합니다(Rational 클래스 안이기 때문에):</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = <span class="keyword">if</span> (b == <span class="number">0</span>) a <span class="keyword">else</span> gcd(b, a % b)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x / gcd(x, y)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y / gcd(x, y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위 코드는 numer과 denom 함수가 가끔 호출되는 경우에 유리합니다.<br>numer과 denom의 def를 val로 변환하는 것 과도 같습니다. 그리고 val 는 단 한번만 계산됩니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = <span class="keyword">if</span> (b == <span class="number">0</span>) a <span class="keyword">else</span> gcd(b, a % b)</span><br><span class="line">  <span class="keyword">val</span> numer = x / gcd(x, y)</span><br><span class="line">  <span class="keyword">val</span> denom = y / gcd(x, y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이는 numer과 denom이 종종 호출될 때 유리합니다.</p>
+<h3 id="클라이언트-뷰"><a href="#클라이언트-뷰" class="headerlink" title="클라이언트 뷰"></a>클라이언트 뷰</h3><p>클라이언트는 각각의 케이스에서 정확히 같은 경향을 보입니다.<br>클라이언트에 영향을 주지 않고 데이터의 다른 구현을 선택할 수 있는 이러한 기능을 데이터 추상화라고 합니다.<br>이것은 소프트 엔지니어링의 초석입니다.</p>
+<h2 id="자기-참조"><a href="#자기-참조" class="headerlink" title="자기 참조"></a>자기 참조</h2><p>클래스 내부의 <code>this</code>는 현재 메소드가 실행되는 객체를 나타냅니다.<br>Rational 클래스에 less 와 max 함수를 추가해봅시다: </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">less</span></span>(that: <span class="type">Rational</span>) =</span><br><span class="line">  numer * that.denom &lt; that.numer * denom</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(that: <span class="type">Rational</span>) =</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.less(that)) that <span class="keyword">else</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>클래스의 다른 멤버를 참조하는 <code>x</code>는, <code>this.x</code>이 생략된 표현됩니다. this를 생략하지 않은 less 구현은 다음과 같습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">less</span></span>(that: <span class="type">Rational</span>) =</span><br><span class="line">  <span class="keyword">this</span>.numer * that.denom &lt; that.numer * <span class="keyword">this</span>.denom</span><br></pre></td></tr></table></figure>
+
+<h2 id="전제-조건-Preconditions"><a href="#전제-조건-Preconditions" class="headerlink" title="전제 조건(Preconditions)"></a>전제 조건(Preconditions)</h2><p>Rational 클래스의 분모는 양의  정수여야 한다고 가정해봅시다.<br><code>require</code> 라는 함수로 이를 구현할 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  require(y &gt; <span class="number">0</span>, <span class="string">"denominator must be positive"</span>)</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>require</code>는 미리 정의된 함수입니다. 이 함수는 조건과 메세지 문자열(옵션)이 필요합니다.<br>만약 require의 조건 결과가 false 라면 메세지 문자열과 함께 <code>IllegalArgumentException</code> 오류를 던집니다.</p>
+<h2 id="ASSERTIONS"><a href="#ASSERTIONS" class="headerlink" title="ASSERTIONS"></a>ASSERTIONS</h2><p>require 말고, <code>assert</code>도 있습니다.<br><code>assert</code>또한 조건과 메세지 문자열(옵션)이 필요합니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = sqrt(y)</span><br><span class="line">assert(x &gt;= <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>require 처럼 assert의 조건이 실패시 예외를 던집니다, 그러나 assert의 <code>AssertionError</code>과 require의 <code>IllegalArgumentException</code>는 한가지 차이가 있습니다.<br>이것은 의도의 차이를 나타냅니다.</p>
+<ul>
+<li><code>require</code>는 함수 호출시 사전 조건을 적용하는데에 사용됩니다.</li>
+<li><code>assert</code>는 함수의 자체의 코드를 검사하기 위해 사용됩니다.</li>
+</ul>
+<h2 id="생성자"><a href="#생성자" class="headerlink" title="생성자"></a>생성자</h2><p>스칼라에서, 클래스는 암시적으로 생성자를 선언합니다. 이것을 <code>주 생성자(primary constructor)</code>라고 합니다.<br>주 생성자는 :</p>
+<ul>
+<li>클래스의 파라미터를 가져옵니다.</li>
+<li>그리고, 클래스 바디안의 모든 명령문을 실행합니다(require 같은 것들)</li>
+</ul>
+<h3 id="보조-생성자"><a href="#보조-생성자" class="headerlink" title="보조 생성자"></a>보조 생성자</h3><p>또한 스칼라는 보조생성자의 선언을 허용하며 이름은 <code>this</code>라고 합니다.<br>Rational 클래스에 보조 생성자를 추가해봅시다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">this</span></span>(x: <span class="type">Int</span>) = <span class="keyword">this</span>(x, <span class="number">1</span>)</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="클래스와-치환-Subtitution"><a href="#클래스와-치환-Subtitution" class="headerlink" title="클래스와 치환(Subtitution)"></a>클래스와 치환(Subtitution)</h2><p>이전엔 치환에 기반한 계산 모델을 사용해 함수 어플리케이션의 의미를 정의했습니다. 이제 이 모델을 클래스와 객체로 확장합니다.<br><code>new C(e1, …, en)</code>(C: 클래스, e: 인스턴스)는 어떻게 값이 구해질까요?<br>표현식 인수(argument) <code>e1, …, en</code>는 일반 함수의 인수와 같이 간주됩니다.<br>결과 표현식 <code>new C(v1, …, vn)</code>은 이미 값입니다.<br>이제 클래스 정의가 있다고 가정해봅시다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>(<span class="params">x1, …, xn</span>) </span>&#123;</span><br><span class="line">  …</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">f</span></span>(y1, …, ym) = b</span><br><span class="line">  …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>x1, …, xn</code>는 클래스의 형식적인 파라미터입니다.</li>
+<li>이 클래스는 <code>y1, …, ym</code>파라미터가 있는 f 메소드를 정의합니다</li>
+</ul>
+<p>(함수 파라미터 리스트가 없을 수 있습니다. 심플함을 위해, 파라미터 타입을 생략했습니다)<br>다음의 표현식은 어떻게 될까요?</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="type">C</span>(v1, …, vn).f(w1, …, wm)</span><br></pre></td></tr></table></figure>
+
+<p>다음과 같은 세가지의 치환이 발생합니다.</p>
+<ul>
+<li>인수 <code>w1, ..., wm</code>에 대한 함수 f의 매개변수 <code>y1, ..., ym</code> 치환.</li>
+<li>클래스 인수 <code>v1, ..., vn</code>에 의한 클래스 C의 매개변수 <code>x1, ..., xn</code> 치환</li>
+<li>자체 참조 <code>this</code>를 <code>new C(v1, ..., vn)</code> 객체의 값으로 치환.</li>
+</ul>
+<h2 id="연산자"><a href="#연산자" class="headerlink" title="연산자"></a>연산자</h2><p>원칙적으로, Rational이 정의한 분수는 정수와 같습니다(분수는 정수라는 뜻).<br>하지만 눈에 띄는 차이점이 있습니다:</p>
+<ul>
+<li>x 과 y가 정수인 <code>x+y</code>를 작성했지만, </li>
+<li><code>r.add(s)</code>의 경우 r과 s 는 분수입니다.</li>
+<li>역자추가) x와 y는 정수라서 +가 되는데 r과 s는 분수라 +가 없어서 add 메소드를 씀. 근데 원칙적으로 분수는 정수인데 뭐지? 라는 차이점이 있다는 뜻 </li>
+</ul>
+<p>스칼라에선, 연산자를 식별자로 사용할 수 있으므로 이 차이를 없앨 수 있습니다.<br>식별자는 다음과 같습니다:</p>
+<ul>
+<li>Alphanumeric : 문자로 시작하고 문자 또는 숫자 시퀀스</li>
+<li>심볼릭 : 연산자 기호로 시작하고, 그 뒤에 다른 연산자 기호가 옵니다.</li>
+<li>밑줄 문자 <code>_</code>는 문자로 계산됩니다.</li>
+<li>Alphanumeric 식별자는 밑줄로 끝나며 일부 연산자 기호가 이어질 수 있습니다.<br>식별자 예제:<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1 * +?%&amp; vector_++ counter_=</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="분수를-위한-연산자"><a href="#분수를-위한-연산자" class="headerlink" title="분수를 위한 연산자"></a>분수를 위한 연산자</h3><p>여기 Rational 클래스에 대한 보다 자연스러운 정의가 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = <span class="keyword">if</span> (b == <span class="number">0</span>) a <span class="keyword">else</span> gcd(b, a % b)</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> g = gcd(x, y)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x / g</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y / g</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">+</span> </span>(r: <span class="type">Rational</span>) =</span><br><span class="line">    <span class="keyword">new</span> <span class="type">Rational</span>(</span><br><span class="line">      numer * r.denom + r.numer * denom,</span><br><span class="line">      denom * r.denom</span><br><span class="line">    )</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">-</span> </span>(r: <span class="type">Rational</span>) = ...</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">*</span> </span>(r: <span class="type">Rational</span>) = ...</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이제 분수는 Int 나 Double 처럼 사용될 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">val</span> y = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">x * x + y * y</span><br></pre></td></tr></table></figure>
+
+<h2 id="우선순위-규칙"><a href="#우선순위-규칙" class="headerlink" title="우선순위 규칙"></a>우선순위 규칙</h2><p>연산자 우선순위는 첫 문자에 의해 결정됩니다.<br>다음은 우선순위가 높은 순서대로 문자를 나열한 것 입니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(all letters)</span><br><span class="line">|</span><br><span class="line">^</span><br><span class="line">&amp;</span><br><span class="line">&lt; &gt;</span><br><span class="line">= !</span><br><span class="line">:</span><br><span class="line">+ -</span><br><span class="line">* / %</span><br><span class="line">(all other special characters)</span><br></pre></td></tr></table></figure>
+
+<h2 id="추상-클래스"><a href="#추상-클래스" class="headerlink" title="추상 클래스"></a>추상 클래스</h2><p>IntSet 클래스의 작성에 대해 생각해봅시다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">incl</span></span>(x: <span class="type">Int</span>): <span class="type">IntSet</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>): <span class="type">Boolean</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>IntSet</code>은 추상 클래스입니다.<br>추상 클래스는 구현이 되지 않은 멤버를 포함할 수 있습니다(이 경우엔, <code>incl</code>과 <code>contains</code> 이며 추상메소드 라고 합니다).<br>그렇기 때문에, 추상클래스는 new 연산자로 새로운 객체를 생성할 수 없습니다.</p>
+<h2 id="클래스-확장"><a href="#클래스-확장" class="headerlink" title="클래스 확장"></a>클래스 확장</h2><p>set 을 이진트리로 구현하는 것에 대해서 생각해봅시다.<br>가능한 트리에는 두가지 타입이 있습니다.</p>
+<ol>
+<li>빈 세트에 대한 트리</li>
+<li>정수와 두개의 하위트리로 구성된 트리</li>
+</ol>
+<p>구현은 다음과 같습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>): <span class="type">Boolean</span> = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">incl</span></span>(x: <span class="type">Int</span>): <span class="type">IntSet</span> = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="keyword">new</span> <span class="type">Empty</span>, <span class="keyword">new</span> <span class="type">Empty</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NonEmpty</span>(<span class="params">elem: <span class="type">Int</span>, left: <span class="type">IntSet</span>, right: <span class="type">IntSet</span></span>) <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>): <span class="type">Boolean</span> =</span><br><span class="line">    <span class="keyword">if</span> (x &lt; elem) left contains x</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; elem) right contains x</span><br><span class="line">    <span class="keyword">else</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">incl</span></span>(x: <span class="type">Int</span>): <span class="type">IntSet</span> =</span><br><span class="line">    <span class="keyword">if</span> (x &lt; elem) <span class="keyword">new</span> <span class="type">NonEmpty</span>(elem, left incl x, right)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; elem) <span class="keyword">new</span> <span class="type">NonEmpty</span>(elem, left, right incl x)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Empty</code>와 <code>NonEmpty</code>는 <code>IntSet</code> 클래스를 상속 받았습니다.<br>이 상속은 Empty와 NonEmpty의 타입이 <code>IntSet</code>의 타입을 따르게 합니다.<br>Empty 혹은 NonEmpty는 IntSet 타입의 객체가 필요한 곳이라면 어디서나 사용할 수 있습니다.</p>
+<p>IntSet은 Empty와 NonEmpty의 ‘슈퍼클래스’ 라고 불립니다.<br>Empty 및 NonEmpty는 IntSet의 하위 클래스입니다.<br>스칼라에서는 사용자 정의 클래스가 다른 클래스를 상속받습니다.<br>슈퍼 클래스가 주어지지 않는 경우, Java 패키지 java.lang의 표준 클래스 객체로 가정합니다.<br>C 클래스의 직접 또는 간접 슈퍼클래스를 C 의 기본 클래스라고 합니다.<br>그래서, NonEmpty의 기본 클래스는 <code>IntSet</code>과 <code>Object</code> 입니다.</p>
+<h2 id="상속-implementation-과-오버라이딩"><a href="#상속-implementation-과-오버라이딩" class="headerlink" title="상속(implementation)과 오버라이딩"></a>상속(implementation)과 오버라이딩</h2><p>Empty 와 NonEmpty 클래스의 <code>contains 과 incl</code>의 정의는 IntSet 의 추상 함수를 구현합니다.<br>또한 오버라이드를 사용하여 하위 클래스에서 기존 비추상 정의를 재정의할 수 있습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">foo</span> </span>= <span class="number">1</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">bar</span></span>: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">foo</span> </span>= <span class="number">2</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">bar</span> </span>= <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="객체-정의"><a href="#객체-정의" class="headerlink" title="객체 정의"></a>객체 정의</h2><p>IntSet 예제에서, 실제론 하나의 빈 IntSet만 존재한다고 할 수도 있습니다.<br>그렇기 때문에 사용자가 많은 인스턴스를 만들도록 하는 것은 지나친 것 같습니다.<br>우린 객체 정의로 이 경우를 개선할 수 있습니다: </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>): <span class="type">Boolean</span> = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">incl</span></span>(x: <span class="type">Int</span>): <span class="type">IntSet</span> = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="type">Empty</span>, <span class="type">Empty</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위 코드는 Empty라는 싱클톤 객체를 정의합니다.<br>다른 어떤 Empty 객체도 생성될 수 없습니다.<br>싱글톤 객체는 값이기 때문에 Empty는 스스로 계산됩니다.</p>
+<h2 id="동적-바인딩"><a href="#동적-바인딩" class="headerlink" title="동적 바인딩"></a>동적 바인딩</h2><p>스칼라를 포함한 OOP 언어에선 <code>동적 메소드 디스패치</code>를 구현합니다.<br>이것은 메소드 호출에 의해 호출된 코드는 메소드를 포함하는 객체의 런타임 유형에 따라 다르다는 것을 의미합니다.<a href="https://riptutorial.com/ko/java/topic/9204/%EB%8B%A4%EC%9D%B4%EB%82%B4%EB%AF%B9-%EB%A9%94%EC%86%8C%EB%93%9C-%EB%94%94%EC%8A%A4%ED%8C%A8%EC%B9%98" target="_blank" rel="noopener">추가</a>  </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Empty</span> contains <span class="number">1</span> shouldBe <span class="literal">false</span></span><br><span class="line"><span class="keyword">new</span> <span class="type">NonEmpty</span>(<span class="number">7</span>, <span class="type">Empty</span>, <span class="type">Empty</span>) contains <span class="number">7</span> shouldBe <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>메소드의 동적 디스패치는 고차함수의 호출과 비슷합니다.<br>이 개념을 다른 개념으로 구현할 수 있습니까?</p>
+<ul>
+<li>고차함수의 측면에서 객체?</li>
+<li>객체 측면에서 고차함수?</li>
+</ul>
+<h2 id="트레잇"><a href="#트레잇" class="headerlink" title="트레잇"></a>트레잇</h2><p>스칼라에서, 클래스는 단 하나의 슈퍼클래스를 가질 수 있습니다.<br>그러나 한 클래스가 몇 가지 슈퍼타입을 가지고 있거나 그로부터 코드를 상속받고자 하면 어떨까요?<br>이때, 당신은 <code>트레잇(trait)</code>를 사용할 수 있습니다.<br>트레잇은 추상클래스처럼 선언되며, <code>trait</code> 으로 선언합니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Planar</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">height</span></span>: <span class="type">Int</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">width</span></span>: <span class="type">Int</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">surface</span> </span>= height * width</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>클래스, 객체, 트레잇은 최대 하나의 클래스에서 상속 할 수 있지만 임의의 많은 트레잇이 있습니다:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Shape</span> <span class="keyword">with</span> <span class="title">Planar</span> <span class="keyword">with</span> <span class="title">Movable</span> <span class="title">…</span></span></span><br></pre></td></tr></table></figure>
+
+<p>반면에, 트레잇은 값 파라미터를 가지지 않으며 클래스만 가질 수 있습니다.</p>
+<h2 id="스칼라의-클래스-계층"><a href="#스칼라의-클래스-계층" class="headerlink" title="스칼라의 클래스 계층"></a>스칼라의 클래스 계층</h2><p><img src="/images/blogpost/scala_type_hierarchy.png" alt="scala_type_hierarchy"></p>
+<h3 id="Top-Type"><a href="#Top-Type" class="headerlink" title="Top Type"></a>Top Type</h3><p>타입 계층 구조의 맨 위에는 다음이 있습니다.</p>
+<ul>
+<li>Any<ul>
+<li>모든 타입의 기본 타입</li>
+<li>메소드: ==, !=, equals, hashCode, toString</li>
+</ul>
+</li>
+<li>AnyRef<ul>
+<li>모든 참조 타입의 기본 타입</li>
+<li>별칭 java.lang.Object</li>
+</ul>
+</li>
+<li>AnyVal<ul>
+<li>모든 원시 타입의 기본 타입</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bottom-Type"><a href="#Bottom-Type" class="headerlink" title="Bottom Type"></a>Bottom Type</h3><p><code>Nothing</code>은 스칼라의 타입 계층의 최하위에 있습니다. 그것은 다른 모든 타입의 하위 유형입니다.<br><code>Nothing</code>타입의 값은 없습니다.<br>이걸 어디에 사용하나요?  </p>
+<ul>
+<li>비정상 종료 신호</li>
+<li>빈 콜렉션 의 요소(element) 타입</li>
+</ul>
+<h3 id="Null-Type"><a href="#Null-Type" class="headerlink" title="Null Type"></a>Null Type</h3><p>모든 참조 클래스 타입은 또한 <code>null</code>을 값으로 갖고 있습니다.<br><code>null</code> 타입은 <code>Null</code> 입니다.<br><code>Null</code>은 <code>Object</code>에서 상속하는 모든 클래스의 하위 타입이며, <code>AnyVal</code>의 하위 타입과 호환되지 않습니다.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="literal">null</span> <span class="comment">// x: Null</span></span><br><span class="line"><span class="keyword">val</span> y: <span class="type">String</span> = <span class="literal">null</span> <span class="comment">// y: String</span></span><br><span class="line"><span class="keyword">val</span> z: <span class="type">Int</span> = <span class="literal">null</span>    <span class="comment">// error: type mismatch</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>읽어주셔서 감사합니다. 혹 글에 오역/추가할 내용이 있다면 코멘트 남겨주세요!🙆</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/scala-exercises/" rel="tag"># scala-exercises</a>
+          
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/05/190722-190804/" rel="next" title="190722-190804 2주간 회고">
+                <i class="fa fa-chevron-left"></i> 190722-190804 2주간 회고
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#객체지향-프로그래밍"><span class="nav-number">1.</span> <span class="nav-text">객체지향 프로그래밍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#함수와-데이터"><span class="nav-number">1.1.</span> <span class="nav-text">함수와 데이터</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#유리수-덧셈"><span class="nav-number">1.2.</span> <span class="nav-text">유리수 덧셈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#클래스"><span class="nav-number">1.3.</span> <span class="nav-text">클래스</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체"><span class="nav-number">1.4.</span> <span class="nav-text">객체</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체의-멤버"><span class="nav-number">1.5.</span> <span class="nav-text">객체의 멤버</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#분수-연산"><span class="nav-number">1.6.</span> <span class="nav-text">분수 연산</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#분수-연산-구현"><span class="nav-number">1.7.</span> <span class="nav-text">분수 연산 구현</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#메소드"><span class="nav-number">1.8.</span> <span class="nav-text">메소드</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#데이터-추상화"><span class="nav-number">1.9.</span> <span class="nav-text">데이터 추상화</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#클라이언트-뷰"><span class="nav-number">1.9.1.</span> <span class="nav-text">클라이언트 뷰</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#자기-참조"><span class="nav-number">1.10.</span> <span class="nav-text">자기 참조</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#전제-조건-Preconditions"><span class="nav-number">1.11.</span> <span class="nav-text">전제 조건(Preconditions)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASSERTIONS"><span class="nav-number">1.12.</span> <span class="nav-text">ASSERTIONS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#생성자"><span class="nav-number">1.13.</span> <span class="nav-text">생성자</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#보조-생성자"><span class="nav-number">1.13.1.</span> <span class="nav-text">보조 생성자</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#클래스와-치환-Subtitution"><span class="nav-number">1.14.</span> <span class="nav-text">클래스와 치환(Subtitution)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#연산자"><span class="nav-number">1.15.</span> <span class="nav-text">연산자</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#분수를-위한-연산자"><span class="nav-number">1.15.1.</span> <span class="nav-text">분수를 위한 연산자</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#우선순위-규칙"><span class="nav-number">1.16.</span> <span class="nav-text">우선순위 규칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#추상-클래스"><span class="nav-number">1.17.</span> <span class="nav-text">추상 클래스</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#클래스-확장"><span class="nav-number">1.18.</span> <span class="nav-text">클래스 확장</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#상속-implementation-과-오버라이딩"><span class="nav-number">1.19.</span> <span class="nav-text">상속(implementation)과 오버라이딩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체-정의"><span class="nav-number">1.20.</span> <span class="nav-text">객체 정의</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#동적-바인딩"><span class="nav-number">1.21.</span> <span class="nav-text">동적 바인딩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#트레잇"><span class="nav-number">1.22.</span> <span class="nav-text">트레잇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#스칼라의-클래스-계층"><span class="nav-number">1.23.</span> <span class="nav-text">스칼라의 클래스 계층</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-Type"><span class="nav-number">1.23.1.</span> <span class="nav-text">Top Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-Type"><span class="nav-number">1.23.2.</span> <span class="nav-text">Bottom Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Null-Type"><span class="nav-number">1.23.3.</span> <span class="nav-text">Null Type</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

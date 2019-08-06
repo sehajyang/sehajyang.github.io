@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Seha안녕하세요 주니어 개발자 세하 입니다.현재 Springboot 로 웹 개발을 하고 있으며 Python 으로 그 외 개발을 하고있습니다.코드 품질을 위한 CleanCode 를 지향하고 있으며 테스트코드 짜는것을 중요하게 생각합니다.욕심내되 꾸준히 하자는 모토로 공부중이며 이 블로그는 그러한 취지로 운영됩니다 😊  토이프로젝트를 종종 진행하고 있으며">
+<meta name="keywords" content="seha">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="https://sehajyang.github.io/about/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="Seha안녕하세요 주니어 개발자 세하 입니다.현재 Springboot 로 웹 개발을 하고 있으며 Python 으로 그 외 개발을 하고있습니다.코드 품질을 위한 CleanCode 를 지향하고 있으며 테스트코드 짜는것을 중요하게 생각합니다.욕심내되 꾸준히 하자는 모토로 공부중이며 이 블로그는 그러한 취지로 운영됩니다 😊  토이프로젝트를 종종 진행하고 있으며">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://sehajyang.github.io/images/seha_cat.jpg">
+<meta property="og:updated_time" content="2019-08-02T14:41:53.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="about">
+<meta name="twitter:description" content="Seha안녕하세요 주니어 개발자 세하 입니다.현재 Springboot 로 웹 개발을 하고 있으며 Python 으로 그 외 개발을 하고있습니다.코드 품질을 위한 CleanCode 를 지향하고 있으며 테스트코드 짜는것을 중요하게 생각합니다.욕심내되 꾸준히 하자는 모토로 공부중이며 이 블로그는 그러한 취지로 운영됩니다 😊  토이프로젝트를 종종 진행하고 있으며">
+<meta name="twitter:image" content="https://sehajyang.github.io/images/seha_cat.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/about/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>about | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">about
+
+</h1>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <p><img src="/images/seha_cat.jpg" alt="seha_cat"></p>
+<h2 id="Seha"><a href="#Seha" class="headerlink" title="Seha"></a><a href="https://about.me/sehajyang" target="_blank" rel="noopener">Seha</a></h2><p>안녕하세요 주니어 개발자 세하 입니다.<br>현재 <code>Springboot</code> 로 웹 개발을 하고 있으며 <code>Python</code> 으로 그 외 개발을 하고있습니다.<br>코드 품질을 위한 <code>CleanCode</code> 를 지향하고 있으며 테스트코드 짜는것을 중요하게 생각합니다.<br>욕심내되 꾸준히 하자는 모토로 공부중이며 이 블로그는 그러한 취지로 운영됩니다 😊 </p>
+<p>토이프로젝트를 종종 진행하고 있으며, 해당 프로젝트들은 제 <a href="https://github.com/sehajyang" target="_blank" rel="noopener">GitHub</a> 에서 좀 더 자세하게 볼 수 있습니다.  </p>
+<h2 id="Skill-Set"><a href="#Skill-Set" class="headerlink" title="Skill Set"></a>Skill Set</h2><p><a href="https://stackshare.io/sehajyang/my-stack" target="_blank" rel="noopener">Stack Share</a><br><strong>Java</strong> / <strong>Python</strong> / Shell<br>JavaScript / Node.js<br>Spring / <strong>Springboot</strong> / Flask<br>AWS<br>Linux<br><strong>MySQL</strong> / Oracle / MongoDB / Redis<br>IntelliJ / PyCharm / VS Code / WebStorm / Vim   </p>
+<h2 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h2><p><strong>Scala</strong></p>
+<h2 id="Interesting"><a href="#Interesting" class="headerlink" title="Interesting"></a>Interesting</h2><p>서비스 확장 및 유지보수를 위한 품질 좋은 코드 및 <code>TDD(BDD)</code>를 중요하게 생각합니다.<br>함수형 프로그래밍에 관심을 가지고 공부하고 있습니다.</p>
+<h2 id="Work-Experience"><a href="#Work-Experience" class="headerlink" title="Work Experience"></a>Work Experience</h2><p><strong>2018.11 ~ Now / Herren Backend Developer</strong><br>고객관리 관련 서비스 유지보수 및 서버/벡엔드 개발, 인프라 구축을 담당했습니다. </p>
+<ul>
+<li>Development<ul>
+<li>Python, Java, Springboot, JPA, MyBatis, Gradle, Mysql, H2, Lombok</li>
+<li>JavaScript, HTML, CSS</li>
+<li>GitLab</li>
+<li>Jenkins, Docker</li>
+<li>IntelliJ, WebStorm, VSCode </li>
+<li>AWS (EC2, RDS, S3, DynamoDB)</li>
+</ul>
+</li>
+<li>기능 개발, 레거시 코드 리팩토링 및 클린코드를 위한 통합 테스트코드 작성<strong>(커버리지 80%)</strong></li>
+<li>GitLab, Jenkins, Slack 을 이용해 <code>CI/CD</code> 환경 구축 및 알림</li>
+<li>시간 및 자원이 많이 소요되던 기존 <code>Python</code> 코드를 <code>Asyncio</code> 등 으로 리팩토링해 비동기로 처리</li>
+</ul>
+<h2 id="Side-Project"><a href="#Side-Project" class="headerlink" title="Side Project"></a>Side Project</h2><p><a href="https://github.com/sehajyang/simple-anonymous-board" target="_blank" rel="noopener"><strong>simple-anonymous-board</strong></a></p>
+<ul>
+<li>사내 익명게시판 구현을 위해 <code>Springboot</code> 를 이용해 공지/익명 게시판을 개발했습니다.</li>
+<li>이중 암호화로 강력한 익명을 지원하며, 일정 수 이상의 [좋아요] 를 받은 게시물은 슬랙의 특정 채널에 전송됩니다.</li>
+</ul>
+<p><a href="https://github.com/sehajyang/sanic-chatting-project" target="_blank" rel="noopener"><strong>sanic-chatting-project</strong></a></p>
+<ul>
+<li>채팅 웹은 실시간성이 중요하기 때문에 <code>Python</code>의 비동기 프레임워크인 <code>Sanic</code>을 활용해 개발했습니다.</li>
+<li>메세지는 <code>Redis</code> 의 <code>PUB/SUB</code> 을 활용해 빠른 입출력을 구현했으며, 유저 데이터는 <code>PostgreSql</code> 에 저장됩니다.  </li>
+</ul>
+<h2 id="Prizes"><a href="#Prizes" class="headerlink" title="Prizes"></a>Prizes</h2><ul>
+<li>[2019.06.02] <a href="https://www.hackathon.io/connectus3" target="_blank" rel="noopener">AngelHack Global Hackaton Series 2019 Seoul</a> 전체 우승 </li>
+</ul>
+<h2 id="Translate"><a href="#Translate" class="headerlink" title="Translate"></a>Translate</h2><ul>
+<li><a href="https://github.com/sehajyang/TIL/tree/master/Scala/Scala-Exercises" target="_blank" rel="noopener">Scala Exercises Tutorial 번역</a></li>
+</ul>
+<h2 id="SlideShare"><a href="#SlideShare" class="headerlink" title="SlideShare"></a>SlideShare</h2><ul>
+<li><a href="https://www.slideshare.net/herrenstudy/tdd-142039199" target="_blank" rel="noopener">클린코드와 TDD (1부)</a></li>
+<li><a href="https://www.slideshare.net/herrenstudy/ss-152309289" target="_blank" rel="noopener">클린코드와 테스트코드 (2부)</a></li>
+<li><a href="https://www.slideshare.net/herrenstudy/javascript-130085326" target="_blank" rel="noopener">Javascript 생태계</a></li>
+</ul>
+<h2 id="Activities"><a href="#Activities" class="headerlink" title="Activities"></a>Activities</h2><h3 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h3><ul>
+<li>190223 <a href="https://kcd2019.festa.io/" target="_blank" rel="noopener">KCD(Korea Community Day) 2019</a></li>
+<li>190316 <a href="https://festa.io/events/212" target="_blank" rel="noopener">프론트엔드와 무관합니다만,</a></li>
+<li>190427 <a href="https://www.springcamp.io/2019" target="_blank" rel="noopener">Spring camp 2019</a></li>
+<li>190602 <a href="https://event-us.kr/angelhackseoul/event/7465" target="_blank" rel="noopener">AngelHackaton Seoul 2019</a></li>
+<li>190630 <a href="https://festa.io/events/299" target="_blank" rel="noopener">I/O Extended 2019 Seoul</a></li>
+</ul>
+<h3 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h3><ul>
+<li>180628 <a href="https://www.openinfradays.kr/" target="_blank" rel="noopener">OpenInfra Days Korea 2018</a></li>
+<li>180628 <a href="http://www.smarttechshow.co.kr/" target="_blank" rel="noopener">SmartTech in Korea 2018</a></li>
+<li>180708 <a href="https://onoffmix.com/event/139310" target="_blank" rel="noopener">개발자의 생존전략 41기</a></li>
+<li>180715 웹 취약점 진단 교육</li>
+<li>180728 <a href="https://seoul.js.org/meetups/2018.07.27.html" target="_blank" rel="noopener">Seoul.js Lightning Talk</a></li>
+<li>180809 <a href="https://sehajyang.github.io/2018/08/09/okky-opensource-seminar.html">[OKKY 세미나] 오픈소스, 줘도 못 먹나 - 오픈소스로 팀의 개발 생산성 높이기 후기</a></li>
+<li>180901 <a href="https://m.cafe.naver.com/ArticleRead.nhn?clubid=10286641&articleid=154893&page=1&boardtype=L&menuid=208" target="_blank" rel="noopener">남궁성님 C 언어 포인터 세미나</a></li>
+<li>180919 <a href="https://www.meetup.com/ko-KR/awskrug/events/254611413/" target="_blank" rel="noopener">[AUSG Seminar Series] 2018 F/W 초보자를 위한 AWS 뿌시기</a></li>
+<li>180920 <a href="https://tacademy.skplanet.com/front/tacademy/courseinfo/campus.action" target="_blank" rel="noopener">[T academy]스프링부트를 이용한 웹 서비스 개발하기</a></li>
+<li>181006 <a href="https://festa.io/events/86" target="_blank" rel="noopener">Dev Django Korea 2018</a></li>
+</ul>
+<h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><p>궁금한 사항 혹은 문의사항은 아래로 보내주세요 😄<br><a href="mailto:sehajyang@gmail.com" target="_blank" rel="noopener">sehajyang@gmail.com</a><br><a href="https://twitter.com/sehajyang" target="_blank" rel="noopener">Twitter</a><br><a href="https://github.com/sehajyang" target="_blank" rel="noopener">GitHub</a><br><a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" target="_blank" rel="noopener">LinkedIn</a></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Seha"><span class="nav-number">1.</span> <span class="nav-text">Seha</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skill-Set"><span class="nav-number">2.</span> <span class="nav-text">Skill Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning"><span class="nav-number">3.</span> <span class="nav-text">Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interesting"><span class="nav-number">4.</span> <span class="nav-text">Interesting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Work-Experience"><span class="nav-number">5.</span> <span class="nav-text">Work Experience</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Side-Project"><span class="nav-number">6.</span> <span class="nav-text">Side Project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prizes"><span class="nav-number">7.</span> <span class="nav-text">Prizes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Translate"><span class="nav-number">8.</span> <span class="nav-text">Translate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SlideShare"><span class="nav-number">9.</span> <span class="nav-text">SlideShare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activities"><span class="nav-number">10.</span> <span class="nav-text">Activities</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2019"><span class="nav-number">10.1.</span> <span class="nav-text">2019</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018"><span class="nav-number">10.2.</span> <span class="nav-text">2018</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contact"><span class="nav-number">11.</span> <span class="nav-text">Contact</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

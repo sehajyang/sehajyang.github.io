@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="spring camp 2019를 다녀왔다!   티켓팅이 정말 어려웠기 때문에, 지인이나 회사의 다른 개발자분이 티켓팅에 실패해서 혼자 다녀왔다.공개된 세션들은 지금 내가 개발하고 있는 프로젝트에 많은 도움이 될 것 같아서 정말 기대를 많이 했다.특히 실전에 써먹는 스프링부트 나 Monitoring With Actuator, 무엇을 테스트할 것인가? 어떻게">
+<meta name="keywords" content="springcamp 2019 후기,스프링캠프 2019">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring camp 2019 참석 후기 (1부)">
+<meta property="og:url" content="https://sehajyang.github.io/2019/04/29/2019-04-29-springcamp-2019-review/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="spring camp 2019를 다녀왔다!   티켓팅이 정말 어려웠기 때문에, 지인이나 회사의 다른 개발자분이 티켓팅에 실패해서 혼자 다녀왔다.공개된 세션들은 지금 내가 개발하고 있는 프로젝트에 많은 도움이 될 것 같아서 정말 기대를 많이 했다.특히 실전에 써먹는 스프링부트 나 Monitoring With Actuator, 무엇을 테스트할 것인가? 어떻게">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-02T14:41:53.804Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring camp 2019 참석 후기 (1부)">
+<meta name="twitter:description" content="spring camp 2019를 다녀왔다!   티켓팅이 정말 어려웠기 때문에, 지인이나 회사의 다른 개발자분이 티켓팅에 실패해서 혼자 다녀왔다.공개된 세션들은 지금 내가 개발하고 있는 프로젝트에 많은 도움이 될 것 같아서 정말 기대를 많이 했다.특히 실전에 써먹는 스프링부트 나 Monitoring With Actuator, 무엇을 테스트할 것인가? 어떻게">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/04/29/2019-04-29-springcamp-2019-review/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>spring camp 2019 참석 후기 (1부) | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/29/2019-04-29-springcamp-2019-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spring camp 2019 참석 후기 (1부)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-29T00:00:00+09:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-02 23:41:53" itemprop="dateModified" datetime="2019-08-02T23:41:53+09:00">2019-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Seminar/" itemprop="url" rel="index"><span itemprop="name">Seminar</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>spring camp 2019를 다녀왔다!  
+티켓팅이 정말 어려웠기 때문에, 지인이나 회사의 다른 개발자분이 티켓팅에 실패해서 혼자 다녀왔다.<br>공개된 세션들은 지금 내가 개발하고 있는 프로젝트에 많은 도움이 될 것 같아서 정말 기대를 많이 했다.<br>특히 <code>실전에 써먹는 스프링부트</code> 나 <code>Monitoring With Actuator</code>, <code>무엇을 테스트할 것인가? 어떻게 테스트할 것인가?</code>, <code>Kotlin 프로젝트를 피할 수 없을 때</code> 라는 세션이 그러했다.<br>최근 테스트를 내가 제대로 하고 있는지에 대한 의문이 있었고, 모니터링에 대한 필요성을 느끼고 있어서였다.<br>Kotlin은 저번에 Springboot에 붙이려다 실패했었기 때문에 위의 세션이 기대가 됐다.<br>세션은 오전 10:40 분 부터 시작했는데 가는길에 시간이 조금 걸려 조금 지각을 해버렸다.<br>로비에 들어가니 팔찌와 스티커 그리고 휴대용 선풍기를 줬다(왜인지는 모르겠는데 많은 개발세미나에선 휴대용 선풍기를 준다)<br>굿즈를 받아들고 Track 1의 <code>실전에 써먹는 스프링부트</code>를 들었다.<br>중후반에 들어왔기 때문에 아쉽게 기록을 하지 못했다. 정말 아쉬웠다. </p>
+<h2 id="Monitoring-With-Actuator"><a href="#Monitoring-With-Actuator" class="headerlink" title="Monitoring With Actuator"></a>Monitoring With Actuator</h2><p>두번째로 들은 세션은 <code>Monitoring With Actuator</code> 였다.<br>보안에 대한 의문이 있었기 때문에 예전에 한번 도입하려다 그냥 포기했었는데, 이 세션에서 어떻게 사용해야 하며 모니터링을 도와주는 도구 및 팁과룰에 대한 다양한 설명을 들을 수 있었다.<br><code>Actuator</code>는 springboot 2.0 부터 사용할 수 있는데, 다행히 저번에 버전업을 해서 도입한다면 바로 도입할 수 있을 것 같았다. 1.5에서도 사용할 수 있지만 제약사항이 많았다.  </p>
+<h3 id="Spring-Actuator-란"><a href="#Spring-Actuator-란" class="headerlink" title="Spring Actuator 란?"></a>Spring Actuator 란?</h3><ul>
+<li>장애 예방, 원인파악 및 조치, 상태확인, 성능개선, 서비스상태분석을 위함</li>
+<li>제어 도구  = endpoint</li>
+<li>지표 제공 = metrics</li>
+<li>사용중인 라이브러리 탐지도 한다</li>
+</ul>
+<h3 id="default-endpoint"><a href="#default-endpoint" class="headerlink" title="default endpoint"></a>default endpoint</h3><ul>
+<li>default 는 health, info 만 제공 properties에서 설정할 수 있다.</li>
+<li>Enabling Endpoints<ul>
+<li>web  &gt; rest(health,info)로 보여줌</li>
+<li>jmx &gt; 셧다운 제외한 모든 정보를 보여줌</li>
+<li>spring boot 2.0 부터 spring security에 통합 혹은 따로 서버에 띄우는 방법(총 두개)으로 사용 가능</li>
+<li>접근 가능 ip 설정 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h3><ul>
+<li><p>2.0 부터 특정 지표상의 key value 쌍의 지표 tag로 검색 가능</p>
+</li>
+<li><p>반드시 측정해야 할 지표 (RED Method)</p>
+<ul>
+<li>(Request)Rate</li>
+<li>(Request)Error</li>
+<li>(Request)Duration</li>
+</ul>
+</li>
+<li><p>outcome code =&gt; status 간단히 잘 볼수있음</p>
+</li>
+</ul>
+<h3 id="Micrometer"><a href="#Micrometer" class="headerlink" title="Micrometer"></a>Micrometer</h3><ul>
+<li>Registry, Meter, Tag</li>
+<li>spring boot 2.0부터 지원</li>
+<li>meterregistry cloudwatch도 있음!</li>
+</ul>
+<h2 id="자바에서-null을-안전하게-다루는-방법"><a href="#자바에서-null을-안전하게-다루는-방법" class="headerlink" title="자바에서 null을 안전하게 다루는 방법"></a>자바에서 null을 안전하게 다루는 방법</h2><p>세번째로 들은 세션은 <code>자바에서 null을 안전하게 다루는 방법</code> 이었다. 내 생각에, 자바에서 가장 많이 일어나는 Exception은 <code>nullPointer exception</code>이 아닐까 싶다.<br>인기가 정말 많았던 세션이라 아쉽게도 좌석 부족으로 서서 들어 기록을 하진 못했지만 ppt가 공개되었다! <a href="https://www.slideshare.net/gyumee/null-142590829" target="_blank" rel="noopener">ppt 링크</a><br>너무 너무 유익한 세션이었다. 만약 해당 강연을 듣지 못한 분은 ppt를 보고 이 강연이 얼마나 유익했을지 알 수 있을거라 생각한다.<br>해당 세션이 끝난 후 한시즈음 점심을 먹었다. 배달의 민족 측에서 준비한 도시락이었다. 보통 세미나에선 샌드위치를 주는데 한식을 줘서 좋았다 :D</p>
+<h2 id="무엇을-테스트할-것인가-어떻게-테스트할-것인가"><a href="#무엇을-테스트할-것인가-어떻게-테스트할-것인가" class="headerlink" title="무엇을 테스트할 것인가? 어떻게 테스트할 것인가?"></a>무엇을 테스트할 것인가? 어떻게 테스트할 것인가?</h2><p>네번째 세션은 정말 기대하던 TDD 세션이었다. TDD라기보단 테스트 세션이었지만 그래서 더 좋았다.<br>그간 인터넷을 찾아보며 나름대로 테스트코드를 작성해오고 있었는데, 맞게 작성하고 있는지, 이건 테스트해야되는지 이건 아닌지, 이걸 테스트하기엔 너무 어려운데 과연 의미가 있는지<br>이건 불가능한 테스트인데 어떻게 해야 하는지에 대한 고민이 많았다.<br>그래서 Udemy에서 <a href="https://www.udemy.com/learn-unit-testing-with-spring-boot/?couponCode=SBT-2019" target="_blank" rel="noopener">Master Java Unit Testing with Spring Boot &amp; Mockito</a> 강의라도 들을까 하고 있던 차에, 한국에서! 그것도 실무자가 하고있는 스프링부트 테스트코드 강의라서 많은 기대가 됐다.<br>그리고 이 세션은 그러한 내 많은 고민을 한번에 해결해 주었다! 그리고 나는 테스트코드를 맞게 짜고 있었다. 안도감이 들었다.<br>강연 중간에 <code>spock</code>에 대한 언급이 있었는데, 생각보다 많은 분들이 사용하고 있어서 왠지 든든했다(?)<br>spock는 정말 좋다. 처음엔 groovy가 낯설었지만 조금 적응이 되니 너무 편리했다.  </p>
+<h3 id="테스트로부터-얻을-수-있는-것"><a href="#테스트로부터-얻을-수-있는-것" class="headerlink" title="테스트로부터 얻을 수 있는 것"></a>테스트로부터 얻을 수 있는 것</h3><ul>
+<li>안정감과 자신감 (정말 그렇다!)</li>
+<li>대상은 나와 동료</li>
+</ul>
+<h3 id="무엇을-테스트-할-것인가"><a href="#무엇을-테스트-할-것인가" class="headerlink" title="무엇을 테스트 할 것인가"></a>무엇을 테스트 할 것인가</h3><ul>
+<li>기존 플로우 안까지 할 필요없음</li>
+<li>만약 걔를 테스트해야되면 걔를 빼는게 맞는거임</li>
+<li>설계사항 그대로 테스트 코드로 옮기는게 좋음</li>
+</ul>
+<h3 id="테스트-가능한-것-불가능한-것"><a href="#테스트-가능한-것-불가능한-것" class="headerlink" title="테스트 가능한 것 불가능한 것"></a>테스트 가능한 것 불가능한 것</h3><ul>
+<li>외부 API 테스트안됨(그렇다)</li>
+<li>항상 성공할 수 있는것 동일한 결과가 나올 수 있는것을 테스트 </li>
+</ul>
+<h3 id="어떻게-테스트-할-것-인가"><a href="#어떻게-테스트-할-것-인가" class="headerlink" title="어떻게 테스트 할 것 인가"></a>어떻게 테스트 할 것 인가</h3><ul>
+<li>바운더리 레이어까지 테스트안되는걸 끌어올려서 테스트</li>
+<li>바운더리 레이어 = &gt; 한 모듈로서의 의미를 지니는 가장 바깥쪽</li>
+<li>springcontext의 오용은 언어의 본질을 망각하게 될 수 있다.</li>
+<li>Context, framework 종속적이지 않은 테스트를 우선</li>
+<li>Test double<ul>
+<li>테스트 할 수 없는 영역을 주입해서 테스트할 수 있게 해줌</li>
+<li>무엇을 test double로 처리해야할까</li>
+<li>H2 뭐 그런거 써서 enbedded 활용 =&gt; 제어할 수 없던 그 영역을 제어할 수 있다!</li>
+</ul>
+</li>
+<li>Endpoint Test</li>
+<li><strong>Spring contract</strong></li>
+</ul>
+<h1 id="test-tip"><a href="#test-tip" class="headerlink" title="test tip"></a>test tip</h1><ul>
+<li>테스트는 상호 독립적으로 작성</li>
+<li>공유되는 데이터는 꼭 초기화를 한다(테스트간 서로 영향을 끼치지않도록) =&gt; Dynamic Test (Junit5)</li>
+<li>테스트 에서 의도와 목적이 드러나도록</li>
+<li>테스트 코드도 리펙토링 대상</li>
+</ul>
+<p>앞으로 테스트코드를 더 즐겁고 확신있게(?) 짤 수 있을 것 같다.</p>
+<hr>
+<p>이후에 들은 세션은 <code>당신도 할 수 있는 레거시 프로젝트 개선 이야기</code>, <code>Kotlin 프로젝트 적응하기</code> 이다.<br><code>Kotlin + Spring Data JPA</code> 세션을 듣고싶었는데, 중간에 일이 생겨 아쉽게 마지막 세션을 들을 수 없었다.<br>이전에 kotlin 프로젝트에 자바 라이브러리를 사용하려다 대차게 실패한 적이 있기 때문에 꼭 듣고 싶었다.<br>해당글 : <a href="https://sehajyang.github.io/etc/2019/03/07/kotlin-and-lombok.html">Kotlin 에서 Lombok을 사용할 수 없는 문제</a><br>강연 영상이나 ppt가 공개되면 봐야겠다.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/seminar/" rel="tag"># seminar</a>
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+            <a href="/tags/Springboot/" rel="tag"># Springboot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/21/2019-04-21-190408~190421/" rel="next" title="190408-190421 주간 회고">
+                <i class="fa fa-chevron-left"></i> 190408-190421 주간 회고
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/07/2019-05-07-springboot-migration-1.5to2.0/" rel="prev" title="springboot migration">
+                springboot migration <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Monitoring-With-Actuator"><span class="nav-number">1.</span> <span class="nav-text">Monitoring With Actuator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Actuator-란"><span class="nav-number">1.1.</span> <span class="nav-text">Spring Actuator 란?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default-endpoint"><span class="nav-number">1.2.</span> <span class="nav-text">default endpoint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metrics"><span class="nav-number">1.3.</span> <span class="nav-text">Metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Micrometer"><span class="nav-number">1.4.</span> <span class="nav-text">Micrometer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#자바에서-null을-안전하게-다루는-방법"><span class="nav-number">2.</span> <span class="nav-text">자바에서 null을 안전하게 다루는 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#무엇을-테스트할-것인가-어떻게-테스트할-것인가"><span class="nav-number">3.</span> <span class="nav-text">무엇을 테스트할 것인가? 어떻게 테스트할 것인가?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#테스트로부터-얻을-수-있는-것"><span class="nav-number">3.1.</span> <span class="nav-text">테스트로부터 얻을 수 있는 것</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#무엇을-테스트-할-것인가"><span class="nav-number">3.2.</span> <span class="nav-text">무엇을 테스트 할 것인가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#테스트-가능한-것-불가능한-것"><span class="nav-number">3.3.</span> <span class="nav-text">테스트 가능한 것 불가능한 것</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#어떻게-테스트-할-것-인가"><span class="nav-number">3.4.</span> <span class="nav-text">어떻게 테스트 할 것 인가</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#test-tip"><span class="nav-number"></span> <span class="nav-text">test tip</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

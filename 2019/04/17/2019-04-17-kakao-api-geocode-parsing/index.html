@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Kakao Geocode API로 부터 받은 데이터를 직렬화 하고 JSON객체로 바꾸고 특정 데이터를 얻어오는 작업을 할 것입니다.Kakao API를 이용하기 위해선 API Key가 필요한데, 이곳 에서 얻을 수 있습니다.   카카오 지도 API로부터 주소로 위도 경도를 받아오기 위해선 이곳에 공식 예제가 있습니다.   받아온 주소 데이터를 JSON으로헤더">
+<meta name="keywords" content="Kakao Geocode API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kakao Geocode API, 주소로 위도 경도 java로 파싱하기">
+<meta property="og:url" content="https://sehajyang.github.io/2019/04/17/2019-04-17-kakao-api-geocode-parsing/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="Kakao Geocode API로 부터 받은 데이터를 직렬화 하고 JSON객체로 바꾸고 특정 데이터를 얻어오는 작업을 할 것입니다.Kakao API를 이용하기 위해선 API Key가 필요한데, 이곳 에서 얻을 수 있습니다.   카카오 지도 API로부터 주소로 위도 경도를 받아오기 위해선 이곳에 공식 예제가 있습니다.   받아온 주소 데이터를 JSON으로헤더">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-02T14:41:53.803Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kakao Geocode API, 주소로 위도 경도 java로 파싱하기">
+<meta name="twitter:description" content="Kakao Geocode API로 부터 받은 데이터를 직렬화 하고 JSON객체로 바꾸고 특정 데이터를 얻어오는 작업을 할 것입니다.Kakao API를 이용하기 위해선 API Key가 필요한데, 이곳 에서 얻을 수 있습니다.   카카오 지도 API로부터 주소로 위도 경도를 받아오기 위해선 이곳에 공식 예제가 있습니다.   받아온 주소 데이터를 JSON으로헤더">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/04/17/2019-04-17-kakao-api-geocode-parsing/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kakao Geocode API, 주소로 위도 경도 java로 파싱하기 | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/17/2019-04-17-kakao-api-geocode-parsing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kakao Geocode API, 주소로 위도 경도 java로 파싱하기
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-17 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-17T00:00:00+09:00">2019-04-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-02 23:41:53" itemprop="dateModified" datetime="2019-08-02T23:41:53+09:00">2019-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Kakao Geocode API로 부터 받은 데이터를 직렬화 하고 JSON객체로 바꾸고 특정 데이터를 얻어오는 작업을 할 것입니다.<br>Kakao API를 이용하기 위해선 API Key가 필요한데, <a href="https://developers.kakao.com" target="_blank" rel="noopener">이곳</a> 에서 얻을 수 있습니다.  </p>
+<p>카카오 지도 API로부터 주소로 위도 경도를 받아오기 위해선 <a href="https://developers.kakao.com/docs/restapi/local#주소-검색" target="_blank" rel="noopener">이곳</a>에 공식 예제가 있습니다.  </p>
+<h3 id="받아온-주소-데이터를-JSON으로"><a href="#받아온-주소-데이터를-JSON으로" class="headerlink" title="받아온 주소 데이터를 JSON으로"></a>받아온 주소 데이터를 JSON으로</h3><p>헤더에 발급받은 API키를 등록 후 POSTMAN으로 요청을 날려보겠습니다.  </p>
+<blockquote>
+<p><a href="https://dapi.kakao.com/v2/local/search/address.json?query=판교역로" target="_blank" rel="noopener">https://dapi.kakao.com/v2/local/search/address.json?query=판교역로</a> 235</p>
+</blockquote>
+<p>응답받은 데이터는 이러합니다.  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"meta"</span>: &#123;</span><br><span class="line">        <span class="attr">"is_end"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"total_count"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"pageable_count"</span>: <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"documents"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"road_address"</span>: &#123;</span><br><span class="line">                <span class="attr">"undergroun_yn"</span>: <span class="string">"N"</span>,</span><br><span class="line">                <span class="attr">"road_name"</span>: <span class="string">"판교역로"</span>,</span><br><span class="line">                <span class="attr">"underground_yn"</span>: <span class="string">"N"</span>,</span><br><span class="line">                <span class="attr">"region_2depth_name"</span>: <span class="string">"성남시 분당구"</span>,</span><br><span class="line">                <span class="attr">"zone_no"</span>: <span class="string">"13494"</span>,</span><br><span class="line">                <span class="attr">"sub_building_no"</span>: <span class="string">""</span>,</span><br><span class="line">                <span class="attr">"region_3depth_name"</span>: <span class="string">"삼평동"</span>,</span><br><span class="line">                <span class="attr">"main_building_no"</span>: <span class="string">"235"</span>,</span><br><span class="line">                <span class="attr">"address_name"</span>: <span class="string">"경기 성남시 분당구 판교역로 235"</span>,</span><br><span class="line">                <span class="attr">"y"</span>: <span class="string">"37.40209529907863"</span>,</span><br><span class="line">                <span class="attr">"x"</span>: <span class="string">"127.10863694633468"</span>,</span><br><span class="line">                <span class="attr">"region_1depth_name"</span>: <span class="string">"경기"</span>,</span><br><span class="line">                <span class="attr">"building_name"</span>: <span class="string">"에이치스퀘어 엔동"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"address_name"</span>: <span class="string">"경기 성남시 분당구 판교역로 235"</span>,</span><br><span class="line">            <span class="attr">"address"</span>: &#123;</span><br><span class="line">                <span class="attr">"b_code"</span>: <span class="string">"4113510900"</span>,</span><br><span class="line">                <span class="attr">"region_3depth_h_name"</span>: <span class="string">"삼평동"</span>,</span><br><span class="line">                <span class="attr">"main_address_no"</span>: <span class="string">"681"</span>,</span><br><span class="line">                <span class="attr">"h_code"</span>: <span class="string">"4113565500"</span>,</span><br><span class="line">                <span class="attr">"region_2depth_name"</span>: <span class="string">"성남시 분당구"</span>,</span><br><span class="line">                <span class="attr">"main_adderss_no"</span>: <span class="string">"681"</span>,</span><br><span class="line">                <span class="attr">"sub_address_no"</span>: <span class="string">""</span>,</span><br><span class="line">                <span class="attr">"region_3depth_name"</span>: <span class="string">"삼평동"</span>,</span><br><span class="line">                <span class="attr">"address_name"</span>: <span class="string">"경기 성남시 분당구 삼평동 681"</span>,</span><br><span class="line">                <span class="attr">"y"</span>: <span class="string">"37.40206645815382"</span>,</span><br><span class="line">                <span class="attr">"x"</span>: <span class="string">"127.10864594007738"</span>,</span><br><span class="line">                <span class="attr">"mountain_yn"</span>: <span class="string">"N"</span>,</span><br><span class="line">                <span class="attr">"zip_code"</span>: <span class="string">"463400"</span>,</span><br><span class="line">                <span class="attr">"region_1depth_name"</span>: <span class="string">"경기"</span>,</span><br><span class="line">                <span class="attr">"sub_adderss_no"</span>: <span class="string">""</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"y"</span>: <span class="string">"37.40209529907863"</span>,</span><br><span class="line">            <span class="attr">"x"</span>: <span class="string">"127.10863694633468"</span>,</span><br><span class="line">            <span class="attr">"address_type"</span>: <span class="string">"ROAD_ADDR"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위의 데이터에서 <code>Y</code> 좌표 값과 <code>X</code> 좌표값이 필요하기 때문에 해당 데이터만 가져오도록 하겠습니다.</p>
+<p>우선 KAKAO 지도 API로 요청을 보내고 응답을 받습니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String APIKey = <span class="string">"발급받은 API 키"</span>;    </span><br><span class="line"></span><br><span class="line">HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(); <span class="comment">//결과를 담을 map</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    String apiURL = <span class="string">"https://dapi.kakao.com/v2/local/search/address.json?query="</span> </span><br><span class="line">                    + URLEncoder.encode(address, <span class="string">"UTF-8"</span>);</span><br><span class="line">    </span><br><span class="line">    HttpResponse&lt;JsonNode&gt; response = Unirest.get(apiURL)</span><br><span class="line">            .header(<span class="string">"Authorization"</span>, APIKey)</span><br><span class="line">            .asJson();</span><br></pre></td></tr></table></figure>
+
+<p>받아온 데이터를 JSON 객체로 변환하기 위해 <code>ObjectMapper</code>를 사용합니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>위의 <code>objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);</code> 는<br>단일 리스트 객체를 싱글 값과 같게 인식합니다.<br>ex) <code>&quot;fruits&quot; : [&quot;apple&quot;] 를 &quot;fruits&quot; : &quot;apple&quot;</code> 로 인식</p>
+<h3 id="지정된-VO에-응답받은-데이터를-셋팅"><a href="#지정된-VO에-응답받은-데이터를-셋팅" class="headerlink" title="지정된 VO에 응답받은 데이터를 셋팅"></a>지정된 VO에 응답받은 데이터를 셋팅</h3><p>지정된 형식에 잘 셋팅하기 위해</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KakaoGeoRes bodyJson = objectMapper.readValue(response.getBody().toString(), KakaoGeoRes.class);</span><br></pre></td></tr></table></figure>
+
+<p><code>KakaoGeoRes</code>에 응답받은 데이터를 잘 셋팅하도록 합니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KakaoGeoRes</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;String, Object&gt; meta;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Documents&gt; documents;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Documents</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;String, Object&gt; address;</span><br><span class="line">    <span class="keyword">private</span> String address_type;</span><br><span class="line">    <span class="keyword">private</span> Double x;</span><br><span class="line">    <span class="keyword">private</span> Double y;</span><br><span class="line">    <span class="keyword">private</span> String address_name;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;String, Object&gt; road_address;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>X, Y</code>값만 필요했기 때문에 위와 같이 작성했습니다.<br>key가 응답받은 데이터와 다르면 에러가 나기 때문에 사용하지 않는 key 도 선언합니다.</p>
+<h3 id="X-Y-값에-접근"><a href="#X-Y-값에-접근" class="headerlink" title="X,Y 값에 접근"></a>X,Y 값에 접근</h3><p>그 후 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bodyJson.getDocuments().get(<span class="number">0</span>).getX()</span><br><span class="line">bodyJson.getDocuments().get(<span class="number">0</span>).getY()</span><br></pre></td></tr></table></figure>
+
+<p>위와같이 접근할 수 있습니다.</p>
+<p>읽어주셔서 감사합니다.<br>혹 오류나 질문이 있다면 편하게 코멘트 부탁드리겠습니다!🙆‍♂️</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/12/2019-04-12-find-and-replace-all-string/" rel="next" title="프로젝트 내의 특정 문자 를 전부 삭제하는 법">
+                <i class="fa fa-chevron-left"></i> 프로젝트 내의 특정 문자 를 전부 삭제하는 법
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/2019-04-17-basic-of-asynchronous/" rel="prev" title="비동기 기초 정리">
+                비동기 기초 정리 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">33</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">7</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">3</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#받아온-주소-데이터를-JSON으로"><span class="nav-number">1.</span> <span class="nav-text">받아온 주소 데이터를 JSON으로</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#지정된-VO에-응답받은-데이터를-셋팅"><span class="nav-number">2.</span> <span class="nav-text">지정된 VO에 응답받은 데이터를 셋팅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X-Y-값에-접근"><span class="nav-number">3.</span> <span class="nav-text">X,Y 값에 접근</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'a681e5fcf7cfc2dc27ce',
+    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
+    repo: 'sehajyang.github.io',
+    owner: 'sehajyang',
+    admin: ['sehajyang'],
+    id: md5(location.pathname),
+    
+      language: 'ko',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
