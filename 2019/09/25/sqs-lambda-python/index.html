@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="들어가며이 포스팅은 전체적으로 Get Started의 성격을 띄며 3부로 나눠져 있습니다.좌측 사이드바에서 목차 빠른 이동이 가능합니다. 1부 하고자 하는 것 SQS란? 아키텍쳐 Skill Set   구축 과정 SQS 생성 및 설정  SQS 큐 생성 SQS 큐 설정 SQS 권한설정   Lambda 생성 및 SQS로 메세지 전송하기 Lambda 함수생성 La">
+<meta name="keywords" content="sqs 예제,sqs lambda,sqs python,sqs 란">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQS, Lambda를 이용해 문자전송하기(1부)">
+<meta property="og:url" content="https://sehajyang.github.io/2019/09/25/sqs-lambda-python/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="들어가며이 포스팅은 전체적으로 Get Started의 성격을 띄며 3부로 나눠져 있습니다.좌측 사이드바에서 목차 빠른 이동이 가능합니다. 1부 하고자 하는 것 SQS란? 아키텍쳐 Skill Set   구축 과정 SQS 생성 및 설정  SQS 큐 생성 SQS 큐 설정 SQS 권한설정   Lambda 생성 및 SQS로 메세지 전송하기 Lambda 함수생성 La">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://i.imgur.com/g2ykNdN.png">
+<meta property="og:image" content="https://i.imgur.com/OqKJT7P.jpg">
+<meta property="og:image" content="https://i.imgur.com/JBOkzmn.jpg">
+<meta property="og:image" content="https://i.imgur.com/0pAGqEa.jpg">
+<meta property="og:image" content="https://i.imgur.com/yeXkt2k.jpg">
+<meta property="og:image" content="https://i.imgur.com/sY6j57E.jpg">
+<meta property="og:image" content="https://i.imgur.com/iFsRrK0.jpg">
+<meta property="og:image" content="https://i.imgur.com/CvJSW5m.jpg">
+<meta property="og:image" content="https://i.imgur.com/QbJk4op.jpg">
+<meta property="og:image" content="https://i.imgur.com/At14nEw.jpg">
+<meta property="og:image" content="https://i.imgur.com/DU4135J.jpg">
+<meta property="og:image" content="https://i.imgur.com/9dcEk1D.jpg">
+<meta property="og:image" content="https://i.imgur.com/8m0DWOl.jpg">
+<meta property="og:image" content="https://i.imgur.com/QjRxA1A.jpg">
+<meta property="og:image" content="https://i.imgur.com/6P3pK2f.jpg">
+<meta property="og:image" content="https://i.imgur.com/dHrBSVe.jpg">
+<meta property="og:image" content="https://i.imgur.com/OmP9njg.jpg">
+<meta property="og:image" content="https://i.imgur.com/RhatvNJ.jpg">
+<meta property="og:image" content="https://i.imgur.com/AUpXUuM.jpg">
+<meta property="og:updated_time" content="2019-12-28T08:36:46.212Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQS, Lambda를 이용해 문자전송하기(1부)">
+<meta name="twitter:description" content="들어가며이 포스팅은 전체적으로 Get Started의 성격을 띄며 3부로 나눠져 있습니다.좌측 사이드바에서 목차 빠른 이동이 가능합니다. 1부 하고자 하는 것 SQS란? 아키텍쳐 Skill Set   구축 과정 SQS 생성 및 설정  SQS 큐 생성 SQS 큐 설정 SQS 권한설정   Lambda 생성 및 SQS로 메세지 전송하기 Lambda 함수생성 La">
+<meta name="twitter:image" content="https://i.imgur.com/g2ykNdN.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/09/25/sqs-lambda-python/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SQS, Lambda를 이용해 문자전송하기(1부) | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/09/25/sqs-lambda-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQS, Lambda를 이용해 문자전송하기(1부)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-09-25 17:31:35" itemprop="dateCreated datePublished" datetime="2019-09-25T17:31:35+09:00">2019-09-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-12-28 17:36:46" itemprop="dateModified" datetime="2019-12-28T17:36:46+09:00">2019-12-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/09/25/sqs-lambda-python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/25/sqs-lambda-python/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="들어가며"><a href="#들어가며" class="headerlink" title="들어가며"></a>들어가며</h3><p>이 포스팅은 전체적으로 Get Started의 성격을 띄며 3부로 나눠져 있습니다.<br>좌측 사이드바에서 목차 빠른 이동이 가능합니다.</p>
+<h3 id="1부"><a href="#1부" class="headerlink" title="1부"></a>1부</h3><ul>
+<li>하고자 하는 것</li>
+<li>SQS란?</li>
+<li>아키텍쳐<ul>
+<li>Skill Set</li>
+</ul>
+</li>
+<li>구축 과정<ul>
+<li>SQS 생성 및 설정 <ul>
+<li>SQS 큐 생성</li>
+<li>SQS 큐 설정</li>
+<li>SQS 권한설정</li>
+</ul>
+</li>
+<li>Lambda 생성 및 SQS로 메세지 전송하기<ul>
+<li>Lambda 함수생성</li>
+<li>Lambda 함수에 SQS, RDS 권한 추가</li>
+<li>SQS에 메세지 전송하기</li>
+</ul>
+</li>
+<li>Lambda layer로 DB 조회를 위한 외부 라이브러리 추가</li>
+</ul>
+</li>
+</ul>
+<h3 id="2부"><a href="#2부" class="headerlink" title="2부"></a>2부</h3><ul>
+<li>Lambda에서 EC2, RDS등 내부 서비스 접근 문제 해결하기<ul>
+<li>VPC설정으로 접근하기</li>
+<li>VPC 란?</li>
+<li>Lambda 함수에 VPC 셋팅하기</li>
+</ul>
+</li>
+<li>SQS에 메세지를 보내기 위한 VPC 설정<ul>
+<li>VPC 추가한 상태로 외부 인터넷에 요청을 보내기 위한 방법들</li>
+<li>VPC에 SQS 엔드포인트 추가</li>
+<li>SQS에 메세지 전송하기</li>
+</ul>
+</li>
+<li>Cloud Watch Event로 Cron Job 붙이기<ul>
+<li>주의할 점</li>
+</ul>
+</li>
+<li>SQS 큐에 람다 트리거 함수 붙이기</li>
+</ul>
+<h3 id="3부"><a href="#3부" class="headerlink" title="3부"></a>3부</h3><ul>
+<li>VPC 설정되어 있는 람다함수가 외부 인터넷에 요청 보내기 <ul>
+<li>API Gateway</li>
+<li>생성 및 설정</li>
+</ul>
+</li>
+<li>예외처리를 위한 DLQ 설정</li>
+<li>운영 하면서 겪은 문제들<ul>
+<li>요금이 이렇게 나오다니?</li>
+<li>람다 타임아웃</li>
+<li>잘못된 DLQ 설정</li>
+<li>에러 핸들링</li>
+</ul>
+</li>
+<li>예약문자 서비스를 위한 가장 좋은 설계<ul>
+<li>MQ</li>
+</ul>
+</li>
+<li>총평</li>
+</ul>
+<h2 id="하고자-하는-것"><a href="#하고자-하는-것" class="headerlink" title="하고자 하는 것"></a>하고자 하는 것</h2><p>외부 문자발송 API에 예약문자 발송 요청을 보내는 작업을 해야합니다. 단 조건이 있습니다.</p>
+<ul>
+<li>예약문자가 발송되기 전이면 취소가 가능해야 합니다.</li>
+<li>분할전송되는 문자의 순서를 보장하려고 합니다.<br>분할전송되는 문자 순서의 경우, 순서에 맞게 요청을 보내도 문자 발송 API측에서 요청이 동시에 들어올 경우 순서를 섞어 발송합니다.<br>분할문자의 순서가 섞이는 것을 방지하려면 많은 방법이 있지만 그 중 SQS의 <code>DelaySeconds</code> 옵션을 사용해 해결할 것 입니다.</li>
+</ul>
+<h3 id="Amazon-SQS란"><a href="#Amazon-SQS란" class="headerlink" title="Amazon SQS란?"></a>Amazon SQS란?</h3><p><strong>SQS(Simple Queue Service)</strong>는 분산 메세지 큐 서비스로 메세지에 대한 수신, 송신만이 가능한 큐 입니다.<br><strong>인터넷을 통해 통신</strong>하며 웹 서비스 응용 프로그램을 통해 메세지를 전송할 수 있습니다.<br><strong>풀링(polling)</strong> 방식으로 동작하기 때문에 <a href="https://bcho.tistory.com/683" target="_blank" rel="noopener">수신자는 매번 풀링하는 식으로 로직을 구성해야합니다.</a><br>폴링은 <a href="https://aws.amazon.com/ko/blogs/korea/aws-lambda-adds-amazon-simple-queue-service-to-supported-event-sources/" target="_blank" rel="noopener">유연하게 동작합니다.</a><br>메세지 보관기간 지정, 전송 지연시간 지정, 실패한 작업을 배달못한 편지 대기열(DeadQueue)로 전송할 수 있는 기능등이 있습니다.<br>백만 요청당 가격은 표준 : $ 0.40 / FIFO : $ 0.50 로 저렴한 편입니다.<br>메세지는 최대 10개, 256KB 배치 송수신이 가능하며 <a href="https://docs.aws.amazon.com/ko_kr/AWSSimpleQueueService/latest/SQSDeveloperGuide/reducing-costs.html" target="_blank" rel="noopener">SQS 배치 API 작업으로 비용을 절감</a>할 수 있습니다.<br>대기열 종류로는 <strong>표준과 FIFO</strong>를 제공합니다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>표준</th>
+<th>FIFO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>처리량</td>
+<td>무제한으로 초당 트랜잭션(TPS)수 지원</td>
+<td>일괄처리를 통해 초당 3000개 혹은 API작업별로 300개 메세지를 지원</td>
+</tr>
+<tr>
+<td>전달</td>
+<td>최소 한번 전달이지만 가끔 <a href="https://docs.aws.amazon.com/ko_kr/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html" target="_blank" rel="noopener"><strong>두번이상 전달되기도 함</strong></a></td>
+<td>정확히 한번 전달</td>
+</tr>
+<tr>
+<td>순서</td>
+<td>순서보장 안됨</td>
+<td>순서보장 됨</td>
+</tr>
+<tr>
+<td>람다</td>
+<td>Lambda 트리거 가능</td>
+<td><a href="https://docs.aws.amazon.com/ko_kr/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-lambda-function-trigger.html" target="_blank" rel="noopener">Lambda 트리거 불가능</a> 19/11/20 이후로 가능하게 변경되었습니다 <a href="https://aws.amazon.com/ko/blogs/compute/new-for-aws-lambda-sqs-fifo-as-an-event-source/" target="_blank" rel="noopener">[링크]</a></td>
+</tr>
+</tbody></table>
+<p>여기서 중요하게 봐야될 점은 순서보장과 Lambda 트리거 가능 여부입니다.<br><strong>FIFO는 Lambda 트리거를 지원하지 않았습니다.</strong><br>하지만 2019/11/20 이후로 FIFO에서도 람다 트리거를 사용할 수 있도록 변경되었습니다.<a href="https://aws.amazon.com/ko/blogs/compute/new-for-aws-lambda-sqs-fifo-as-an-event-source/" target="_blank" rel="noopener">[관련 링크]</a><br>이 포스팅을 작성할 당시 FIFO에서는 람다트리거를 사용할 수 없었기 때문에 저는 표준 대기열을 선택했지만, 순서가 중요하거나 한번만 전달되어야한다면 FIFO를 선택하시는게 좋습니다.</p>
+<blockquote>
+<p>추가1)<br>SQS 트리거에 Lambda를 붙일 경우, Lambda는 <strong>연속적</strong>으로 SQS대기열을 장기 풀링합니다.<br>Lambda는 <strong>풀링을 자동조절</strong> 합니다.<br>대기열이 비어있을땐 5개의 <strong>병렬 폴링 연결</strong>을 하며, <strong>처리중인 메세지 수가 증가할 경우 메세지 요청을 20회, 동시성을 분당 60회 증가시킵니다.</strong><br>대기열이 계속 분주할 경우 동시성이 제한에 다다를 때 까지 요청과 동시성은 계속 증가됩니다.<br>처리중인 메세지가 하락중일 경우엔 분당 요청을 10회, 동시성을 30회씩 감소시킵니다.<br>만약 동시성등을 더 증가시켜야 한다면 aws측에 문의를 해서 제한을 풀어야합니다. </p>
+</blockquote>
+<blockquote>
+<p>추가2)<br>Lambda와 SQS는 반드시 같은 AWS 리전에 있어야 합니다.<br>하나 이상의 Lambda함수에 하나의 SQS대기열만 연결할 수 있습니다. <a href="https://docs.aws.amazon.com/ko_kr/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-lambda-function-trigger.html" target="_blank" rel="noopener">[관련 링크]</a></p>
+</blockquote>
+<h3 id="아키텍쳐"><a href="#아키텍쳐" class="headerlink" title="아키텍쳐"></a>아키텍쳐</h3><h4 id="기술스택"><a href="#기술스택" class="headerlink" title="기술스택"></a>기술스택</h4><ul>
+<li>Python 3.7</li>
+<li>AWS Lambda</li>
+<li>AWS SQS</li>
+<li>AWS API Gateway</li>
+<li>AWS VPC</li>
+<li>AWS RDS</li>
+<li>AWS CloudWatch</li>
+</ul>
+<p><img src="https://i.imgur.com/g2ykNdN.png" alt="arch"></p>
+<center><span style="color:grey;">최종적으로 위와같은 구조가 됩니다</span></center>
+
+<p>각 서비스에 대한 설명은 다음과 같습니다.<br><strong>send sqs func</strong> : 매 분마다 지금으로부터 발송 1분전의 시간으로 DB조회를 하고 delay를 계산해 SQS에 메세지 송신을 하는 람다 함수입니다.<br><strong>sqs trigger func</strong> : SQS의 람다 트리거 함수입니다. API Gateway로 요청을 보내고 응답을 받아서 DB(RDS)에 저장합니다.<br><strong>main queue</strong> : send sqs로부터 메세지를 수신한 뒤 sqs trigger가 주기적으로 풀링해 메세지를 가져옵니다.<br><strong>API Gateway</strong> : 내부 서비스가 외부 인터넷으로 요청을 보낼수 있게 도와줍니다. </p>
+<p>플로우는 다음과 같습니다.</p>
+<ol>
+<li>send_sqs_func가 rds에 1분후에 보내야될 데이터를 조회하는 요청을 보냅니다</li>
+<li>조회된 데이터로 SQS 전송 delay시간을 조정해 같은 사람에게 보낼 문자의 순서가 섞이지 않도록 값을 셋팅후 SQS로 메세지를 전송합니다.</li>
+<li>SQS에 쌓여있는 데이터를 sqs_trigger_func가 지속적으로 풀링해 가져옵니다.</li>
+<li>sqs_trigger_func 에서 Api Gateway를 통해 외부 문자 API로 요청을 보냅니다.</li>
+<li>Exception이 발생한 경우 dead_queue로 해당 메세지를 보냅니다.</li>
+</ol>
+<p>그럼 바로 예제에 들어가도록 하겠습니다.</p>
+<h3 id="구축과정"><a href="#구축과정" class="headerlink" title="구축과정"></a>구축과정</h3><h4 id="SQS-생성-및-설정"><a href="#SQS-생성-및-설정" class="headerlink" title="SQS 생성 및 설정"></a>SQS 생성 및 설정</h4><p>우선 SQS를 생성하겠습니다. 위 아키텍쳐에서 설명했던 것과 같이 두개의 SQS 큐를 생성할 것 입니다.</p>
+<p><img src="https://i.imgur.com/OqKJT7P.jpg" alt="sqs-create1"><br>우선 표준대기열로 <strong>main queue</strong>를 생성합니다.  </p>
+<p><img src="https://i.imgur.com/JBOkzmn.jpg" alt="sqs-create2"><br>우측 하단의 대기열 구성에서 세부적인 속성을 제어할 수 있습니다. </p>
+<p>아직 속성을 설정하지 않을 것이므로 속성을 기본값으로 놔둔 뒤 대기열을 생성합니다.<br>main queue와 동일한 방법으로  <strong>dead queue</strong>를 생성합니다.<br>이제 생성된 큐 중 <strong>main queue</strong> 의 속성 중 리드라이브 정책 사용을 활성화 합니다.</p>
+<h4 id="SQS-큐-설정"><a href="#SQS-큐-설정" class="headerlink" title="SQS 큐 설정"></a>SQS 큐 설정</h4><p><img src="https://i.imgur.com/0pAGqEa.jpg" alt="sqs-config1"><br><img src="https://i.imgur.com/yeXkt2k.jpg" alt="sqs-config2"><br>배달못한 편지 대기열은 dead_queue로 설정 뒤 변경사항을 저장합니다.  </p>
+<p>SQS의 기본설정은 short polling입니다. 만약 비용을 줄이고 싶다면 <strong>메시지 수신 대기시간</strong>을 조정해야 합니다.<br>다음과 같은 경우 short polling 입니다:</p>
+<blockquote>
+<p>WaitTimeSeconds이 0으로 설정되어있는 경우<br>ReceiveMessageWaitTimeSeconds이 0으로 설정되어 있는 경우</p>
+</blockquote>
+<p>SQS의 long polling 과 short polling에 대해 더 알고 싶다면 [<a href="https://docs.aws.amazon.com/ko_kr/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html" target="_blank" rel="noopener">공식문서</a>]를 참고해주세요.</p>
+<h4 id="SQS-권한-설정"><a href="#SQS-권한-설정" class="headerlink" title="SQS 권한 설정"></a>SQS 권한 설정</h4><p>sqs가 외부로부터 메세지를 수신받기 위해선 다음과 같은 권한이 필요합니다:</p>
+<blockquote>
+<p>sqs:ChangeMessageVisibility<br>sqs:DeleteMessage<br>sqs:GetQueueAttributes<br>sqs:ReceiveMessage</p>
+</blockquote>
+<p>권한 설정은 하단의 <strong>권한</strong> 탭에서 추가할 수 있습니다.</p>
+<p><img src="https://i.imgur.com/sY6j57E.jpg" alt="sqs-auth1"></p>
+<center><span style="color:grey;">권한 추가 버튼을 클릭합니다.</span></center>
+
+<p><img src="https://i.imgur.com/iFsRrK0.jpg" alt="sqs-auth2"></p>
+<center><span style="color:grey;">프린시펄이 있다면 설정합니다.</span></center>
+
+<p>권한설정 후 하단의 권한추가로 완료합니다.</p>
+<h3 id="Lambda-생성-및-SQS로-메세지-전송하기"><a href="#Lambda-생성-및-SQS로-메세지-전송하기" class="headerlink" title="Lambda 생성 및 SQS로 메세지 전송하기"></a>Lambda 생성 및 SQS로 메세지 전송하기</h3><p><strong>send sqs func, sqs trigger func</strong> 라는 두개의 람다 함수를 만들 것입니다.<br>우선 <strong>send sqs func</strong>를 만들어보겠습니다. </p>
+<p><img src="https://i.imgur.com/CvJSW5m.jpg" alt="lambda-create"><br>새 역할생성을 선택한 뒤 함수를 생성합니다.</p>
+<h4 id="Lambda-함수에-SQS-RDS-권한-추가"><a href="#Lambda-함수에-SQS-RDS-권한-추가" class="headerlink" title="Lambda 함수에 SQS, RDS 권한 추가"></a>Lambda 함수에 SQS, RDS 권한 추가</h4><p>send sqs func는 위 아키텍쳐 섹션에서 설명했듯이 DB 조회결과를 sqs 큐로 보내는 작업을 하는 함수입니다.<br>따라서 정책에 SQS와 RDS권한을 추가합니다.<br>생성된 람다함수에 권한을 추가하기 위해<br>함수코드 아래에 그림과 같이 실행역할 &gt; 기존역할 &gt; <code>send-sqs-func-role-0opyfljq 역할을 확인하십시오.</code>를 클릭합니다.</p>
+<p><img src="https://i.imgur.com/QbJk4op.jpg" alt="lambda-auth1"><br><img src="https://i.imgur.com/At14nEw.jpg" alt="lambda-auth2"><br><img src="https://i.imgur.com/DU4135J.jpg" alt="lambda-auth3"><br>권한이 성공적으로 추가되었다면 send sqs func 페이지에서 새로고침을 합니다.</p>
+<p><img src="https://i.imgur.com/9dcEk1D.jpg" alt="lambda-auth4"><br>성공적으로 추가가 되었습니다.</p>
+<h4 id="SQS에-메세지-전송하기"><a href="#SQS에-메세지-전송하기" class="headerlink" title="SQS에 메세지 전송하기"></a>SQS에 메세지 전송하기</h4><p>SQS의 <code>main queue</code>에 메세지를 보내는 코드를 lambda_function에 작성합니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> boto3</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> botocore.exceptions <span class="keyword">import</span> ClientError</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span><span class="params">(event, context)</span>:</span></span><br><span class="line">    _params = &#123;<span class="string">'message'</span>: <span class="string">"hello"</span>&#125;</span><br><span class="line"></span><br><span class="line">    msg_body = json.dumps(_params)</span><br><span class="line">    msg = send_sqs_message(os.environ[<span class="string">'SQS_QUEUE'</span>], msg_body)</span><br><span class="line">    <span class="keyword">return</span> msg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_sqs_message</span><span class="params">(sqs_queue_url, msg_body)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param sqs_queue_url: String URL of existing SQS queue</span></span><br><span class="line"><span class="string">    :param msg_body: String message body</span></span><br><span class="line"><span class="string">    :return: Dictionary containing information about the sent message. If</span></span><br><span class="line"><span class="string">        error, returns None.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Send the SQS message</span></span><br><span class="line">    sqs_client = boto3.client(<span class="string">'sqs'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        msg = sqs_client.send_message(QueueUrl=sqs_queue_url,</span><br><span class="line">                                      MessageBody=msg_body)</span><br><span class="line">    <span class="keyword">except</span> ClientError <span class="keyword">as</span> e:</span><br><span class="line">        logging.error(e)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> msg</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>boto3 란?<br>python용 aws sdk 입니다.<br>람다에선 실행환경의 일부로 aws sdk의 여러버전이 포함되어 있으므로 굳이 설치하지 않아도 됩니다.</p>
+</blockquote>
+<p><img src="https://i.imgur.com/8m0DWOl.jpg" alt="sqs-send1.1"><br>함수코드 하단의 환경변수에서 <code>SQS_QUEUE</code>를 추가합니다. </p>
+<p><img src="https://i.imgur.com/QjRxA1A.jpg" alt="sqs-send1"><br>환경변수 <code>SQS_QUEUE</code>키에대한 값은 SQS main_queue의 URL 이며 SQS대기열 세부정보에서 확인할 수 있습니다.</p>
+<p><img src="https://i.imgur.com/6P3pK2f.jpg" alt="sqs-send2"><br>람다 테스트는 기본 이벤트를 선택한 후 다음과 같이 생성합니다.<br>오른쪽 상단의 save 후 테스트를 실행합니다.</p>
+<p><img src="https://i.imgur.com/dHrBSVe.jpg" alt="sqs-send3"></p>
+<p><img src="https://i.imgur.com/OmP9njg.jpg" alt="sqs-send4"><br>SQS에서 방금 송신한 메세지가 main queue에 있는것을 확인할 수 있습니다.</p>
+<h4 id="Lambda-layer로-DB-조회를-위한-외부-라이브러리-추가"><a href="#Lambda-layer로-DB-조회를-위한-외부-라이브러리-추가" class="headerlink" title="Lambda layer로 DB 조회를 위한 외부 라이브러리 추가"></a>Lambda layer로 DB 조회를 위한 외부 라이브러리 추가</h4><p>이제 RDS에 접근해 DB커넥션을 생성해보도록 하겠습니다.<br>외부 라이브러리인 pymysql을 람다에서 사용해야합니다.<br>우선 인라인 편집에서 DB 커넥션을 생성하는 부분을 lambda_function.py에 작성합니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> boto3</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> botocore.exceptions <span class="keyword">import</span> ClientError</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span><span class="params">(event, context)</span>:</span></span><br><span class="line">    get_connection()</span><br><span class="line">    _params = &#123;<span class="string">'message'</span>: <span class="string">"hello"</span>&#125;</span><br><span class="line"></span><br><span class="line">    msg_body = json.dumps(_params)</span><br><span class="line">    msg = send_sqs_message(os.environ[<span class="string">'SQS_QUEUE'</span>], msg_body)</span><br><span class="line">    <span class="keyword">return</span> msg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_sqs_message</span><span class="params">(sqs_queue_url, msg_body)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param sqs_queue_url: String URL of existing SQS queue</span></span><br><span class="line"><span class="string">    :param msg_body: String message body</span></span><br><span class="line"><span class="string">    :return: Dictionary containing information about the sent message. If</span></span><br><span class="line"><span class="string">        error, returns None.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Send the SQS message</span></span><br><span class="line">    sqs_client = boto3.client(<span class="string">'sqs'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        msg = sqs_client.send_message(QueueUrl=sqs_queue_url,</span><br><span class="line">                                      MessageBody=msg_body)</span><br><span class="line">    <span class="keyword">except</span> ClientError <span class="keyword">as</span> e:</span><br><span class="line">        logging.error(e)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> msg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_connection</span><span class="params">()</span>:</span></span><br><span class="line">    connection = pymysql.connect(host=os.environ[<span class="string">'DB_ADDR'</span>],</span><br><span class="line">                                 user=os.environ[<span class="string">'DB_HOST'</span>],</span><br><span class="line">                                 password=os.environ[<span class="string">'DB_PASSWD'</span>],</span><br><span class="line">                                 db=os.environ[<span class="string">'DB_NAME'</span>],</span><br><span class="line">                                 charset=<span class="string">'utf8mb4'</span>,</span><br><span class="line">                                 autocommit=<span class="literal">True</span>,</span><br><span class="line">                                 cursorclass=pymysql.cursors.DictCursor)</span><br><span class="line">    <span class="keyword">return</span> connection</span><br></pre></td></tr></table></figure>
+
+<p>이제 람다 레이어에 사용할 외부 라이브러러를 추가할 것입니다.<br>람다 레이어 설정에 대한 내용은 이 포스팅을 참고해주세요 : <a href="https://beomi.github.io/2018/11/30/using-aws-lambda-layers-on-python3/" target="_blank" rel="noopener">[AWS Lambda Layers로 함수 공통용 Python 패키지 재사용하기]</a><br>람다 레이어에 올리기전 <strong>외부 라이브러리를 패키징할 때 주의할 점</strong>이 있습니다.<br><strong>압축을 풀었을 시 패키지들의 상위 폴더 이름은 python 이어야 합니다</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-python</span><br><span class="line">    - 패키지폴더 1</span><br><span class="line">    - 패키지폴더 2</span><br></pre></td></tr></table></figure>
+
+<p>그렇지 않으면 라이브러리 import가 되지 않는다는 오류가 발생합니다.<br>람다 레이어에 올린 라이브러리 압축파일은 aws측에서 내부적으로 압축 해제 후 다음과 같이 <code>/opt</code> 아래에 둡니다.  </p>
+<blockquote>
+<p>/opt/python/패키지1</p>
+</blockquote>
+<p>따라서 패키지의 상위 폴더 이름은 python 이어야 합니다.  </p>
+<blockquote>
+<p>opt/python/lib/python3.7/dist-package/</p>
+</blockquote>
+<p>도 가능하기 때문에 패키지들의 상위 폴더가 <code>/python/lib/python3.7/dist-package/</code> 여도 됩니다.<br>마찬가지로 node등은 node로 상위 폴더 이름을 설정합니다.</p>
+<p><img src="https://i.imgur.com/RhatvNJ.jpg" alt="sqs-db2"><br>프로젝트 파일을 zip으로 압축한 뒤 code entry type &gt; .zip 파일 업로드로 방금 생성한 프로젝트 파일을 업로드합니다<br>(aws cli를 사용중이라면 좀 더 편하게 배포할 수 있습니다)<br>DB 접속정보등을 환경변수에 셋팅 후 상단의 save를 하고 테스트를 실행합니다.<br>만약 RDS가 모든 접근을 허용한다면 아무 오류없이 성공을 출력할 것 입니다.<br>하지만 RDS 인바운드에 몇가지 접근에 대해서만 허용해뒀다면 다음과 같이 타임아웃이 발생합니다.<br><img src="https://i.imgur.com/AUpXUuM.jpg" alt="sqs-db3"><br>왜 그런걸까요? Lambda 함수가 보안그룹 설정이 되어있는 RDS에 접근할 수 없기 때문입니다.<br>lambda 함수가 왜 RDS에 접근을 할 수 없는지에 대해 알기위해선 먼저 VPC에 대해서 알아야 합니다. </p>
+<p>2부에선 VPC가 무엇이며 RDS 및 SQS 접근 문제를 해결해보도록 하겠습니다.</p>
+<p><strong>2부에 계속..</strong></p>
+<hr>
+<p>읽어주셔서 감사합니다. 혹 궁금한게 있으시거나 오류가 있다면 댓글 남겨주세요🙆</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/AWS/" rel="tag"># AWS</a>
+          
+            <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+          
+            <a href="/tags/Serverless/" rel="tag"># Serverless</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/02/imperative-programming/" rel="next" title="스칼라 번역 - 명령형 프로그래밍(Imperative Programming)">
+                <i class="fa fa-chevron-left"></i> 스칼라 번역 - 명령형 프로그래밍(Imperative Programming)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/10/190903-191006/" rel="prev" title="190903-191010 월간 회고">
+                190903-191010 월간 회고 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">70</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">2</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">40</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">9</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#들어가며"><span class="nav-number">1.</span> <span class="nav-text">들어가며</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1부"><span class="nav-number">2.</span> <span class="nav-text">1부</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2부"><span class="nav-number">3.</span> <span class="nav-text">2부</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3부"><span class="nav-number">4.</span> <span class="nav-text">3부</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#하고자-하는-것"><span class="nav-number"></span> <span class="nav-text">하고자 하는 것</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-SQS란"><span class="nav-number">1.</span> <span class="nav-text">Amazon SQS란?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#아키텍쳐"><span class="nav-number">2.</span> <span class="nav-text">아키텍쳐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#기술스택"><span class="nav-number">2.1.</span> <span class="nav-text">기술스택</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#구축과정"><span class="nav-number">3.</span> <span class="nav-text">구축과정</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQS-생성-및-설정"><span class="nav-number">3.1.</span> <span class="nav-text">SQS 생성 및 설정</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQS-큐-설정"><span class="nav-number">3.2.</span> <span class="nav-text">SQS 큐 설정</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQS-권한-설정"><span class="nav-number">3.3.</span> <span class="nav-text">SQS 권한 설정</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda-생성-및-SQS로-메세지-전송하기"><span class="nav-number">4.</span> <span class="nav-text">Lambda 생성 및 SQS로 메세지 전송하기</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambda-함수에-SQS-RDS-권한-추가"><span class="nav-number">4.1.</span> <span class="nav-text">Lambda 함수에 SQS, RDS 권한 추가</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQS에-메세지-전송하기"><span class="nav-number">4.2.</span> <span class="nav-text">SQS에 메세지 전송하기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambda-layer로-DB-조회를-위한-외부-라이브러리-추가"><span class="nav-number">4.3.</span> <span class="nav-text">Lambda layer로 DB 조회를 위한 외부 라이브러리 추가</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://sehajyang.github.io/2019/09/25/sqs-lambda-python/";
+    this.page.identifier = "2019/09/25/sqs-lambda-python/";
+    this.page.title = 'SQS, Lambda를 이용해 문자전송하기(1부)';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

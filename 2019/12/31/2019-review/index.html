@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="2018 연간회고를 쓴지가 엊그제 같은데 벌써 2019가 끝나가면서 연간회고를 쓰게 되었다.올해 뭐 했지 싶다가도 2018년부터 지금까지 작성해온 회고들을 보니 저때 저런것도 했었지 싶어 꾸준히 회고쓰기 참 잘했다는 생각이 들었다.1년간 중단하지 않고 느리게나마 꾸준히 주간 회고를 작성해왔는데 올해 잘한일 중 하나이다.이번 연간 회고는 2018년에 비해 얼">
+<meta name="keywords" content="개발자 회고,2019 연간회고">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019년 연간회고">
+<meta property="og:url" content="https://sehajyang.github.io/2019/12/31/2019-review/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="2018 연간회고를 쓴지가 엊그제 같은데 벌써 2019가 끝나가면서 연간회고를 쓰게 되었다.올해 뭐 했지 싶다가도 2018년부터 지금까지 작성해온 회고들을 보니 저때 저런것도 했었지 싶어 꾸준히 회고쓰기 참 잘했다는 생각이 들었다.1년간 중단하지 않고 느리게나마 꾸준히 주간 회고를 작성해왔는데 올해 잘한일 중 하나이다.이번 연간 회고는 2018년에 비해 얼">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://i.imgur.com/RmU89wV.png">
+<meta property="og:image" content="https://i.imgur.com/Y039CX1.png">
+<meta property="og:updated_time" content="2020-02-03T12:04:36.730Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019년 연간회고">
+<meta name="twitter:description" content="2018 연간회고를 쓴지가 엊그제 같은데 벌써 2019가 끝나가면서 연간회고를 쓰게 되었다.올해 뭐 했지 싶다가도 2018년부터 지금까지 작성해온 회고들을 보니 저때 저런것도 했었지 싶어 꾸준히 회고쓰기 참 잘했다는 생각이 들었다.1년간 중단하지 않고 느리게나마 꾸준히 주간 회고를 작성해왔는데 올해 잘한일 중 하나이다.이번 연간 회고는 2018년에 비해 얼">
+<meta name="twitter:image" content="https://i.imgur.com/RmU89wV.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/12/31/2019-review/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>2019년 연간회고 | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/12/31/2019-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019년 연간회고
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-12-31 11:48:00" itemprop="dateCreated datePublished" datetime="2019-12-31T11:48:00+09:00">2019-12-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-02-03 21:04:36" itemprop="dateModified" datetime="2020-02-03T21:04:36+09:00">2020-02-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/12/31/2019-review/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/31/2019-review/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://sehajyang.github.io/2018/12/31/2018-12-31-2018-review/">2018 연간회고</a>를 쓴지가 엊그제 같은데 벌써 2019가 끝나가면서 연간회고를 쓰게 되었다.<br>올해 뭐 했지 싶다가도 2018년부터 지금까지 작성해온 회고들을 보니 저때 저런것도 했었지 싶어 꾸준히 회고쓰기 참 잘했다는 생각이 들었다.<br>1년간 중단하지 않고 느리게나마 꾸준히 주간 회고를 작성해왔는데 올해 잘한일 중 하나이다.<br>이번 연간 회고는 2018년에 비해 얼마나 성장했는지, 2019년엔 어떤 기술을 배웠으며 어떤 토이프로젝트를 만들었는지를 작성하려한다.</p>
+<h2 id="2018년에-배운-기술과-지금을-비교해보자"><a href="#2018년에-배운-기술과-지금을-비교해보자" class="headerlink" title="2018년에 배운 기술과 지금을 비교해보자"></a>2018년에 배운 기술과 지금을 비교해보자</h2><ul>
+<li><p>Git, GitHub</p>
+<ul>
+<li>작년엔 Git, Github를 처음 접했었다.</li>
+<li>작년엔 토이프로젝트에서 revert 사고도 치고, conflict도 잘 해결하지 못해 끙끙댔는데 이젠 능숙하게 깃을 다룰 줄 알게되었다.</li>
+<li>이젠 동료분들에게 깃 관련 문제가 생길때 마다 용병(?)갈 정도로 능숙해져 뿌듯하다. </li>
+</ul>
+</li>
+<li><p>GitHub Blog</p>
+<ul>
+<li>작년엔 jekyll을 이용해 깃허브 블로그를 처음 만들었었고 그로인한 많은 시행착오와 삽질이 있었다. 특히 jekyll theme를 포크떠서 시작하는경우 기존의 디자인을 깨트리지 않으면서 원하는 기능(사이드 바 등)을 넣기가 어려웠다.<br>그러던 차에 <a href="https://sehajyang.github.io/2019/06/25/190529-190625/">우연히 hexo를 발견하게 되었다</a>. 지금은 hexo로 갈아탔다.</li>
+<li>지금 블로그는 마음에 들며, 앞으로 딱히 바꾸지 않을 것 같다.</li>
+<li>올해 <a href="https://herrenofficial.github.io/" target="_blank" rel="noopener">회사 기술블로그</a>를 만들었다. jekyll로 깃허브 블로그를 만들었는데 오픈까지 대략 하루~이틀정도 걸렸던 것 같다.<br>과거에 해뒀던 삽질들 덕분에 이번엔 빠르고 쉽게 구축할 수 있었다.</li>
+</ul>
+</li>
+<li><p>React</p>
+<ul>
+<li>난 더이상 리액트 공부를 하지 않는다. 프론트에 별 관심이 없어졌기 때문이다. </li>
+<li>프론트가 나와 맞는지 아닌지 알아내기 위해 조금이나마 Vue도 해보고 리액트도 해보고 심지어 리액트 네이티브도 하는 등 조금씩 공부해봤지만 나와는 별로 맞지 않았던 것 같다. 나는 백엔드가 재밌다. 그래서 리액트는 더이상 하지 않는다.</li>
+</ul>
+</li>
+<li><p>CI/CD</p>
+<ul>
+<li>작년엔 jenkins로 처음으로 CI/CD를 구축했었다. 자동배포라니!</li>
+<li>올해는 회사에 Jenkins로 자동배포환경을 만들었다. 작년의 경험이 있어 올해는 회사에서 쉽게 구축할 수 있었다.</li>
+<li>또한 TravisCI, Gitlab CI, AWS CI/CD(aws code commit부터 deploy까지)를 이용한 자동배포 구축등 이제 왠만한 CI/CD 구축 및 설정을 무리없이 할수있게 되었다.</li>
+</ul>
+</li>
+</ul>
+<p>2018년에 배웠던 기술들은 올해 더욱 능숙해졌다. 1년뒤 2020년 회고를 쓸때 2019년에 배운 기술에 비해 더 많이 발전했다고 쓸 수 있으면 좋겠다.</p>
+<h2 id="2019년에-배운-기술"><a href="#2019년에-배운-기술" class="headerlink" title="2019년에 배운 기술"></a>2019년에 배운 기술</h2><h3 id="클린코드"><a href="#클린코드" class="headerlink" title="클린코드"></a>클린코드</h3><p>클린코드를 읽었다. 그간 구현에 급급했는데. 이 책을 읽고 더 나은 네이밍, 아키텍쳐, 가독성을 고려하게 되었으며 테스트코드를 작성하기 시작했다.<br>이 책은 내 코딩스타일을 완전히 바꿔놓았다. 그 이후로 나는 주위 동료 개발자들에게 이 책을 추천하고 다녔다.<br>약간 책 홍보같은데.. 그정도로 나한텐 좋은 책이었다. 이 주제로 사내 스터디에서 발표도 했다 <a href="https://www.slideshare.net/herrenstudy/tdd-142039199" target="_blank" rel="noopener">[클린코드와 TDD]</a>  </p>
+<h3 id="TDD와-테스트코드"><a href="#TDD와-테스트코드" class="headerlink" title="TDD와 테스트코드"></a>TDD와 테스트코드</h3><p>막연하게나마 느껴졌던 TDD를 클린코드를 읽고 시작하게 되었었다.<br>처음엔 자료가 적어 구글링을 하거나 책을 보며 서툴게나마 시작했는데 지금은 능숙 까진 아니여도 무리없이 테스트코드를 짤수 있게 되었다.<br>그 과정에서 groovy의 테스트 프레임워크인 spock로 BDD를 해보기도 하고 테스트코드 작성에 관한 포스팅을 작성하기도 했다.<br>처음엔 어떻게 짜야할지 몰라서 무작정 작성했다. 애초에 테스트를 하려면 테스트대상을 리팩토링해야 하는데 그래야하는 줄 몰라서 엄청 고생했었다.<br>레거시를 리팩토링해 나가면서 기능별로 테스트코드를 작성하다보니 지금은 어떤 기능을 어떻게 테스트할건지, 이 기능을 테스트하려면 어느부분을 mocking하고 어느부분을 assert 해야되는지를 조금 알게 되었다. 그렇게 프로덕션에 테스트코드 통합 커버리지 80퍼센트를 달성하게 되었다.<br>우아한형제들에서 진행한 DDD교육에선 기능 구현을 위해 무조건 테스트코드를 짜야 했는데 다른 사람이 짠 테스트코드를 보면서 많이 배울수 있었다.  </p>
+<h3 id="서버리스"><a href="#서버리스" class="headerlink" title="서버리스"></a>서버리스</h3><p>사내 레거시 문자시스템을 서버리스로 분리 및 구축했다. 어떻게 하면 정확한시간에 병목없이 대량 문자를 발송할수 있는지에 대한 고민을 많이 했는데, 그 과정에서 고려한게 MQ, SQS와 람다였다.<br>그 당시에 나는 MQ를 이용한 개발도, 서버리스 환경도 경험이 많지 않았는데 설상가상으로 구글링해봐도 관련 자료가 많지 않았다.<br>그래서 구축할때 굉장히 힘들었었다. <a href="https://sehajyang.github.io/2019/10/10/190903-191006/">[그때 당시의 포스팅1]</a> <a href="https://sehajyang.github.io/2019/10/28/191007-191027/">[포스팅2]</a><br>그 뒤에도 운영단계에서 몇번 터졌지만 지금은 안정적으로 처리할 수 있도록 구축해뒀다.<br>구축하느라 정말 힘들었지만 안정화가 되면서 터지지도 병목이 생기지도 않아서 지금은 서버리스로 바꾸길 잘했다는 생각을 하고있다.<br>이후에 이 구축기를 get started 격의 포스팅으로 만들었다 <a href="https://sehajyang.github.io/2019/09/25/sqs-lambda-python/#more">[SQS, Lambda를 이용해 문자전송하기(1부)]</a></p>
+<h3 id="Scala"><a href="#Scala" class="headerlink" title="Scala"></a>Scala</h3><p>스칼라를 배웠다. 그냥 함수형 해보고싶어서 언어를 고르는데 스칼라가 좋았다. 그 과정에서 <a href="https://sehajyang.github.io/2019/07/02/scala-vs-kotlin/">Scala vs Kotlin</a> 같은 포스팅을 작성하기도 했다.<br>학습은 마틴오더스키-Programming in Scala 책과 코세라 강의 그리고 scala-exercise 사이트로 했다. scala-exercise 의 튜토리얼은 마틴오더스키님의 강의자료인데 번역이 되어있지 않아 겸사겸사 번역을 했다.<a href="https://sehajyang.github.io/tags/scala-exercises/">[번역 리스트]</a><br>총 15개의 챕터중 8개를 번역해뒀으며 나머지는 내년 상반기안에 끝낼 생각을 하고있다.<br>스칼라는 듣던대로 어려웠다. 문법익히는 것 부터 어려워서 code wars등을 풀거나 자바코드를 스칼라 코드로 포팅하는 식으로 문법을 익혔다.<br>사내에서 쓸 환경변수를 관리하는 S3 파일 서빙 서버도 만들었는데 그땐 akka-http로 만들었다(그리고 어려웠다) 아직 미숙하지만 2020년엔 좀 더 능숙해졌으면 좋겠다.</p>
+<h3 id="비동기"><a href="#비동기" class="headerlink" title="비동기"></a>비동기</h3><p>올해초에 비동기를 접하게 됐다. <a href="https://sehajyang.github.io/2019/04/17/2019-04-17-basic-of-asynchronous/">비동기 기초 정리</a><br>파이썬 asyncio등의 공식문서를 보며 공부했는데 도움이 많이 됐다. 특히 <a href="http://www.hanbit.co.kr/store/books/look.php?p_code=B3745244799" target="_blank" rel="noopener">7가지 동시성 모델</a> 이란 책이 좋았다.<br>그렇게 회사에서 오래걸리는 작업들을 처리하던 파이썬 스크립트들을 asyncio로 리팩토링하면서 소요시간을 대폭 줄일 수 있었다.<br>비동기 프레임워크를 사용해 <a href="https://github.com/sehajyang/sanic-chatting-project" target="_blank" rel="noopener">[sanic-chatting-project]</a><a href="https://github.com/sehajyang/real-time-ws-pubsub-baas-api" target="_blank" rel="noopener">[real-time-ws-pubsub-baas-api]</a> 등의 토이프로젝트를 하기도 했다.  </p>
+<h3 id="오픈소스-컨트리뷰트"><a href="#오픈소스-컨트리뷰트" class="headerlink" title="오픈소스 컨트리뷰트"></a>오픈소스 컨트리뷰트</h3><p>hexo 프레임워크의 rss 관련해 첫 컨트리뷰트를 했다 <a href="https://github.com/hexojs/hexo-generator-feed/pull/102" target="_blank" rel="noopener">[fix : add feed icon to rss2.xml #102]</a><br>그냥 rss에 이미지를 넣고싶어서 해당 파일 수정 후 풀리퀘를 날렸는데 해당 부분을 수정하면서 발생하는 문제들이 있어 생각보다 신경써야할 부분이 많았다. 그러나 엄격한(?) 스택오버플로우와는 달리 깃허브는 조금 더 친절한 분위기였다. 나는 JS를 잘 못하지만 친절한 hexo 컨트리뷰터 및 오거나이져분들의 도움으로 무사히 작성 후 merge 될 수 있었다.  </p>
+<h3 id="크롤링"><a href="#크롤링" class="headerlink" title="크롤링"></a>크롤링</h3><p>크롤링 고수이신 지인분께 크롤링 과외를 받았다. 특히 패킷까보면서 하니 신세계였다. 그렇게 크롤링을 할 수 있게 됨에 따라 회사에서도 크롤링을 참 많이 하게되었다.. 직접적으로 일상생활에(나에게) 도움이 되는 것들을 많이 만들었는데, 대략 세미나나 콘서트 자리나면 알려줌 이라던가 무료게임이나 날씨정보를 주기적으로 보내준다거나 비행기등의 최저가가 뜨면 알려준다거나하는 것들을 만들었다. 내년에도 이것저것 크롤링해서 소소하게 도움이되는 것들을 만들 것 같다.</p>
+<h2 id="2019년에-진행한-토이프로젝트"><a href="#2019년에-진행한-토이프로젝트" class="headerlink" title="2019년에 진행한 토이프로젝트"></a>2019년에 진행한 토이프로젝트</h2><h3 id="sanic-chatting-project"><a href="#sanic-chatting-project" class="headerlink" title="sanic chatting project"></a><a href="https://github.com/sehajyang/sanic-chatting-project" target="_blank" rel="noopener">sanic chatting project</a></h3><p><code>python</code>의 sanic 프레임워크로 만든 채팅 서버이다. 비동기 학습 후 처음 만든 비동기 채팅서버인데 채팅서버다 보니 DB부터 신중하게 찾아보며 골랐다.<br><code>asyncio-redis</code> 라이브러리의 문서가 빈약해 고생하긴 했지만 여차저차 구축할 수 있었다.<br>api document도 만들고.. 여러모로 신경을 좀 쓴 프로젝트였다. </p>
+<h3 id="real-time-ws-pubsub-baas-api"><a href="#real-time-ws-pubsub-baas-api" class="headerlink" title="real time ws pubsub baas api"></a><a href="https://github.com/sehajyang/real-time-ws-pubsub-baas-api" target="_blank" rel="noopener">real time ws pubsub baas api</a></h3><p>Amazon에서 주최한 Amathon에서 <code>python</code>으로 만들었던 프로젝트이다. <a href="https://sehajyang.github.io/2019/09/02/190805-190902/#more">Amathon 참가 포스팅</a><br>우리조 주제는 websocket 기반의 스케일아웃 고려한 real time Pub/Sub Baas였고 python asyncio + sanic + redis + zeroMQ 등을 썼었다.<br><img src="https://i.imgur.com/RmU89wV.png" alt><br>구조는 이러했다. 내 생각엔 beanstalk 같은 scalable 한 서비스를 만들어 beanstalk을 대체했어야 할 것 같았는데 시간이 촉박해 그러진 못했다(그리고 그부분이 가장 어렵다) 다른 조 주제도 재미있는게 많았고 내년에 또 열린다면 참가할 것 같다.</p>
+<h3 id="racoon-man"><a href="#racoon-man" class="headerlink" title="racoon man"></a><a href="https://github.com/sehajyang/racoon-man" target="_blank" rel="noopener">racoon man</a></h3><p>너굴맨 이라는 슬랙봇 이다. <code>python</code> 으로 만들었으며 심심할때마다 기능을 조금씩 붙여 지금은 굉장히 거대해졌다.<br>9XD의 <a href="https://github.com/item4/yui" target="_blank" rel="noopener">유이</a> 라는 슬랙봇에서 아이디어를 얻었으며 회사 개발자들의 소소한 유희(?)을 위해 만들었다.<br>지금은 동료분들의 많은 사랑을 받고 있다.<br><img src="https://i.imgur.com/Y039CX1.png" alt></p>
+<p>너굴맨에는 다음과 같은 기능이 있다.  </p>
+<ul>
+<li>날씨 및 미세먼지, 한강수온, 현재 비 오는지 여부 알림</li>
+<li>랜덤 골라줌, 로또 번호 골라줌, 점심 및 저녁추천</li>
+<li>한영 번역 기능</li>
+<li>festa 세미나, 오늘의 운세 알림 기능</li>
+<li>일정 기억 기능</li>
+<li>소라고동 기능</li>
+<li><a href="https://pingpong.us/" target="_blank" rel="noopener">pingpong 챗봇</a> api를 붙여 사람같이 대답하는 기능</li>
+<li>기타등등 등록해둔 대답 셋</li>
+</ul>
+<h3 id="simple-anonymous-board"><a href="#simple-anonymous-board" class="headerlink" title="simple anonymous board"></a><a href="https://github.com/sehajyang/simple-anonymous-board" target="_blank" rel="noopener">simple anonymous board</a></h3><p>java의 springboot로 사내 익명게시판을 만들었었다.<br>github project로 일정관리부터 문서까지 만들었으며, 사용하고 싶은 기술을 많이 사용해서 재밌었다.<br>특히 프론트는 handlebars 를 사용했는데, 어려웠지만 커스텀 함수를 쉽게 만들 수 있어 개인적으로 thymeleaf 보다 좋았다.</p>
+<h3 id="angelcell-admin"><a href="#angelcell-admin" class="headerlink" title="angelcell admin"></a><a href="https://github.com/sehajyang/angelcell-admin" target="_blank" rel="noopener">angelcell admin</a></h3><p>이 프로젝트는 <a href="https://www.hackathon.io/connectus3" target="_blank" rel="noopener">AngelHack 2019 Seoul</a> 해커톤 에서 만든 커넥터스라는 서비스의 모니터링 서버인데, springboot로 만들었다.<br><a href="https://sehajyang.github.io/2019/06/13/2019-06-13-angelhack-2019-seoul-win-review/">후기 포스팅</a>을 작성했었다.<br>해커톤에서 스프링부트로 개발하는건 좀 아닌것 같다는 생각이 들었었다. 설정잡는데에 꽤 시간이 걸렸으며 자바 자체도 보일러플레이트가 많은 언어라 짧은 시간에 많은 코드를 작성하느라 많이 힘들었었다.  </p>
+<h2 id="역시-해커톤은-파이썬인-것-같다"><a href="#역시-해커톤은-파이썬인-것-같다" class="headerlink" title="역시 해커톤은 파이썬인 것 같다.  "></a>역시 해커톤은 파이썬인 것 같다.  </h2><p>올해는 토이프로젝트를 하기보단 그냥 자잘한 스크립트나 학습위주로 해서 만든 토이프로젝트가 적을 줄 알았는데, 모아보니 생각보다 많은 것 같다.<br>내년엔 보안관련 C 오픈소스 프로젝트를 만들 생각을 하고 있다. 아마 내가 여지껏 한 프로젝트중 가장 어렵고 가장 괜찮은 프로젝트가 될 것이다. </p>
+<h2 id="2019년에-참석한-세미나-및-해커톤"><a href="#2019년에-참석한-세미나-및-해커톤" class="headerlink" title="2019년에 참석한 세미나 및 해커톤"></a>2019년에 참석한 세미나 및 해커톤</h2><p>다음은 2019년도에 참석한 세미나 및 해커톤 리스트이다.  </p>
+<ul>
+<li>191127 <a href="https://edu.nextstep.camp/c/GwN2MSqv/" target="_blank" rel="noopener">우아한 테크 러닝 - DDD 세레나데 교육</a></li>
+<li>191028 <a href="https://festa.io/events/621" target="_blank" rel="noopener">스포카 크리에이터 컨퍼런스: Hello World!</a></li>
+<li>190926 <a href="https://jojoldu.tistory.com/451?category=635883" target="_blank" rel="noopener">우아한 테크 세미나 - 우아한 스프링배치 참가</a></li>
+<li>190901 <a href="https://amathon.ga/" target="_blank" rel="noopener">Amathon 2019 참가</a></li>
+<li>190824 <a href="https://festa.io/events/413" target="_blank" rel="noopener">뱅크샐러드 컨퍼런스 Con-Salad 05</a></li>
+<li>190817 <a href="https://www.pycon.kr/" target="_blank" rel="noopener">Pycon Korea 2019 양일 참석</a></li>
+<li>190807 <a href="https://www.meetup.com/ko-KR/awskrug/events/263382980/" target="_blank" rel="noopener">AWSKRUG GraphQL모임</a></li>
+<li>190630 <a href="https://festa.io/events/299" target="_blank" rel="noopener">I/O Extended 2019 Seoul</a></li>
+<li>190602 <a href="https://event-us.kr/angelhackseoul/event/7465" target="_blank" rel="noopener">AngelHackaton Seoul 2019</a></li>
+<li>190427 <a href="https://www.springcamp.io/2019" target="_blank" rel="noopener">Spring camp 2019</a></li>
+<li>190316 <a href="https://festa.io/events/212" target="_blank" rel="noopener">코무-프론트엔드와 무관합니다만,</a></li>
+<li>190223 <a href="https://kcd2019.festa.io/" target="_blank" rel="noopener">KCD(Korea Community Day) 2019</a></li>
+</ul>
+<p>하나하나 정리를 하려 했지만 내용이 너무 많아지며, 주간회고에서 한차례 정리를 했었기 때문에 연간회고에서 따로 정리하진 않으려 한다.<br>주로 페스타나 밋업 혹은 동료분들의 영업 으로 종종 세미나나 밋업에 참석하는데 올해 가장 기억에 남는 세미나는 KCD와 파이콘이었다.<br>KCD는 스칼라를 시작하게되는 계기가 되었으며 파이콘은 즐거웠어서 기억에 남는다.   </p>
+<h2 id="2019-총평"><a href="#2019-총평" class="headerlink" title="2019 총평"></a>2019 총평</h2><p>올해는 꾸준히 주간회고를 쓰며 많은 학습을 한 해였다 포스팅은 올해 45개를 작성했다. 이 부분이 가장 뿌듯하다.<br>퇴근 후 나태해지거나 슬럼프가 오기도 했는데, 그럼에도 불구하고 모아보니 한게 꽤 돼서 놀랐다.<br>내년엔 좀더 C, 리버싱 등의 로우레벨을 공부할 것이고 파이썬으로 비동기로 짜는것에 좀 더 익숙해질 생각이다.<br>스칼라는 계속 할 것이고 프로덕션의 몇몇 서비스들을 계속 서버리스로 분리해나갈 생각을 하고 있다.<br>실무 기간만 보자면 1년 좀 넘었고 그냥 개발 한 기간은 2년정도 됐는데, 아직까지도 개발은 재밌고 직업 잘 선택한 것 같다는 생각이 든다.<br>내년은 올해보다 더 부지런한 한해가 됐으면 좋겠다.  </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/weekly/" rel="tag"># weekly</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/16/191125-191215/" rel="next" title="11~12월 회고">
+                <i class="fa fa-chevron-left"></i> 11~12월 회고
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/22/200101-200112/" rel="prev" title="2020년 1월 중순 회고">
+                2020년 1월 중순 회고 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">70</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">2</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">40</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">9</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2018년에-배운-기술과-지금을-비교해보자"><span class="nav-number">1.</span> <span class="nav-text">2018년에 배운 기술과 지금을 비교해보자</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019년에-배운-기술"><span class="nav-number">2.</span> <span class="nav-text">2019년에 배운 기술</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#클린코드"><span class="nav-number">2.1.</span> <span class="nav-text">클린코드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TDD와-테스트코드"><span class="nav-number">2.2.</span> <span class="nav-text">TDD와 테스트코드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#서버리스"><span class="nav-number">2.3.</span> <span class="nav-text">서버리스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala"><span class="nav-number">2.4.</span> <span class="nav-text">Scala</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#비동기"><span class="nav-number">2.5.</span> <span class="nav-text">비동기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#오픈소스-컨트리뷰트"><span class="nav-number">2.6.</span> <span class="nav-text">오픈소스 컨트리뷰트</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#크롤링"><span class="nav-number">2.7.</span> <span class="nav-text">크롤링</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019년에-진행한-토이프로젝트"><span class="nav-number">3.</span> <span class="nav-text">2019년에 진행한 토이프로젝트</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sanic-chatting-project"><span class="nav-number">3.1.</span> <span class="nav-text">sanic chatting project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#real-time-ws-pubsub-baas-api"><span class="nav-number">3.2.</span> <span class="nav-text">real time ws pubsub baas api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#racoon-man"><span class="nav-number">3.3.</span> <span class="nav-text">racoon man</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-anonymous-board"><span class="nav-number">3.4.</span> <span class="nav-text">simple anonymous board</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#angelcell-admin"><span class="nav-number">3.5.</span> <span class="nav-text">angelcell admin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#역시-해커톤은-파이썬인-것-같다"><span class="nav-number">4.</span> <span class="nav-text">역시 해커톤은 파이썬인 것 같다.  </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019년에-참석한-세미나-및-해커톤"><span class="nav-number">5.</span> <span class="nav-text">2019년에 참석한 세미나 및 해커톤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-총평"><span class="nav-number">6.</span> <span class="nav-text">2019 총평</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://sehajyang.github.io/2019/12/31/2019-review/";
+    this.page.identifier = "2019/12/31/2019-review/";
+    this.page.title = '2019년 연간회고';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

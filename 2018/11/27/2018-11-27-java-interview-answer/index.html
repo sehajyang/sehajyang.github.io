@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Seha&#39;s Devlog">
 <meta property="og:description" content="KimJunJin님의 면접에 나왔던 질문의 답을 찾아서 정리 했습니다.Link 간결한 답을 위해 질문에 대한 답을 되도록 짧게 정리했습니다.이 문서는 종종 업데이트 됩니다 JAVA1. JVM 구조class(method area), stack, heap, native method, pc register로 이루어져있음     class : 값 임시저장, 상수">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2019-08-06T14:31:35.584Z">
+<meta property="og:updated_time" content="2019-11-16T08:45:45.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Interview Answer">
 <meta name="twitter:description" content="KimJunJin님의 면접에 나왔던 질문의 답을 찾아서 정리 했습니다.Link 간결한 답을 위해 질문에 대한 답을 되도록 짧게 정리했습니다.이 문서는 종종 업데이트 됩니다 JAVA1. JVM 구조class(method area), stack, heap, native method, pc register로 이루어져있음     class : 값 임시저장, 상수">
@@ -455,7 +455,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-08-06 23:31:35" itemprop="dateModified" datetime="2019-08-06T23:31:35+09:00">2019-08-06</time>
+                <time title="Updated at: 2019-11-16 17:45:45" itemprop="dateModified" datetime="2019-11-16T17:45:45+09:00">2019-11-16</time>
               
             
           </span>
@@ -482,6 +482,19 @@
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2018/11/27/2018-11-27-java-interview-answer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/27/2018-11-27-java-interview-answer/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -625,108 +638,48 @@
 </ul>
 <h3 id="22-Annotation이란"><a href="#22-Annotation이란" class="headerlink" title="22. Annotation이란?"></a>22. Annotation이란?</h3><p>주석처럼 코드에 단다. 그러나 클래스에 의미를 부여하거나 기능을 주입 할 수 있다.<br>build-in annotation, meta annotation, custom annotation이 있다.  </p>
 <h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ol>
-<li><p>클로저에 대해 설명해주세요.</p>
-<ul>
-<li><p>Closure(클로저)는 두 개의 함수로 만들어진 환경 으로 이루어진 특별한 객체의 한 종류</p>
+<li><p>클로저에 대해 설명해주세요.<br>Closure(클로저)는 두 개의 함수로 만들어진 환경 으로 이루어진 특별한 객체의 한 종류<br>함수 내부에 작성된 함수<br>사이드 이펙트(무언가를 행할때 발생) 제어하기, private 변수 생성하기 목적으로 사용<br><a href="https://medium.com/@khwsc1/%EB%B2%88%EC%97%AD-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%EC%BD%94%ED%94%84%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%80-javascript-scope-and-closures-8d402c976d19" target="_blank" rel="noopener">참고링크</a></p>
 </li>
-<li><p>함수 내부에 작성된 함수</p>
+<li><p>변수스코프체인에 대해 아시나요?<br>스코프란 유효범위, 전역과 지역이 있다.<br><a href="http://www.nextree.co.kr/p7363/" target="_blank" rel="noopener">참고링크</a></p>
 </li>
-<li><p>사이드 이펙트(무언가를 행할때 발생) 제어하기, private 변수 생성하기 목적으로 사용</p>
+<li><p>전역변수를 함수 내부에서 사용하면 성능상 이슈가 발생하는데 그 이유와 해결책에 대해 설명해주세요.<br>지역변수에 먼저 접근 후 없으면 전역변수에 접근하기때문에 지역변수보다 느리다.<br>또한 가비지 컬렉터가 제대로 스윕을 못해서 메모리 누수가 발생할 수 있다.<br>해결책 : 지역변수를 쓴다.  </p>
 </li>
-</ul>
+<li><p>자바스크립트에서 클래스는 어떻게 사용하나요?<br>function을 class로서 사용한다.<br>리터럴방식, 함수방식, 프로토타입 방식이 있다.<br>클래스 인스턴스를 생성해야만 클래스에 들어있는 함수들의 내부기능을 사용할 수 있다.</p>
 </li>
-</ol>
-<p><a href="https://medium.com/@khwsc1/%EB%B2%88%EC%97%AD-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%EC%BD%94%ED%94%84%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%80-javascript-scope-and-closures-8d402c976d19" target="_blank" rel="noopener">참고링크</a></p>
-<ol start="2">
-<li><p>변수스코프체인에 대해 아시나요?</p>
-<p> 스코프란</p>
-<ul>
-<li><p>유효범위, 전역과 지역이 있다.</p>
-<p><a href="http://www.nextree.co.kr/p7363/" target="_blank" rel="noopener">참고링크</a></p>
-</li>
-</ul>
-</li>
-<li><p>전역변수를 함수 내부에서 사용하면 성능상 이슈가 발생하는데 그 이유와 해결책에 대해 설명해주세요.</p>
-<ul>
-<li><p>지역변수에 먼저 접근 후 없으면 전역변수에 접근하기때문에 지역변수보다 느리다.</p>
-<p>또한 가비지 컬렉터가 제대로 스윕을 못해서 메모리 누수가 발생할 수 있다.</p>
-</li>
-<li><p>해결책 : 지역변수를 쓴다.</p>
-</li>
-</ul>
-</li>
-<li><p>자바스크립트에서 클래스는 어떻게 사용하나요?</p>
-<ul>
-<li><p>function을 class로서 사용한다.</p>
-</li>
-<li><p>리터럴방식, 함수방식, 프로토타입 방식이 있다.</p>
-</li>
-<li><p>클래스 인스턴스를 생성해야만 클래스에 들어있는 함수들의 내부기능을 사용할 수 있다.</p>
-</li>
-</ul>
-</li>
-<li><p>호이스팅이란?</p>
-<ul>
-<li><p>변수 선언문을 끌어올린다 라는 뜻</p>
-</li>
-<li><p>함수 선언문 방식만 호이스팅 가능 </p>
-</li>
-</ul>
+<li><p>호이스팅이란?<br>변수 선언문을 끌어올린다 라는 뜻<br>함수 선언문 방식만 호이스팅 가능 </p>
 </li>
 <li><p><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript" target="_blank" rel="noopener">자바스크립트 OOP</a></p>
 </li>
 </ol>
 <h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><ol>
-<li><p>데드락에 대해서 설명하시오.</p>
-</li>
-<li><p>데드락 4대요소에 대해 설명하시오.</p>
+<li>데드락에 대해서 설명하시오.</li>
+<li>데드락 4대요소에 대해 설명하시오.</li>
+</ol>
 <blockquote>
-<p><strong>상호배제(Mutual exclusion)</strong> : 프로세스들이 필요로 하는 자원에 대해 배타적인 통제권을 요구한다.<br> <strong>점유대기(Hold and wait)</strong> : 프로세스가 할당된 자원을 가진 상태에서 다른 자원을 기다린다.<br> <strong>비선점(No preemption)</strong> : 프로세스가 어떤 자원의 사용을 끝낼 때까지 그 자원을 뺏을 수 없다.<br> <strong>순환대기(Circular wait)</strong> : 각 프로세스는 순환적으로 다음 프로세스가 요구하는 자원을 가지고 있다.  </p>
+<p><strong>상호배제(Mutual exclusion)</strong> : 프로세스들이 필요로 하는 자원에 대해 배타적인 통제권을 요구한다.<br><strong>점유대기(Hold and wait)</strong> : 프로세스가 할당된 자원을 가진 상태에서 다른 자원을 기다린다.<br><strong>비선점(No preemption)</strong> : 프로세스가 어떤 자원의 사용을 끝낼 때까지 그 자원을 뺏을 수 없다.<br><strong>순환대기(Circular wait)</strong> : 각 프로세스는 순환적으로 다음 프로세스가 요구하는 자원을 가지고 있다.  </p>
 </blockquote>
-<p> <a href="https://blog.lael.be/post/1304" target="_blank" rel="noopener">출처링크</a></p>
-</li>
-<li><p>멀티 스레드 환경에서의 주의사항을 설명해주세요.</p>
-<ul>
-<li><p>공유 자원 관리</p>
-</li>
-<li><p>동기화 작업 필요 그러나 데드락 주의</p>
-</li>
-</ul>
+<p><a href="https://blog.lael.be/post/1304" target="_blank" rel="noopener">출처링크</a></p>
+<ol start="3">
+<li><p>멀티 스레드 환경에서의 주의사항을 설명해주세요.<br>공유 자원 관리<br>동기화 작업 필요 그러나 데드락 주의</p>
 </li>
 <li><p>사용자 수준 스레드와 커널 수준 스레드의 차이를 설명해주세요.</p>
 </li>
 </ol>
 <h2 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h2><ol>
-<li><p>디비 풀은 왜 쓰나요?</p>
-<ul>
-<li><p>빠른 할당을 위해</p>
+<li><p>디비 풀은 왜 쓰나요?<br>빠른 할당을 위해<br>커넥션풀 : DB와 연결된 커넥션을 미리 만들어서 풀(pool)속에 저장해두고있다가 필요할 때 쓰는 것</p>
 </li>
-<li><p>커넥션풀 : DB와 연결된 커넥션을 미리 만들어서 풀(pool)속에 저장해두고있다가 필요할 때 쓰는 것</p>
-</li>
-</ul>
-</li>
-<li><p>디비 실시간 통신과 디비풀 이용시의 차이가 무엇인가요?</p>
-<ul>
-<li><p>실시간 통신은 요청을 할 때마다 매번 드라이버 로드하고 커넥션 객체 생성 후 연결 종료한다</p>
-</li>
-<li><p>커넥션풀은 동시접속자 수가 가질 수 있는 커넥션을 하나로 모아두고 관리한다. </p>
-</li>
-<li><p>커넥션 생성하고 닫는 시간이 소모되지 않기 때문에 어플리케이션 속도 빨라지며, 한번에 생성될 수 있는 커넥션 수를</p>
-<p>제어하기 때문에 동시 접속자 수가 몰려도 쉽게 웹이 다운되지 않는다.</p>
-<p>풀 이상으로 접속자가 많아지면 해당 클라는 대기가 되고 대기하고 있는 순서대로 커넥션이 제공된다.</p>
-</li>
-</ul>
+<li><p>디비 실시간 통신과 디비풀 이용시의 차이가 무엇인가요?<br>실시간 통신은 요청을 할 때마다 매번 드라이버 로드하고 커넥션 객체 생성 후 연결 종료한다.<br>커넥션풀은 동시접속자 수가 가질 수 있는 커넥션을 하나로 모아두고 관리한다.<br>커넥션 생성하고 닫는 시간이 소모되지 않기 때문에 어플리케이션 속도 빨라지며, 한번에 생성될 수 있는 커넥션 수를<br>제어하기 때문에 동시 접속자 수가 몰려도 쉽게 웹이 다운되지 않는다.<br>풀 이상으로 접속자가 많아지면 해당 클라는 대기가 되고 대기하고 있는 순서대로 커넥션이 제공된다.  </p>
 </li>
 <li><p>SQL에서 left join에 대해 설명하시오.</p>
 </li>
 <li><p>RDBMS와 NoSQL의 차이는?</p>
-<blockquote>
-<p><strong>RDBMS</strong> : 유연한 쿼리 가능하지만 쿼리비용 높으며 트래픽 많은 상황에선 확장성 떨어진다.<br> <strong>NoSQL</strong> : 최초 테이블 생성시 데이터간의 관계를 정의하지 않는다. 대용량 가능, 분산형 구조, 데이터를 저장만 하므로 key, value 만 있고</p>
-<pre><code>put, get 만 지원한다.</code></pre></blockquote>
 </li>
-<li><p>index에 대한 설명과 장/단점으로 무엇이 있나요.</p>
-<p> index란 : RDBMS에서 검색속도를 높이기 위해 사용하는 기술, 일종의 색인</p>
-<p> 장단점 : <a href="https://lalwr.blogspot.com/2016/02/db-index.html" target="_blank" rel="noopener">https://lalwr.blogspot.com/2016/02/db-index.html</a> (보충)</p>
+</ol>
+<blockquote>
+<p><strong>RDBMS</strong> : 유연한 쿼리 가능하지만 쿼리비용 높으며 트래픽 많은 상황에선 확장성 떨어진다.<br><strong>NoSQL</strong> : 최초 테이블 생성시 데이터간의 관계를 정의하지 않는다. 대용량 가능, 분산형 구조, 데이터를 저장만 하므로 key, value 만 있고<br>        put, get 만 지원한다.</p>
+</blockquote>
+<ol start="5">
+<li><p>index에 대한 설명과 장/단점으로 무엇이 있나요.<br>index란 : RDBMS에서 검색속도를 높이기 위해 사용하는 기술, 일종의 색인<br>장단점 : <a href="https://lalwr.blogspot.com/2016/02/db-index.html" target="_blank" rel="noopener">https://lalwr.blogspot.com/2016/02/db-index.html</a> (보충)</p>
 </li>
 <li><p><a href="http://dev.youngkyu.kr/22" target="_blank" rel="noopener">몽고DB의 특성에 대해 설명해주세요.</a></p>
 </li>
@@ -735,48 +688,28 @@
 <li><p>ACID에 대해 설명해주세요. (Atomic, Consistency, Isolation, Durability)</p>
 </li>
 <li><p>1차 정규화, 2차 정규화, 3차 정규화, BCNF에 대해 설명해주세요.</p>
-<ul>
-<li><p>정규화 : 논리적 데이터베이스 설계에 있어서 테이블들을 구조화하는 기법 중 하나</p>
-<p>  자료의 손실이나 불필요한 정보의 도입 없이 데이터의 일관성 및 데이터 중복을 최소화하고 최대의 데이터 안정성 확보를 위한 안정적 자료구조로 변환하기 위해서 하나의 테이블을 둘 이상으로 분리하는 작업</p>
-<blockquote>
-<p>제1정규형(1NF) : 테이블의 각 셀의 값은 단일값을 가진다.<br>  제2정규형(2NF) : 주키가 합성키며 부분종속이 존재할 경우 2차 정규형의 대상이 된다.<br>  제3정규형(3NF) : 비주키 속성 간에 발생하는 함수적 종속(이전종속)이 발생하면 3차 정규형의 대상이 된다.  </p>
-</blockquote>
-<p><a href="http://myeonguni.tistory.com/m/1496" target="_blank" rel="noopener">출처</a></p>
-</li>
-</ul>
-</li>
-<li><p>DB Nomalization(정규화)의 목적은?</p>
-<p>저장 공간 최소화</p>
-<p>데이터 무결성 유지</p>
-<p>자료구조의 안정성 최대화</p>
 </li>
 </ol>
+<ul>
+<li>정규화 : 논리적 데이터베이스 설계에 있어서 테이블들을 구조화하는 기법 중 하나<br>자료의 손실이나 불필요한 정보의 도입 없이 데이터의 일관성 및 데이터 중복을 최소화하고 최대의 데이터 안정성 확보를 위한 안정적 자료구조로 변환하기 위해서 하나의 테이블을 둘 이상으로 분리하는 작업</li>
+</ul>
+<blockquote>
+<p>제1정규형(1NF) : 테이블의 각 셀의 값은 단일값을 가진다.<br>제2정규형(2NF) : 주키가 합성키며 부분종속이 존재할 경우 2차 정규형의 대상이 된다.<br>제3정규형(3NF) : 비주키 속성 간에 발생하는 함수적 종속(이전종속)이 발생하면 3차 정규형의 대상이 된다.  </p>
+</blockquote>
+<p><a href="http://myeonguni.tistory.com/m/1496" target="_blank" rel="noopener">출처</a></p>
+<ol start="10">
+<li>DB Nomalization(정규화)의 목적은?<br>저장 공간 최소화<br>데이터 무결성 유지<br>자료구조의 안정성 최대화</li>
+</ol>
 <h2 id="ETC"><a href="#ETC" class="headerlink" title="ETC"></a>ETC</h2><ol>
-<li><p>url에 <a href="http://www.naver.com을" target="_blank" rel="noopener">www.naver.com을</a> 입력했다. 일어나는 현상에 대해 아는대로 설명하라.</p>
-<p> 브라우저에서 주소창에 url 입력시 어떤일이 일어나는가</p>
-<p> 브라우저의 주소창에 url 입력</p>
-<p> 브라우저 캐시에서 DNS 레코드를 확인하여 IP주소를 찾음 (없다면 DNS resolver를 통해 IP주소를 알아냄)</p>
-<p> 브라우저가 서버와 TCP 연결을 시작함</p>
-<p> 브라우저가 웹 서버에 HTTP 요청을 보냄</p>
-<p> 서버가 요청을 처리하고 응담을 되돌려보냄</p>
-<p> 브라우저는 서버가 보낸 HTML 내용을 표시</p>
+<li>url에 <a href="http://www.naver.com을" target="_blank" rel="noopener">www.naver.com을</a> 입력했다. 일어나는 현상에 대해 아는대로 설명하라.<br>브라우저에서 주소창에 url 입력시 어떤일이 일어나는가<br>브라우저의 주소창에 url 입력<br>브라우저 캐시에서 DNS 레코드를 확인하여 IP주소를 찾음 (없다면 DNS resolver를 통해 IP주소를 알아냄)<br>브라우저가 서버와 TCP 연결을 시작함<br>브라우저가 웹 서버에 HTTP 요청을 보냄<br>서버가 요청을 처리하고 응담을 되돌려보냄<br>브라우저는 서버가 보낸 HTML 내용을 표시  </li>
+</ol>
 <ul>
 <li><a href="http://owlgwang.tistory.com/1" target="_blank" rel="noopener">출처</a></li>
 </ul>
+<ol start="2">
+<li><p>Serialize와 json의 상관관계에 대해 설명하시오.<br>직렬화(Serialize)<br>자바 시스템 내부에서 사용되는 Object 또는 Data를 외부의 자바 시스템에서도 사용할 수 있도록 byte 형태로 데이터를 변환하는 기술.<br>JVM(Java Virtual Machine 이하 JVM)의 메모리에 상주(힙 또는 스택)되어 있는 객체 데이터를 바이트 형태로 변환하는 기술  </p>
 </li>
-<li><p>Serialize와 json의 상관관계에 대해 설명하시오.</p>
-<p> 직렬화(Serialize)</p>
-<p> 자바 시스템 내부에서 사용되는 Object 또는 Data를 외부의 자바 시스템에서도 사용할 수 있도록 byte 형태로 데이터를 변환하는 기술.</p>
-<p> JVM(Java Virtual Machine 이하 JVM)의 메모리에 상주(힙 또는 스택)되어 있는 객체 데이터를 바이트 형태로 변환하는 기술</p>
-</li>
-<li><p>스레드풀에 대해 설명. 왜 쓰는지. 무엇인지. </p>
-<ul>
-<li><p>스레드를 사용할 때 마다 하나씩 만들기보다 미리 먼저 많이 만들어두는 것</p>
-</li>
-<li><p>프로그램 성능저하 방지 및 다수의 사용자 요청 처리를 위해 사용</p>
-<p><a href="http://limkydev.tistory.com/55" target="_blank" rel="noopener">추가</a></p>
-</li>
-</ul>
+<li><p>스레드풀에 대해 설명. 왜 쓰는지. 무엇인지.<br>스레드를 사용할 때 마다 하나씩 만들기보다 미리 먼저 많이 만들어두는 것<br>프로그램 성능저하 방지 및 다수의 사용자 요청 처리를 위해 사용<br><a href="http://limkydev.tistory.com/55" target="_blank" rel="noopener">추가</a></p>
 </li>
 <li><p>Serialize로 데이터를 통신할 때 문제점에 대해 설명하시오.</p>
 </li>
@@ -786,13 +719,7 @@
 </li>
 <li><p>해시함수 sha-1에 대해 설명하시오.</p>
 </li>
-<li><p>DI (Dependency Injection)에 대해 설명하시오.</p>
-<ul>
-<li><p>객체간의 의존관계를 개발자가 설정하는게 아니고 스프링컨테이너가 주입시켜준다. </p>
-<p>(의존관계란 Animal()은 Cat()에 의존한다 뭐 그런것)</p>
-<p>B가 바뀌면 A도 바뀌는걸 의존관계라고 한다.</p>
-</li>
-</ul>
+<li><p>DI (Dependency Injection)에 대해 설명하시오.<br>객체간의 의존관계를 개발자가 설정하는게 아니고 스프링컨테이너가 주입시켜준다.<br>(의존관계란 ex)  Animal()은 Cat()에 의존한다)<br>B가 바뀌면 A도 바뀌는걸 의존관계라고 한다.</p>
 </li>
 <li><p>DAO DTO에 대해 설명하시오.</p>
 </li>
@@ -801,13 +728,13 @@
 <li><p>디자인 패턴 중 Factory패턴과 Templete패턴에 대해 구체적 예를 들어 설명하시오.</p>
 </li>
 <li><p>프레임워크와 라이브러리의 차이는 무엇인가요?</p>
+</li>
+</ol>
 <ul>
-<li><p>프레임워크 : 뼈대, 틀, 내가 맞추는 것</p>
-</li>
-<li><p>라이브러리 : 도구, 내가 사용하는것 </p>
-</li>
+<li>프레임워크 : 뼈대, 틀, 내가 맞추는 것</li>
+<li>라이브러리 : 도구, 내가 사용하는것 </li>
 </ul>
-</li>
+<ol start="13">
 <li><p>자바와 자바스크립트 차이를 설명해주세요.</p>
 </li>
 <li><p>깊은 카피와 얕은 카피에 대해 설명해주세요.</p>
@@ -816,29 +743,16 @@
 </li>
 <li><p>HashTable의 충돌 해결 방법을 설명해주세요.</p>
 </li>
-<li><p>대칭키/비대칭키 암호화 차이</p>
-<p>대칭키 : 암복호화 해제 키가 같다</p>
-<p>비대칭키 : 암복호화 해제 키 다름</p>
+<li><p>대칭키/비대칭키 암호화 차이<br>대칭키 : 암복호화 해제 키가 같다<br>비대칭키 : 암복호화 해제 키 다름</p>
 </li>
 <li><p>분산락이란 무엇인가요?</p>
 </li>
 </ol>
 <h2 id="Etc2"><a href="#Etc2" class="headerlink" title="Etc2"></a>Etc2</h2><ol>
-<li>Typescript 특징</li>
+<li>Typescript 특징<br>MS 에서 만든 javascript로 컴파일되는 언어, 클래스, 모듈 및 인터페이스를 제공한다.<br>대규모 응용 프로그램 적용이 가능하다.</li>
+<li>React</li>
+<li><a href="https://voidsatisfaction.github.io/2017/02/24/what-is-redux/" target="_blank" rel="noopener">Redux란?</a><br>어플리케이션 클라이언트 쪽 state를 관리하기위한 거대한 이벤트 루프<br>액션 = 이벤트, 리듀서 = 이벤트에 대한 반응</li>
 </ol>
-<pre><code>MS 에서 만든 javascript로 컴파일되는 언어, 클래스, 모듈 및 인터페이스를 제공한다. 
-대규모 응용 프로그램 적용이 가능하다.</code></pre><ol start="2">
-<li><p>React</p>
-</li>
-<li><p><a href="https://voidsatisfaction.github.io/2017/02/24/what-is-redux/" target="_blank" rel="noopener">Redux란?</a></p>
-<ul>
-<li><p>어플리케이션 클라이언트 쪽 state를 관리하기위한 거대한 이벤트 루프</p>
-<p>액션 = 이벤트, 리듀서 = 이벤트에 대한 반응</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>출처를 적었지만 혹시 문제가 될 경우 삭제하겠습니다🙇</p>
 
       
     </div>
@@ -915,7 +829,10 @@
           
 
   
-    <div class="comments" id="gitalk-container">
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
     </div>
 
   
@@ -967,7 +884,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -1069,7 +986,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
@@ -1144,7 +1069,7 @@
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
-                  <span class="category-list-count">1</span>
+                  <span class="category-list-count">2</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
@@ -1169,17 +1094,17 @@
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Logs/">Logs</a>
-                  <span class="category-list-count">33</span>
+                  <span class="category-list-count">40</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Scala/">Scala</a>
-                  <span class="category-list-count">7</span>
+                  <span class="category-list-count">9</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
-                  <span class="category-list-count">3</span>
+                  <span class="category-list-count">5</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
@@ -1257,7 +1182,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -1386,37 +1311,40 @@
   
 
   
-
-
   
-    
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-
-
-<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
-
 <script>
-  var gitalk = new Gitalk({
-    clientID: 'a681e5fcf7cfc2dc27ce',
-    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
-    repo: 'sehajyang.github.io',
-    owner: 'sehajyang',
-    admin: ['sehajyang'],
-    id: md5(location.pathname),
-    
-      language: 'ko',
-    
-    distractionFreeMode: 'true'
-  });
-  gitalk.render('gitalk-container');
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
 </script>
 
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://sehajyang.github.io/2018/11/27/2018-11-27-java-interview-answer/";
+    this.page.identifier = "2018/11/27/2018-11-27-java-interview-answer/";
+    this.page.title = 'Java Interview Answer';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
   
 
 
@@ -1427,11 +1355,15 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.min.css">
 
   
   
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.js"></script>
   
 
   <script src="/js/algolia-search.js?v=7.1.2"></script>

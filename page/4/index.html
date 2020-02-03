@@ -395,7 +395,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/02/14/2019-02-14-springboot_autobuild_problem/">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/17/2019-04-17-basic-of-asynchronous/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sehajyang">
@@ -415,7 +415,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/14/2019-02-14-springboot_autobuild_problem/" class="post-title-link" itemprop="url">Springboot auto build 안되는 문제</a>
+                <a href="/2019/04/17/2019-04-17-basic-of-asynchronous/" class="post-title-link" itemprop="url">비동기 기초 정리</a>
               
             
           </h1>
@@ -440,7 +440,7 @@
                 
               
 
-              <time title="Post created: 2019-02-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-14T00:00:00+09:00">2019-02-14</time>
+              <time title="Post created: 2019-04-17 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-17T00:00:00+09:00">2019-04-17</time>
             
 
             
@@ -458,6 +458,598 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Async/" itemprop="url" rel="index"><span itemprop="name">Async</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/04/17/2019-04-17-basic-of-asynchronous/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/17/2019-04-17-basic-of-asynchronous/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              매주 목요일마다 진행하는 개발관련 사내스터디에서 비동기에 대한 발표를 들었는데 내용이 좋아서 정리를 했습니다.원본(발표자) 슬라이드는 이곳에 있고2부는 링크 에서 볼 수 있습니다 😄
+1. IT Revolution 과 동시접속자 증가
+직접회로를 쓰는 IC &gt;  PC &gt; Internet &gt; Mobile로 발전해나감.
+그 과정에서 사용자의 폭발
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/17/2019-04-17-basic-of-asynchronous/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/12/2019-04-12-find-and-replace-all-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/12/2019-04-12-find-and-replace-all-string/" class="post-title-link" itemprop="url">프로젝트 내의 특정 문자 를 전부 삭제하는 법</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-12T00:00:00+09:00">2019-04-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Tip/" itemprop="url" rel="index"><span itemprop="name">Tip</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/04/12/2019-04-12-find-and-replace-all-string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/12/2019-04-12-find-and-replace-all-string/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              인텔리제이에서 프로젝트 내의 특정 소스를 전부 삭제해야 될 일이 있을 땐Shift + Ctrl + R위는 없앨 대상 소스를 작성하고, 아래는 그대로 놔두고 하단의 replaceAll 을 누르면 된다.
+
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/12/2019-04-12-find-and-replace-all-string/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/07/2019-04-07-190325~190407/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/07/2019-04-07-190325~190407/" class="post-title-link" itemprop="url">190325-190407 주간 회고</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-07 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-07T00:00:00+09:00">2019-04-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/04/07/2019-04-07-190325~190407/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/07/2019-04-07-190325~190407/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              2주간 나에게 있어 가장 의미가 컸던 일은 일부지만 프로덕션에 테스트코드를 작성해 기존 코드들에 대한 테스트를 진행한 것 과 클린코드를 읽은 일 이었다.그간 TDD라던가 테스트 코드 작성에 대해 내가 아는 것 이라곤 assertThat이 전부였다.이 세상엔 TDD라는게 있고 핫하고 그걸 해야하고 그 정도로만 막연하게 느끼고 있었는데, 테스트코드를 작성 할 
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/07/2019-04-07-190325~190407/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/05/2019-04-05-springboot-test-code-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/05/2019-04-05-springboot-test-code-1/" class="post-title-link" itemprop="url">Springboot 에서 test code 작성하기 1편 - 통합테스트</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+09:00">2019-04-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-11-16 17:45:45" itemprop="dateModified" datetime="2019-11-16T17:45:45+09:00">2019-11-16</time>
               
             
           </span>
@@ -485,6 +1077,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/04/05/2019-04-05-springboot-test-code-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/05/2019-04-05-springboot-test-code-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -512,19 +1117,19 @@
         
           
             <p>
-              최근 Eclipse에서 Intelli J로 갈아탔는데 java 파일 수정시 auto build가 되지 않는 문제가 발생했다.
-실행 환경OS: win10IDE : Intelli J 2018.3
-해결 방법
-build.gradle에 의존성 추가
-compile("org.springframework.boot:spring-boot-devtools")
+              
+Springboot 에서 test code 작성하기 시리즈
+Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC)
+Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock
 
-applicat
+
+최근사내 프로젝트에서 테스트 코드를 작성하고자 생각했습니다.목표는 해당 컨트롤러의 메소드가 잘 동작하는지
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/14/2019-02-14-springboot_autobuild_problem/#more" rel="contents">
+              <a class="btn" href="/2019/04/05/2019-04-05-springboot-test-code-1/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -584,7 +1189,7 @@ applicat
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/02/03/2019-02-03-190128~190203/">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/04/05/2019-04-05-springboot-test-code-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sehajyang">
@@ -604,7 +1209,7 @@ applicat
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/03/2019-02-03-190128~190203/" class="post-title-link" itemprop="url">190128~190203 주간회고</a>
+                <a href="/2019/04/05/2019-04-05-springboot-test-code-3/" class="post-title-link" itemprop="url">Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock</a>
               
             
           </h1>
@@ -629,7 +1234,209 @@ applicat
                 
               
 
-              <time title="Post created: 2019-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-03T00:00:00+09:00">2019-02-03</time>
+              <time title="Post created: 2019-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+09:00">2019-04-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-11-16 17:45:45" itemprop="dateModified" datetime="2019-11-16T17:45:45+09:00">2019-11-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/04/05/2019-04-05-springboot-test-code-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/05/2019-04-05-springboot-test-code-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              
+Springboot 에서 test code 작성하기 시리즈
+Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC)
+Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock
+
+
+이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.이번 포스팅에선 spock 프레임워크를 사용해 중복되
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/05/2019-04-05-springboot-test-code-3/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/03/24/2019-03-24-190311~190324/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/24/2019-03-24-190311~190324/" class="post-title-link" itemprop="url">190311-190324 2주간 회고</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-24T00:00:00+09:00">2019-03-24</time>
             
 
             
@@ -674,6 +1481,19 @@ applicat
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/03/24/2019-03-24-190311~190324/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/24/2019-03-24-190311~190324/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -701,21 +1521,13 @@ applicat
         
           
             <p>
-              요 몇주간 회사일로 바쁘거나, 스터디 자료 준비를 하느라 주간회고를 쓰지 못했었는데 이번 명절에 시간이 남아 작성할 수 있었다.변화가 많은 주 였다. 
-
-Eclipse 에서 Intelli J 로 전환
-electron + vue
-Python 다시 시작
-자바스크립트 생태계 관련 학습 및 발표
-비동기 공부
-
-이번주 학습Eclipse 에서 Intelli J로 전환
+              2주간 토이 프로젝트인 파이썬 실시간 채팅서버 작업을 했고, 알고리즘을 풀었다.3/16일엔 코무에서 주최한 프론트엔드와는 무관합니다만, 을 다녀왔었다.사내에선 jenkins를 서비스중인 라이브 프로젝트에 적용해 특정 브랜치에 push or merge request accept 이벤트가 발생하면 빌드 후 배포 및 slack 알림이 가능하게 되었고, sentr
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/03/2019-02-03-190128~190203/#more" rel="contents">
+              <a class="btn" href="/2019/03/24/2019-03-24-190311~190324/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -775,7 +1587,7 @@ Python 다시 시작
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/01/20/2019-01-20-190114~190120/">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/03/11/2019-03-11-git-reset-push/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sehajyang">
@@ -795,7 +1607,7 @@ Python 다시 시작
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/20/2019-01-20-190114~190120/" class="post-title-link" itemprop="url">190114~190120 주간회고</a>
+                <a href="/2019/03/11/2019-03-11-git-reset-push/" class="post-title-link" itemprop="url">gitlab에 이미 push된 commit 삭제</a>
               
             
           </h1>
@@ -820,7 +1632,213 @@ Python 다시 시작
                 
               
 
-              <time title="Post created: 2019-01-20 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-20T00:00:00+09:00">2019-01-20</time>
+              <time title="Post created: 2019-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-11T00:00:00+09:00">2019-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/03/11/2019-03-11-git-reset-push/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/11/2019-03-11-git-reset-push/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              gitlab, github등에 취소해야 되는 commit이 있는데 이미 push 해버렸을 때git bash에서
+git reset --hard 되돌아가고자 하는 커밋주소
+
+
+커밋 주소는 git log 로 알 수 있다
+reset 옵션으론 hard, soft, mixed 가 있다 링크
+
+그 후
+git push origin +브랜치명
+
+브랜치 명 앞에 +를 붙여야
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/11/2019-03-11-git-reset-push/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/03/10/2019-03-10-190225~190310/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/10/2019-03-10-190225~190310/" class="post-title-link" itemprop="url">190225-190310 2주간 회고</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-10T00:00:00+09:00">2019-03-10</time>
             
 
             
@@ -865,6 +1883,19 @@ Python 다시 시작
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/03/10/2019-03-10-190225~190310/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/10/2019-03-10-190225~190310/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -892,14 +1923,14 @@ Python 다시 시작
         
           
             <p>
-              이번주는 수요일부터 주말인 일요일까지 고열+장염 크리로 개인공부를 단 하나도 하지 못했다.손 끝 하나 들 힘조차 없어 컴퓨터는 커녕 카톡도 간신히 했다.이번주에 배운건 건강을 잘 챙기자.. 정말 그간 쌓아오던 공부 계획이 속절없이 무너지는 걸 경험했다.깃허브의 잔디에 연연하지 않기로 했지만 일주일 내리 텅텅 비어버린 잔디를 보니 속이 쓰리다..  
-이번 주
+              저번 주 회고에 이어서 Python으로 몇 가지 알고리즘 문제를 풀었다.또한, 사내 프로젝트에 Jenkins를 붙였다.약 2일이 걸렸고, 그 과정에서 발생했던 삽질들을 모아 Jenkins 삽질기를 작성하고 있다.
+Python 비동기 웹 프레임워크인 Sanic으로 실시간 채팅 웹 애플리케이션을 만들고 있다.그간 써온 웹 프레임워크는 커뮤니티가 커서 웬만한 오
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/20/2019-01-20-190114~190120/#more" rel="contents">
+              <a class="btn" href="/2019/03/10/2019-03-10-190225~190310/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -959,7 +1990,7 @@ Python 다시 시작
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/01/13/2019-01-13-181231~190113/">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/03/07/etc/2019/03/07/kotlin-and-lombok.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sehajyang">
@@ -979,7 +2010,7 @@ Python 다시 시작
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/13/2019-01-13-181231~190113/" class="post-title-link" itemprop="url">181231~190113 2주간회고</a>
+                <a href="/2019/03/07/etc/2019/03/07/kotlin-and-lombok.html/" class="post-title-link" itemprop="url">Kotlin 에서 Lombok을 사용할 수 없는 문제</a>
               
             
           </h1>
@@ -1004,7 +2035,206 @@ Python 다시 시작
                 
               
 
-              <time title="Post created: 2019-01-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-13T00:00:00+09:00">2019-01-13</time>
+              <time title="Post created: 2019-03-07 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-07T00:00:00+09:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/03/07/etc/2019/03/07/kotlin-and-lombok.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/07//etc/2019/03/07/kotlin-and-lombok.html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              최근 자바 스프링부트로 되어있는 사내 프로젝트에 코틀린을 일부분 도입하려다 대차게 실패했다..사내 프로젝트에 Lombok을 사용하고 있었는데, 코틀린이 롬복을 사용한 Bean Class 에 접근하지 못하고 있었다.
+당시 
+Kotlin: Cannot access &apos;가가&apos; it is private member of &apos;나나&apos;
+
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/07/etc/2019/03/07/kotlin-and-lombok.html/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/02/24/2019-02-24-190221~190224/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/24/2019-02-24-190221~190224/" class="post-title-link" itemprop="url">190221-190224 반 주간 회고</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-02-24 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-24T00:00:00+09:00">2019-02-24</time>
             
 
             
@@ -1049,188 +2279,18 @@ Python 다시 시작
           
             
             
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              요즘들어 어떤 개념을 습득한 건 기억이 나는데, 내가 어떤 것을 했는지가 기억이 잘 나지 않는다.예를들어 메소드 개념을 습득했다고 치자, 그 개념에 대해선 굉장히 기억을 잘 하고 있는데몇 시간전에 작업한게 뭐였는지 어제 작업한게 뭐였는지 그런게 기억이 잘 나지 않는 식이다.딱히 스트레스 받지도 않고 잘 쉬면서 학습 하고 일 하는 것 같은데 이상하다.아무래도
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/13/2019-01-13-181231~190113/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/12/31/2018-12-31-2018-review/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sehajyang">
-      <meta itemprop="description" content="Junior Developer">
-      <meta itemprop="image" content="/images/seha_cat.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seha's Devlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/31/2018-12-31-2018-review/" class="post-title-link" itemprop="url">2018 연간회고</a>
               
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-12-31 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-31T00:00:00+09:00">2018-12-31</time>
-            
-
-            
-              
-
-              
-                
+              <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                
-
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="fa fa-comment-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
-              
             
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/02/24/2019-02-24-190221~190224/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/24/2019-02-24-190221~190224/" itemprop="commentCount"></span>
+                </a>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
             
           
 
@@ -1259,958 +2319,15 @@ Python 다시 시작
         
           
             <p>
-              2018년을 마무리하며, 아직은 부족한게 많고 부끄러워서 연간회고를 쓸까말까 고민을 많이 했다.
-많이 부족하지만 연간회고를 해 보기로 했다. 
-2018년은 굉장히 도전적인 해 였다. 
-
-웹 개발 교육 및 공부 시작
-
-개인 프로젝트 및 세미나
-
-취업 
-
-
-으로 크게 나눌 수 있다!
-1. 웹 개발 교육 및 공부 시작원래 보안쪽으로 공부를 하다가 우연히 웹 개발
+              주간회고 주기를 맞추기 위해 이번주는 두개나 올리게 되었다..며칠간 주문했던 TDD책이 오거나 scala 강의를 신청하거나 알고리즘을 풀거나 KCD를 가는 등의 이슈가 있었다.
+조만간 내가 개발하고 있는 서비스에 jenkins를 붙일 것 같다!
+과거 내 springboot에 jenkins를 붙일 때 큰 문제가 없었던 걸 생각해보면 크게 어렵지 않을 거라고 
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/31/2018-12-31-2018-review/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/12/23/2018-12-23-181217~181223/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sehajyang">
-      <meta itemprop="description" content="Junior Developer">
-      <meta itemprop="image" content="/images/seha_cat.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seha's Devlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/23/2018-12-23-181217~181223/" class="post-title-link" itemprop="url">1801217-1801223 주간회고</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-12-23 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-23T00:00:00+09:00">2018-12-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              이번주엔 기존의 스프링 강의와 더불어 스프링 기반 REST API 개발강의 수강을 시작했다!
-강의를 들으면서 기록하는게 쉽지 않아서 생각보다 기록에 많은 시간이 걸리고 있지만 나중에 도움이 될거라고 생각한다.
-예전에 읽었던 HeadFirst DesignPatter 책을 예제를 따라가며 다시 보고있다.
-그리고 자바스크립트 바이블 서적 같은 러닝 자바스크립트를
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/23/2018-12-23-181217~181223/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/12/19/2018-12-19-compare-items-in-two-arraylists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sehajyang">
-      <meta itemprop="description" content="Junior Developer">
-      <meta itemprop="image" content="/images/seha_cat.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seha's Devlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/19/2018-12-19-compare-items-in-two-arraylists/" class="post-title-link" itemprop="url">두개의 리스트 아이템을 비교해 추가,삭제</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-12-19 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-19T00:00:00+09:00">2018-12-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-08-02 23:41:53" itemprop="dateModified" datetime="2019-08-02T23:41:53+09:00">2019-08-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              최근 두개의 ArrayList의 아이템을 비교해, 추가되는 아이템과 삭제되는 아이템을 구분할 필요가 있어서 만들었습니다.
-조건
-list1 = [a, b, c, d] =&gt;새로 받아온 ArrayList
-list2 = [a, b, e] =&gt; 기존 DB 있던 데이터를 담은 ArrayList
-기존 리스트에 영향을 주지 않으며, 새로운 리스트를 생성해 리턴
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/19/2018-12-19-compare-items-in-two-arraylists/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/12/16/2018-12-16-181210~181216/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sehajyang">
-      <meta itemprop="description" content="Junior Developer">
-      <meta itemprop="image" content="/images/seha_cat.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seha's Devlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/16/2018-12-16-181210~181216/" class="post-title-link" itemprop="url">1801210-1801216 주간회고</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-12-16 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-16T00:00:00+09:00">2018-12-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              이번주는 바빠서 틈틈히 스프링 관련 강의를 듣고 정리하거나 유용한 글을 읽고 정리를 해서 TIL에 올렸다. 
-REST API에 대해서 대략 알지만 제대로 강의나 책을 보고 공부하기보단 인터넷으로 짧은 지식등을 보고 익혔었기 때문에 부족함을 많이 느껴서 
-스프링 기반 REST API 개발 신청을 했다!
-TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에 
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/16/2018-12-16-181210~181216/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/12/09/2018-12-09-181203~181209/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sehajyang">
-      <meta itemprop="description" content="Junior Developer">
-      <meta itemprop="image" content="/images/seha_cat.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seha's Devlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/09/2018-12-09-181203~181209/" class="post-title-link" itemprop="url">1801203-1801209 주간회고</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-09T00:00:00+09:00">2018-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              이번주는 많은 일이 겹쳐서 공부를 할 수가 없었다. 다음주 부터는 할 수 있을 것 같다. 
-그래서 출퇴근 몇가지 읽었던 글/포스팅을 정리하는 식으로 이번주의 주간회고를 하려고 한다.
-기록해두지 않으니 전부 까먹어서 앞으로 좋았던 글 등을 깃허브 TIL/Review에 정리해두려고 한다!
-이번주에 읽었던 글
-대규모 서비스를 지탱하는 기술
-
-좋은 코딩을 위한 1
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/09/2018-12-09-181203~181209/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2018/11/27/2018-11-27-2018-11-월간회고/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sehajyang">
-      <meta itemprop="description" content="Junior Developer">
-      <meta itemprop="image" content="/images/seha_cat.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seha's Devlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/27/2018-11-27-2018-11-월간회고/" class="post-title-link" itemprop="url">2018-11 월간회고</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-11-27 00:00:00" itemprop="dateCreated datePublished" datetime="2018-11-27T00:00:00+09:00">2018-11-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-07-15 23:11:55" itemprop="dateModified" datetime="2019-07-15T23:11:55+09:00">2019-07-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Logs/" itemprop="url" rel="index"><span itemprop="name">Logs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              어쩌다보니 월간 회고가 됐다. 저번달 이맘때즈음 결국 리액트 프로젝트에서 발생한 오류를 해결하지 못하면서 슬럼프가 강하게 왔었다. 
-책도 많이 찾아보고 stackOverFlow에 질문도 몇번 올렸지만 결국 해결하지 못해서 그대로 개발도 주간회고도 길게 쉬었다.
-그래도 언젠간 그 리액트 문제를 해결해보고 싶다. 그 간 몇가지 회사에서 코딩테스트를 보기도 하고
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/27/2018-11-27-2018-11-월간회고/#more" rel="contents">
+              <a class="btn" href="/2019/02/24/2019-02-24-190221~190224/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -2259,7 +2376,7 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -2303,7 +2420,7 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2405,7 +2522,15 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
@@ -2480,7 +2605,7 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
-                  <span class="category-list-count">1</span>
+                  <span class="category-list-count">2</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
@@ -2505,17 +2630,17 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Logs/">Logs</a>
-                  <span class="category-list-count">33</span>
+                  <span class="category-list-count">40</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Scala/">Scala</a>
-                  <span class="category-list-count">7</span>
+                  <span class="category-list-count">9</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
-                  <span class="category-list-count">3</span>
+                  <span class="category-list-count">5</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
@@ -2576,7 +2701,7 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2701,6 +2826,21 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
   
 
   
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+
+
 
 
 
@@ -2711,11 +2851,15 @@ TDD로 진행한다고 되어있는데, 최근 사내에서 TDD에
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.min.css">
 
   
   
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.js"></script>
   
 
   <script src="/js/algolia-search.js?v=7.1.2"></script>

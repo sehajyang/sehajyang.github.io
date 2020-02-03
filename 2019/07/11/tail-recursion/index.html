@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Seha&#39;s Devlog">
 <meta property="og:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2019-08-02T14:41:53.815Z">
+<meta property="og:updated_time" content="2019-11-16T08:45:45.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="스칼라 번역- 꼬리재귀 (Tail Recursion)">
 <meta name="twitter:description" content="이 포스팅은 [scala-exercises 번역 시리즈]로 scala-exercises 사이트의 스칼라 튜토리얼을 공부하며 번역한 문서 입니다.scala-exercises 는 스칼라 창시자인 마틴 오더스키가 만든 강의의 강의자료입니다.따라서 강의를 들으며 본 문서를 같이 보는것을 추천합니다.직역보단 의역을 했기 때문에 의역이 많습니다. 오역 및 오타 등은">
@@ -455,7 +455,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-08-02 23:41:53" itemprop="dateModified" datetime="2019-08-02T23:41:53+09:00">2019-08-02</time>
+                <time title="Updated at: 2019-11-16 17:45:45" itemprop="dateModified" datetime="2019-11-16T17:45:45+09:00">2019-11-16</time>
               
             
           </span>
@@ -482,6 +482,19 @@
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/07/11/tail-recursion/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/11/tail-recursion/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -521,12 +534,12 @@
 <p><code>factorial(4)</code>는 다음의 실행과정을 거칩니다.</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">factorial(<span class="number">4</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">4</span> == <span class="number">0</span>) <span class="number">1</span> <span class="keyword">else</span> <span class="number">4</span> * factorial(<span class="number">4</span> - <span class="number">1</span>)</span><br><span class="line"><span class="number">4</span> * factorial(<span class="number">3</span>)</span><br><span class="line"><span class="number">4</span> * (<span class="number">3</span> * factorial(<span class="number">2</span>))</span><br><span class="line"><span class="number">4</span> * (<span class="number">3</span> * (<span class="number">2</span> * factorial(<span class="number">1</span>)))</span><br><span class="line"><span class="number">4</span> * (<span class="number">3</span> * (<span class="number">2</span> * (<span class="number">1</span> * factorial(<span class="number">0</span>)))</span><br><span class="line"><span class="number">4</span> * (<span class="number">3</span> * (<span class="number">2</span> * (<span class="number">1</span> * <span class="number">1</span>)))</span><br><span class="line"><span class="number">24</span></span><br></pre></td></tr></table></figure>
 
-<p>이 두 시퀀스는 뭐가 다른걸까요?<br>가장 중요한 차이점은 <code>gcd</code> 경우 시퀀스가 본질적으로 감소하며 변합니다.<br>(<code>gcd(21, 14 % 21)</code> 가 <code>gcd(14, 7)</code> 처럼 점점 줄어듭니다)<br>그렇게 gcd의 하나의 호출에서 다음 호출로 넘어가며 마침내 종료됩니다.<br>그리고 그 중간단계들 에는 if then elses 같은 표현식이 있습니다.<br><strong>어쨌든 항상 우리가 최초 호출한 모양인 <code>gcd(a,b)</code> 로 돌아옵니다.</strong></p>
+<p>이 두 시퀀스는 뭐가 다른걸까요?<br>가장 중요한 차이점은 <code>gcd</code> 경우 시퀀스가 본질적으로 감소하며 변합니다.<br>(<code>gcd(21, 14 % 21)</code> 가 <code>gcd(14, 7)</code> 처럼 점점 줄어듭니다)<br>그렇게 gcd의 하나의 호출에서 다음 호출로 넘어가며 결국엔 종료됩니다.<br>그리고 그 중간단계들 에는 if then elses 같은 표현식이 있습니다.<br><strong>어쨌든 항상 우리가 최초 호출한 모양인 <code>gcd(a,b)</code> 로 돌아옵니다.</strong></p>
 <p>반면에 <code>factorial</code> 에선, 하나의 요소를 매 단계마다 추가한다는 것을 알 수 있습니다.<br>(<code>4 * factorial(3)</code> 에서 <code>4 * (3 * factorial(2))</code>으로 <code>3 *</code> 요소가 추가 된 것 처럼요)<br><strong>즉, 최종 값으로 줄어들 때 까지 표현식은 점점 커집니다.</strong></p>
-<h2 id="꼬리-재귀-Tail-Recursion"><a href="#꼬리-재귀-Tail-Recursion" class="headerlink" title="꼬리 재귀(Tail Recursion)"></a>꼬리 재귀(Tail Recursion)</h2><p><code>재활용(rewriting)</code> 규칙의 차이점은 실제로 컴퓨터의 실제 실행의 차이로 직접 바뀝니다.(데이터를 다시 만들거나 하지 않고 재 활용 합니다)<br>사실, 마지막 동작으로 자신을 호출하는 재귀함수가 있는 경우 해당 스택 프레임을 재사용할 수 있습니다.<br>이것을 <code>꼬리 재귀</code> 라고 부릅니다.</p>
-<p>그리고 이 트릭을 적용함으로써, 꼬리 재귀함수는 불변의 스택 영역에서 실행될 수 있습니다. 따라서 이건 단지 <code>반복적인 프로세스(iterative process)</code> 와는 다른 방법입니다.<br>꼬리 재귀함수는 <code>루프의 함수형</code> 이며 루프처럼 효율적으로 실행됩니다.</p>
+<h2 id="꼬리-재귀-Tail-Recursion"><a href="#꼬리-재귀-Tail-Recursion" class="headerlink" title="꼬리 재귀(Tail Recursion)"></a>꼬리 재귀(Tail Recursion)</h2><p><code>재활용(rewriting)</code> 규칙의 차이점은 컴퓨터의 실제 실행의 직접적인 변화로 이어질 수 있습니다(데이터를 다시 만들거나 하지 않고 재 활용 합니다)<br>사실, 마지막 동작으로 자신을 호출하는 재귀함수가 있는 경우 해당 스택 프레임을 재사용할 수 있습니다.<br>이것을 <code>꼬리 재귀</code> 라고 부릅니다.</p>
+<p>그리고 이 트릭을 적용함으로써, 꼬리 재귀함수는 불변의 스택 영역에서 실행될 수 있습니다. 따라서 이건 단순히 <code>반복적인 프로세스(iterative process)</code>와는 다른 방법입니다.<br>꼬리 재귀함수는 <code>루프의 함수형</code> 이며 루프처럼 효율적으로 실행됩니다.</p>
 <p>다시 살펴보면, <code>gdc</code>의 else 부분에서 <code>gcd</code>의 마지막 동작으로 자신을 호출한다는 것을 알 수 있습니다.<br>그리고 이것은 본질적으로 크기가 불변인 재활용 시퀀스(rewriting sequence)로 변환되며,<br>이는 컴퓨터에서 실제 실행 시 불변의 공간에서 실행할 수 있는 꼬리재귀 호출로 변환됩니다.  </p>
-<p>반면에, <code>factorial</code> 을 보면  <code>factorial(n - 1)</code>이 호출 된 후에도 여전히 작업이 있습니다.<br>다시말해서, 호출의 결과에 대해 <code>n</code>을 곱해야 한다는 걸 알 수 있습니다.<br>따라서 재귀호출은 꼬래 재귀호출이 아니라는게 단계가 진행 되어지며 호출이 감소하지 않는 것(오히려 늘어나는 것) 에서 분명해집니다.<br>최종 값을 계산하기 전 까지 실제로 유지해야 하는 중간 결과들의 축적이 있음을 알 수 있습니다.<br>그러므로 <code>factorial</code>은 재귀 함수가 아닙니다.</p>
+<p>반면에, <code>factorial</code> 을 보면  <code>factorial(n - 1)</code>이 호출 된 후에도 여전히 작업이 있습니다.<br>다시말해서, 호출의 결과에 대해 <code>n</code>을 곱해야 한다는 걸 알 수 있습니다.<br>따라서 재귀호출은 꼬래 재귀호출이 아니라는게 단계가 진행 되어지며 호출이 감소하지 않는 것(오히려 늘어나는 것) 에서 분명해집니다.<br>최종 값을 계산하기 전 까지 실제 유지해야 하는 중간값들이 쌓여있는것을 볼 수 있습니다.<br>그러므로 <code>factorial</code>은 재귀 함수가 아닙니다.</p>
 <p><code>factorial</code>과 <code>gdc</code>는 단지 자기 자신을 호출하지만, 일반적으로 함수는 다른 함수를 호출할 수 있습니다.<br>꼬리재귀는 만약 함수의 마지막 동작으로 다른 함수를 호출하는 경우 스택프레임을 두 함수 모두에 재사용 할 수 있습니다.<br>이러한 호출을 <code>꼬리 호출(tail calls)</code> 이라고 합니다.</p>
 <h2 id="스칼라에서의-꼬리재귀"><a href="#스칼라에서의-꼬리재귀" class="headerlink" title="스칼라에서의 꼬리재귀"></a>스칼라에서의 꼬리재귀</h2><p>스칼라에서 현재 함수에 대한 <code>직접 재귀 호출(directly recursive calls)</code> 만 최적화됩니다.<br><code>@tailrec</code> 어노테이션을 사용해 <code>꼬리재귀</code>함수로 만들 수 있습니다.</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@tailrec</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = …</span><br></pre></td></tr></table></figure>
@@ -618,7 +631,10 @@
           
 
   
-    <div class="comments" id="gitalk-container">
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
     </div>
 
   
@@ -670,7 +686,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -772,7 +788,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
@@ -847,7 +871,7 @@
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
-                  <span class="category-list-count">1</span>
+                  <span class="category-list-count">2</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
@@ -872,17 +896,17 @@
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Logs/">Logs</a>
-                  <span class="category-list-count">33</span>
+                  <span class="category-list-count">40</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Scala/">Scala</a>
-                  <span class="category-list-count">7</span>
+                  <span class="category-list-count">9</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
                 <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
-                  <span class="category-list-count">3</span>
+                  <span class="category-list-count">5</span>
               </li>
             
               <li class="category-list-item" style="font-size: 13.5px">
@@ -960,7 +984,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -1089,37 +1113,40 @@
   
 
   
-
-
   
-    
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-
-
-<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
-
 <script>
-  var gitalk = new Gitalk({
-    clientID: 'a681e5fcf7cfc2dc27ce',
-    clientSecret: '72cf7b86990f8dde3212ac6ea6edc66c768a0063',
-    repo: 'sehajyang.github.io',
-    owner: 'sehajyang',
-    admin: ['sehajyang'],
-    id: md5(location.pathname),
-    
-      language: 'ko',
-    
-    distractionFreeMode: 'true'
-  });
-  gitalk.render('gitalk-container');
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
 </script>
 
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://sehajyang.github.io/2019/07/11/tail-recursion/";
+    this.page.identifier = "2019/07/11/tail-recursion/";
+    this.page.title = '스칼라 번역- 꼬리재귀 (Tail Recursion)';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
   
 
 
@@ -1130,11 +1157,15 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.min.css">
 
   
   
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.js"></script>
   
 
   <script src="/js/algolia-search.js?v=7.1.2"></script>

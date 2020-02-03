@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="안녕하세요, 이 포스팅은 버전 1.5.9 부터 2.2.1(19.11.12 기준 최신 릴리즈)까지의 버전 마이그레이션하는 과정에 대한 내용으로 구성되어있습니다.[공식 가이드]대로 했지만 업그레이드 과정에서 많은 문제를 겪었기 때문에 추후에 삽질을 줄이고자 이 포스팅을 작성하게 되었습니다 😊     그리고 한번에 버전을 1.5 -&amp;gt; 2.2로 올려버리면">
+<meta name="keywords" content="스프링부트 마이그레이션,스프링부트 업그레이드,스프링부트 2.2,springboot 2.2 upgrade">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot 2.2 버전으로 업그레이드 하는 방법">
+<meta property="og:url" content="https://sehajyang.github.io/2019/11/12/springboot-migration-1.5to2.0/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="안녕하세요, 이 포스팅은 버전 1.5.9 부터 2.2.1(19.11.12 기준 최신 릴리즈)까지의 버전 마이그레이션하는 과정에 대한 내용으로 구성되어있습니다.[공식 가이드]대로 했지만 업그레이드 과정에서 많은 문제를 겪었기 때문에 추후에 삽질을 줄이고자 이 포스팅을 작성하게 되었습니다 😊     그리고 한번에 버전을 1.5 -&amp;gt; 2.2로 올려버리면">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-12-28T08:36:46.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springboot 2.2 버전으로 업그레이드 하는 방법">
+<meta name="twitter:description" content="안녕하세요, 이 포스팅은 버전 1.5.9 부터 2.2.1(19.11.12 기준 최신 릴리즈)까지의 버전 마이그레이션하는 과정에 대한 내용으로 구성되어있습니다.[공식 가이드]대로 했지만 업그레이드 과정에서 많은 문제를 겪었기 때문에 추후에 삽질을 줄이고자 이 포스팅을 작성하게 되었습니다 😊     그리고 한번에 버전을 1.5 -&amp;gt; 2.2로 올려버리면">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2019/11/12/springboot-migration-1.5to2.0/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>springboot 2.2 버전으로 업그레이드 하는 방법 | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2019/11/12/springboot-migration-1.5to2.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">springboot 2.2 버전으로 업그레이드 하는 방법
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-11-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-12T00:00:00+09:00">2019-11-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-12-28 17:36:46" itemprop="dateModified" datetime="2019-12-28T17:36:46+09:00">2019-12-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2019/11/12/springboot-migration-1.5to2.0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/12/springboot-migration-1.5to2.0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>안녕하세요, 이 포스팅은 버전 <strong>1.5.9 부터 2.2.1</strong>(19.11.12 기준 최신 릴리즈)까지의 버전 마이그레이션하는 과정에 대한 내용으로 구성되어있습니다.<br><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide" target="_blank" rel="noopener">[공식 가이드]</a>대로 했지만 업그레이드 과정에서 많은 문제를 겪었기 때문에 추후에 삽질을 줄이고자 이 포스팅을 작성하게 되었습니다 😊    </p>
+<p>그리고 한번에 버전을 1.5 -&gt; 2.2로 올려버리면 오류를 잡았음에도 불구하고 자꾸 알수 없는 오류가 발생하며 빌드가 되지 않았습니다.<br>혹 이유를 아시는 분은 코멘트 남겨주세요🙇<br>따라서 <code>1.5 -&gt; 2.0 -&gt; 2.2</code> 순서로 버전을 업그레이드 하도록 하겠습니다.</p>
+<h2 id="필수-조건"><a href="#필수-조건" class="headerlink" title="필수 조건"></a>필수 조건</h2><ul>
+<li>JDK 8 이상</li>
+<li>tomcat 8.5 이상(외부 톰캣 사용하는 경우)</li>
+<li>gradle 4.10 이상</li>
+</ul>
+<p>메이져 버전 마이그레이션 시 지원이 중단된 몇가지 서드파티 라이브러리들의 버전을 업그레이드 혹은 대체를 해야할 수도 있습니다.<br><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes" target="_blank" rel="noopener">[springboot 2.2 릴리즈 노트]</a> 에서 변경점을 더 확인할 수 있습니다.</p>
+<h2 id="순서"><a href="#순서" class="headerlink" title="순서"></a>순서</h2><h3 id="1-gradle-버전이-5-0-이-아닐경우-5-0-all-로-변경"><a href="#1-gradle-버전이-5-0-이-아닐경우-5-0-all-로-변경" class="headerlink" title="1. gradle 버전이 5.0 이 아닐경우 5.0-all 로 변경"></a>1. gradle 버전이 5.0 이 아닐경우 5.0-all 로 변경</h3><p>스프링 2.2로의 마이그레이션을 위해선 <code>그래들 버전이 4.10이상</code>이어야 합니다.<br>프레임워크 버전업과 더불어 저는 gradle 버전을 4.10보단 5로 맞췄습니다.<br><code>gradle &gt; wrapper &gt; gradle-wrapper.properties</code> 에서 아래와 같이 gradle 버전을 수정합니다.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-5.0-all.zip</span><br></pre></td></tr></table></figure>
+
+<p>gradle의 버전을 업그레이드하면 지원이 중단된 플러그인등이 발생할 수 있습니다. deprecated 된 플러그인들을 적절히 대체 및 업그레이드 합니다.<br>(자바 코드상의 변경이 필요할 수도 있습니다)</p>
+<h3 id="2-build-gradle에-dependency-management를-추가"><a href="#2-build-gradle에-dependency-management를-추가" class="headerlink" title="2. build.gradle에 dependency-management를 추가"></a>2. <code>build.gradle</code>에 <code>dependency-management</code>를 추가</h3><p>마이그레이션을 위한 의존성 관리 플러그인을 추가합니다.</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'io.spring.dependency-management'</span></span><br><span class="line"><span class="keyword">runtime</span>(<span class="string">"org.springframework.boot:spring-boot-properties-migrator"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-springboot-버전-바꾸기"><a href="#3-springboot-버전-바꾸기" class="headerlink" title="3. springboot 버전 바꾸기"></a>3. springboot 버전 바꾸기</h3><p>build.gradle의 springboot 버전을 변경합니다.</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">springBootVersion = <span class="string">'2.2.0.RELEASE'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-라이브러리-교체와-클래스-변경"><a href="#4-라이브러리-교체와-클래스-변경" class="headerlink" title="4. 라이브러리 교체와 클래스 변경"></a>4. 라이브러리 교체와 클래스 변경</h3><p>컴파일 오류가 난다면 해당되는 오류를 고칩니다.<br>보통은 사용하던 서드파티 라이브러리가 deprecated 되어 대체 후 오류가 나는 경우가 많습니다.<br>(ex:log4j 지원중단으로 log4j2로 고쳤습니다. 따라서 프로젝트에 사용중이던 logger -&gt; log 로 변경되었습니다)<br>버전 업그레이드로 인한 특정 라이브러리 설정의 변화로 발생하는 오류를 해결하는 방법은 다음의 링크에서 확인하실 수 있습니다.</p>
+<ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html" target="_blank" rel="noopener">common-application-properties</a></li>
+<li><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#servlet-specific-server-properties" target="_blank" rel="noopener">공식문서 링크</a> </li>
+</ul>
+<blockquote>
+<p>2.1 버전 부턴 mysql 드라이버 명이 변경되었습니다.<br>기존 : com.mysql.jdbc.Driver<br>바뀐것 : com.mysql.cj.jdbc.Driver</p>
+</blockquote>
+<p>또한 몇가지 클래스및 패키지가 변경되었습니다.<br>예를들어:  </p>
+<blockquote>
+<p>WebMvcConfigurerAdapter deprecated로 인한 변경<br>기존 : extends WebMvcConfigurerAdapter<br>변경 : implements WebMvcConfigurer</p>
+</blockquote>
+<blockquote>
+<p>SpringBootServletInitializer 패키지 이름의 변경<br>기존 : import org.springframework.boot.web.support.SpringBootServletInitializer;<br>변경 : import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;</p>
+</blockquote>
+<p>위와 같은 클래스 및 패키지가 변경되었습니다.<br>이러한 변경은 IDE에서 잡아주거나 컴파일시 warn 알림으로 deprecated 되었다는 알림을 주기 때문에<br>그에 맞춰 수정하거나, 2.0 릴리즈 노트에서 확인할 수 있습니다.</p>
+<ul>
+<li><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Release-Notes" target="_blank" rel="noopener">[Spring Boot 2.0 Release Notes]</a></li>
+</ul>
+<h3 id="5-application-properties-수정"><a href="#5-application-properties-수정" class="headerlink" title="5. application.properties 수정"></a>5. <code>application.properties</code> 수정</h3><p>IDE에서 해당 키워드에 warning 표시를 나타내며 제안에 따라 수정할 수 있습니다.<br>또는 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#appendix" target="_blank" rel="noopener">[지원하는 의존성 버전]</a> 문서를 보며 <code>application.properties</code>에서 기존의 키워드를 변경된 키워드로 수정합니다.</p>
+<h3 id="6-bean-overriding"><a href="#6-bean-overriding" class="headerlink" title="6. bean overriding"></a>6. bean overriding</h3><p>해당 변경은 2.1의 릴리즈 노트에서 다음과같이 소개하고 있습니다.<a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.1-Release-Notes#bean-overriding" target="_blank" rel="noopener">[링크]</a></p>
+<blockquote>
+<p>Bean overriding has been disabled by default to prevent a bean being accidentally overridden. If you are relying on overriding, you will need to set spring.main.allow-bean-definition-overriding to true.</p>
+</blockquote>
+<p>2.1 버전부터 빈의 우연한 재정의를 방지하기위해 default가 false 라고 합니다. 따라서, <strong>been overriding을 사용하려면 true로 명시</strong>해줘야 합니다.<br>명시가 되어있지 않은 경우 다음과 같은 오류가 발생합니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.beans.factory.support.Bean Definition Override Exception</span><br></pre></td></tr></table></figure>
+
+<p>따라서 application.properties에 bean overriding을 허용하는 부분을 추가합니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.main.allow-bean-definition-overriding=<span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-‘KST’-is-unrecognized-or-represents-more-than-one-time-zone"><a href="#7-‘KST’-is-unrecognized-or-represents-more-than-one-time-zone" class="headerlink" title="7. ‘KST’ is unrecognized or represents more than one time zone"></a>7. ‘KST’ is unrecognized or represents more than one time zone</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The server time zone value ‘KST’ is unrecognized or represents more than one time zone :   </span><br><span class="line">mysql-connector-java</span><br></pre></td></tr></table></figure>
+
+<p>위의 오류는 아래와 같이 db name 뒤에 <code>?characterEncoding=UTF-8&amp;serverTimezone=Asia/Seoul</code> 를 추가합니다</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql://ip:port/dbname?characterEncoding=UTF-8&amp;serverTimezone=Asia/Seoul</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-버전-업그레이드-2-0-gt-2-2"><a href="#8-버전-업그레이드-2-0-gt-2-2" class="headerlink" title="8. 버전 업그레이드 2.0 -&gt; 2.2"></a>8. 버전 업그레이드 2.0 -&gt; 2.2</h3><p>빌드 및 run이 성공적으로 되면 <code>build.gradle</code>에서  <code>2.2.1.RELEASE</code> 로 springboot 버전을 변경합니다.</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">springBootVersion = <span class="string">'2.2.1.RELEASE'</span></span><br></pre></td></tr></table></figure>
+
+<p>그 후 4~5번의 작업을 반복하며 오류를 잡습니다.<br>2.0 -&gt; 2.2 로 버전이 올라가며 변경된 점은 springboot 릴리즈 노트에서 확인하며 수정합니다.</p>
+<ul>
+<li><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.1-Release-Notes" target="_blank" rel="noopener">Spring Boot 2.1 Release Notes</a></li>
+<li><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes" target="_blank" rel="noopener">Spring Boot 2.2 Release Notes</a></li>
+</ul>
+<h3 id="9-properties-migrator-제거"><a href="#9-properties-migrator-제거" class="headerlink" title="9. properties-migrator 제거"></a>9. properties-migrator 제거</h3><p>빌드 및 run이 성공적으로 되면 build.gradle 에서 추가해뒀던 아래 코드를 제거 합니다.</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">runtime</span>(<span class="string">"org.springframework.boot:spring-boot-properties-migrator"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-mybatis-configuration-result-maps-0-오류"><a href="#10-mybatis-configuration-result-maps-0-오류" class="headerlink" title="10. mybatis.configuration.result-maps[0] 오류"></a>10. mybatis.configuration.result-maps[0] 오류</h3><p>혹 2.2.0 버전으로의 업그레이드를 한다면 다음과 같은 오류를 만날수도 있습니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under <span class="string">'mybatis.configuration.result-maps[0]'</span> to org.apache.ibatis.mapping.ResultMap</span><br></pre></td></tr></table></figure>
+
+<p>다음과 같은 오류는 <code>2.2.0.RELEASE (2.2.0.M5 +)</code> 버전에서 발생하고 있는 이슈며 <code>2.2.0.M4</code>와 <code>2.2.1.RELEASE</code> 에선 해결되었습니다.<br>해당 이슈는 스프링부트 깃허브 이슈 <a href="https://github.com/spring-projects/spring-boot/issues/18670" target="_blank" rel="noopener">[Binding fails in presence of a synthetic constructor #18670]</a> 에서 확인할 수 있습니다.</p>
+<p>추가) 만약 swagger를 쓰는데 마이그레이션 시 오류 날 경우 2.9.1로 올려주셔야 됩니다.<br>Lombok, Gradle, JPA 문제등은 <a href="http://honeymon.io/tech/2019/06/17/spring-boot-2-start.html" target="_blank" rel="noopener">[honeymon 님의 스프링 부트 2.x 준비하는 개발자를 위한 안내서]</a> 포스팅에서 자세히 알아보실 수 있습니다.</p>
+<hr>
+<p>이 포스팅은 <a href="https://herrenofficial.github.io/springboot/2019/11/12/springboot-migration-1.5to2.2.html" target="_blank" rel="noopener">헤렌 기술블로그</a>에서도 보실 수 있습니다.<br>혹 내용이 잘못되었거나 보충해야 될 부분이 있다면 코멘트 남겨주세요 🙏<br>읽어주셔서 감사합니다 :)</p>
+<p>참고자료</p>
+<ul>
+<li><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes" target="_blank" rel="noopener">[Spring Boot 2.2 Release Notes]</a></li>
+<li><a href="https://altkomsoftware.pl/en/blog/spring-boot-migration-java/" target="_blank" rel="noopener">spring-boot-migration-java</a></li>
+<li><a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#servlet-specific-server-properties" target="_blank" rel="noopener">Spring-Boot-2.0-Migration-Guide</a></li>
+<li><a href="http://honeymon.io/tech/2019/06/17/spring-boot-2-start.html" target="_blank" rel="noopener">[honeymon 님의 스프링 부트 2.x 준비하는 개발자를 위한 안내서]</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Springboot/" rel="tag"># Springboot</a>
+          
+            <a href="/tags/migration/" rel="tag"># migration</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/28/191007-191027/" rel="next" title="191007-191028 3주간 회고">
+                <i class="fa fa-chevron-left"></i> 191007-191028 3주간 회고
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/26/191028-191124/" rel="prev" title="10~11월 중순 월간회고">
+                10~11월 중순 월간회고 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            프로필
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">70</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">2</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">40</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">9</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#필수-조건"><span class="nav-number">1.</span> <span class="nav-text">필수 조건</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#순서"><span class="nav-number">2.</span> <span class="nav-text">순서</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-gradle-버전이-5-0-이-아닐경우-5-0-all-로-변경"><span class="nav-number">2.1.</span> <span class="nav-text">1. gradle 버전이 5.0 이 아닐경우 5.0-all 로 변경</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-build-gradle에-dependency-management를-추가"><span class="nav-number">2.2.</span> <span class="nav-text">2. build.gradle에 dependency-management를 추가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-springboot-버전-바꾸기"><span class="nav-number">2.3.</span> <span class="nav-text">3. springboot 버전 바꾸기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-라이브러리-교체와-클래스-변경"><span class="nav-number">2.4.</span> <span class="nav-text">4. 라이브러리 교체와 클래스 변경</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-application-properties-수정"><span class="nav-number">2.5.</span> <span class="nav-text">5. application.properties 수정</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-bean-overriding"><span class="nav-number">2.6.</span> <span class="nav-text">6. bean overriding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-‘KST’-is-unrecognized-or-represents-more-than-one-time-zone"><span class="nav-number">2.7.</span> <span class="nav-text">7. ‘KST’ is unrecognized or represents more than one time zone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-버전-업그레이드-2-0-gt-2-2"><span class="nav-number">2.8.</span> <span class="nav-text">8. 버전 업그레이드 2.0 -&gt; 2.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-properties-migrator-제거"><span class="nav-number">2.9.</span> <span class="nav-text">9. properties-migrator 제거</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-mybatis-configuration-result-maps-0-오류"><span class="nav-number">2.10.</span> <span class="nav-text">10. mybatis.configuration.result-maps[0] 오류</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://sehajyang.github.io/2019/11/12/springboot-migration-1.5to2.0/";
+    this.page.identifier = "2019/11/12/springboot-migration-1.5to2.0/";
+    this.page.title = 'springboot 2.2 버전으로 업그레이드 하는 방법';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
