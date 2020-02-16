@@ -1309,7 +1309,7 @@ pre .javascript .function {
 }
 .posts-expand .post-body img {
   box-sizing: border-box;
-  margin: 0 auto 25px;
+  margin-top: 20px;
   padding: 3px;
   border: 1px solid #ddd;
 }
@@ -1755,7 +1755,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c61630;
+  background: #a63cf6;
 }
 .feed-link,
 .chat {
@@ -2006,14 +2006,6 @@ pre .javascript .function {
   50%, 70% {
     transform: scale(1.1);
   }
-}
-.gt-header a,
-.gt-comments a,
-.gt-popup a {
-  border-bottom: none;
-}
-.gt-container .gt-popup .gt-action.is--active:before {
-  top: 0.7em;
 }
 .local-search-pop-overlay {
   position: fixed;
