@@ -510,7 +510,7 @@ code {
   overflow-wrap: break-word;
   word-wrap: break-word;
   padding: 2px 4px;
-  color: #cf2323;
+  color: #ff2a2a;
   background: #f5f5f5;
   border-radius: 3px;
   font-size: 14px;
@@ -1755,7 +1755,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b67e41;
+  background: #f5ffcc;
 }
 .feed-link,
 .chat {

@@ -519,8 +519,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Audited</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;... &#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://lh5.googleusercontent.com/naDZUyu6a9Q3N8WSaGFbjDDQ-nZMLcCgnlOfQyufKbJhbmiH0LUqYoUmTY5NTs9uqShhV78OcMo03cUT8AJxrg1xI-BxLymmvp1cIkv2QveD8dlpbj8sllEdALzSNfM_moi9EnHj" alt><br><font color="grey" size="2px">이미지출처 : <a href="https://www.geeklearners.com/2019/03/hibernate-envers-history-data-and.html" target="_blank" rel="noopener">Hibernate Envers - History Data and Versioning</a></font></p>
-<p>이 revinfo는 central revision table 로, 최초 1회만 생성되며, 이 <strong>revinfo 테이블을 삭제하거나 disable 할 순 없습니다</strong>.  
-네이밍 및 필드 변경은 가능합니다.<br>또한 rev 필드의 네이밍 변경을 각 테이블마다 다르게 줄 수 없습니다.<br>customer_aud 테이블의 <strong>rev_type</strong> 은 int타입으로 생성, 수정, 삭제를 구분하는 컬럼입니다.<br>값은 다음과 같습니다:</p>
+<p>이 revinfo는 central revision table 로, 최초 1회만 생성되며, 이 <strong>revinfo 테이블을 삭제하거나 disable 할 순 없습니다</strong>.<br>네이밍 및 필드 변경은 가능합니다.<br>또한 rev 필드의 네이밍 변경을 각 테이블마다 다르게 줄 수 없습니다.<br>customer_aud 테이블의 <strong>rev_type</strong> 은 int타입으로 생성, 수정, 삭제를 구분하는 컬럼입니다.<br>값은 다음과 같습니다:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0 : insert</span><br><span class="line">1 : update</span><br><span class="line">2 : delete</span><br></pre></td></tr></table></figure>
 
 <p>아쉽게도 타입, 필드명, 값을 변경할 순 없습니다.</p>

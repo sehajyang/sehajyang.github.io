@@ -98,20 +98,20 @@
 
 
 
-  <meta name="description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock   이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.이번 포스팅에선 spock 프레임워크를 사용해 중복되">
+  <meta name="description" content="Springboot 에서 test code 작성하기 시리즈  Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock  이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.이번 포스팅에선 spock 프레임워크를 사용해 중복되">
 <meta name="keywords" content="스프링부트 테스트코드,스프링부트 TDD,springboot testcode,spock testcode,spock 단위테스트">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock">
 <meta property="og:url" content="https://sehajyang.github.io/2019/04/05/2019-04-05-springboot-test-code-3/index.html">
 <meta property="og:site_name" content="Seha&#39;s Devlog">
-<meta property="og:description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock   이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.이번 포스팅에선 spock 프레임워크를 사용해 중복되">
+<meta property="og:description" content="Springboot 에서 test code 작성하기 시리즈  Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock  이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.이번 포스팅에선 spock 프레임워크를 사용해 중복되">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://sehajyang.github.io/images/blogpost/springboot-test-code-3-1.JPG">
 <meta property="og:image" content="https://sehajyang.github.io/images/blogpost/springboot-test-code-3-2.JPG">
 <meta property="og:updated_time" content="2019-11-16T08:45:45.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock">
-<meta name="twitter:description" content="Springboot 에서 test code 작성하기 시리즈 Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock   이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.이번 포스팅에선 spock 프레임워크를 사용해 중복되">
+<meta name="twitter:description" content="Springboot 에서 test code 작성하기 시리즈  Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC) Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock  이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.이번 포스팅에선 spock 프레임워크를 사용해 중복되">
 <meta name="twitter:image" content="https://sehajyang.github.io/images/blogpost/springboot-test-code-3-1.JPG">
 
 
@@ -524,11 +524,11 @@
 
       
         <blockquote>
-<h4 id="Springboot-에서-test-code-작성하기-시리즈"><a href="#Springboot-에서-test-code-작성하기-시리즈" class="headerlink" title="Springboot 에서 test code 작성하기 시리즈"></a>Springboot 에서 test code 작성하기 시리즈</h4><ul>
+<h4 id="Springboot-에서-test-code-작성하기-시리즈"><a href="#Springboot-에서-test-code-작성하기-시리즈" class="headerlink" title="Springboot 에서 test code 작성하기 시리즈"></a>Springboot 에서 test code 작성하기 시리즈</h4></blockquote>
+<ul>
 <li><a href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-1.html">Springboot 에서 test code 작성하기 1편 - 통합테스트(MVC)</a></li>
 <li><a href="https://sehajyang.github.io/java/2019/04/05/springboot-test-code-3.html">Springboot 에서 test code 작성하기 2편 - assetThat이 중복되는 테스트와 Spock</a></li>
 </ul>
-</blockquote>
 <p>이전포스팅에선 통합테스트 작성에 대해서 알아봤습니다.<br>이번 포스팅에선 spock 프레임워크를 사용해 중복되는 테스트케이스를 가독성 좋게 변경하는 방법을 알아보겠습니다.  </p>
 <h3 id="1-그-외의-메소드-테스트와-Spock"><a href="#1-그-외의-메소드-테스트와-Spock" class="headerlink" title="1. 그 외의 메소드 테스트와 Spock"></a>1. 그 외의 메소드 테스트와 Spock</h3><p>프로덕션엔 CommonUtil이라는 클래스가 있습니다. 그 클래스엔 문자열을 조작한다던가, 리스트를 조작하거나 어떠한 값을 검증하는 등의 메소스들이 있는데 그 클래스 내의 메소드들이 잘 동작하는지 테스트하기 위해선 많은 assertThat 이 필요했고, 그러한 중복코드를 없애기 위해 검색을 하던 중 <a href="https://jojoldu.tistory.com/228" target="_blank" rel="noopener">Spock 소개 및 튜토리얼</a>라는 튜토리얼을 보게 되었습니다. </p>
 <blockquote>
