@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="tHkM_PYjNTpamfHDenp_g2uXM1H61s8W76tlDU0sAEk">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_header":"slideDownIn","post_body":"slideDownIn"}},
+    algolia: {
+      applicationID: 'PRWNNJS60L',
+      apiKey: '18361c6a57d656ba49c35c6160b5dff2',
+      indexName: 'my_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="작년에 나갔었던 엔젤핵 해커톤을 올해도 한다는 소식을 듣고 지인들과 함께 지원했다.  다시보면 부끄럽지만, 당시에 작성했던 후기는 이렇다.AngelHack 2019 서울 참석 및 우승 후기  작년엔 직접 현장에 도착해서 팀을 구했는데, 올해는 지인분들과 함께 팀을 구성하게 되었고 어쩌다 보니 우리 팀은 개발자 5명인 팀이었다.코로나로 인해 모든 진행은 슬">
+<meta name="keywords" content="엔젤핵 후기,엔젤핵 2020,angelhack seoul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngelHack 2020 서울 우승 후기">
+<meta property="og:url" content="https://sehajyang.github.io/2020/07/26/20200726-angelhack-2020-seoul-review/index.html">
+<meta property="og:site_name" content="Seha&#39;s Devlog">
+<meta property="og:description" content="작년에 나갔었던 엔젤핵 해커톤을 올해도 한다는 소식을 듣고 지인들과 함께 지원했다.  다시보면 부끄럽지만, 당시에 작성했던 후기는 이렇다.AngelHack 2019 서울 참석 및 우승 후기  작년엔 직접 현장에 도착해서 팀을 구했는데, 올해는 지인분들과 함께 팀을 구성하게 되었고 어쩌다 보니 우리 팀은 개발자 5명인 팀이었다.코로나로 인해 모든 진행은 슬">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://i.imgur.com/UGp5aOA.png">
+<meta property="og:image" content="https://i.imgur.com/YVH1wnf.png">
+<meta property="og:image" content="https://i.imgur.com/eaIWNyC.png">
+<meta property="og:image" content="https://i.imgur.com/gdL9ese.png">
+<meta property="og:updated_time" content="2020-07-26T12:49:55.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngelHack 2020 서울 우승 후기">
+<meta name="twitter:description" content="작년에 나갔었던 엔젤핵 해커톤을 올해도 한다는 소식을 듣고 지인들과 함께 지원했다.  다시보면 부끄럽지만, 당시에 작성했던 후기는 이렇다.AngelHack 2019 서울 참석 및 우승 후기  작년엔 직접 현장에 도착해서 팀을 구했는데, 올해는 지인분들과 함께 팀을 구성하게 되었고 어쩌다 보니 우리 팀은 개발자 5명인 팀이었다.코로나로 인해 모든 진행은 슬">
+<meta name="twitter:image" content="https://i.imgur.com/UGp5aOA.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Seha's Devlog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sehajyang.github.io/2020/07/26/20200726-angelhack-2020-seoul-review/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>AngelHack 2020 서울 우승 후기 | Seha's Devlog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142495830-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-142495830-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seha's Devlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Seha 개발 블로그</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>검색</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sehajyang.github.io/2020/07/26/20200726-angelhack-2020-seoul-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sehajyang">
+      <meta itemprop="description" content="Junior Developer">
+      <meta itemprop="image" content="/images/seha_cat.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seha's Devlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AngelHack 2020 서울 우승 후기
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-07-26 17:24:48 / Updated at: 21:49:55" itemprop="dateCreated datePublished" datetime="2020-07-26T17:24:48+09:00">2020-07-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Seminar/" itemprop="url" rel="index"><span itemprop="name">Seminar</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">댓글: </span>
+                <a href="/2020/07/26/20200726-angelhack-2020-seoul-review/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/26/20200726-angelhack-2020-seoul-review/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/UGp5aOA.png" alt="angelhack-2020-main"></p>
+<p>작년에 나갔었던 <a href="angelhackseoul.kr/">엔젤핵 해커톤</a>을 올해도 한다는 소식을 듣고 지인들과 함께 지원했다.</p>
+<blockquote>
+<p>다시보면 부끄럽지만, 당시에 작성했던 후기는 이렇다.<br><a href="https://sehajyang.github.io/2019/06/13/2019-06-13-angelhack-2019-seoul-win-review/">AngelHack 2019 서울 참석 및 우승 후기</a></p>
+</blockquote>
+<p>작년엔 직접 현장에 도착해서 팀을 구했는데, 올해는 지인분들과 함께 팀을 구성하게 되었고 어쩌다 보니 우리 팀은 개발자 5명인 팀이었다.<br>코로나로 인해 모든 진행은 슬랙을 이용한 온라인으로 이루어졌다.<br>온라인인 만큼 기간은 일주일이었으며, 올해 주제는 코로나였다. 작년과는 달리 이번엔 기업에서 주제를 정해주고 원하는 주제에 지원하는 방식이었다.</p>
+<p><img src="https://i.imgur.com/YVH1wnf.png" alt="angelhack-2020-subject"><br><em>주제는 UN이 제안하는 17가지의 지속 가능한 개발 목표(UN-SDGs)을 바탕으로 선정되었으며 최소 1개, 최대 2개이하로 주제를 선택할 수 있다.</em></p>
+<p>우리 팀은 처음엔 커먼컴퓨터, 우아한형제들 주제에 지원했었다.<br>당시 아이디어는 코로나로 인해 기업에서 수급받아야 할 자원을 수급받지 못해 생기는 문제가 많으니 <strong>국제 자원 중계 서비스</strong>를 해서 그런 부분을 해결 해보자는 것이었지만, 국가 간의 규제가 천차만별이었으므로 문제가 많았다. 그렇게 아이디어 고민만 금요일 저녁까지 했다.<br>금요일 저녁까지 고민한 끝에 우리는 기존의 국제 자원 중계 서비스를 버리고 <strong>지역 기반 소상공인 공동구매 서비스</strong>를 하기로했다. </p>
+<pre><code>우리 서비스는 코로나 때문에 어려움을 겪고 있는 많은 소상공인이 젓가락, 봉투 등의 부자재 혹은 재료 등을 공동구매 하거나  
+사용하지 않는 물건을 자유롭게 사고팔 수 있는 지역 기반 서비스이다.</code></pre><p>아이디어가 바뀜에 따라 지원하는 주제도 커먼컴퓨터와 테이블매니저 과제로 변경했다.<br>엔젤핵은 다른 해커톤과는 다르게 평가 기준에 BM이 있다.<br>그래서 우린 기존의 성공한 서비스들을 벤치마킹해 수익은 지역광고와 공동구매 중간유통 수수료로 결정했다.</p>
+<p>커먼컴퓨터 주제는 커먼컴퓨터의 <strong>Ainize</strong> 란 서비스를 사용해 배포하면 되는 것이었다.<br>Ainize는 깃허브에 올라와 있는 오픈소스 프로젝트를 무료로 쉽게 실행하고 배포할 수 있도록 도와주는 서비스이다.<br>우리 팀은 프론트 서버와 백엔드 서버 둘 다 Ainize 통해 배포하기로 했다.</p>
+<p>월요일부터 일요일까지 하는 해커톤이지만 금요일 저녁에 아이디어가 나와서 개발할 시간이 적었다.<br>하지만 다행스럽게도(?) 개발자 5명인 팀이라 기능 완성을 못하는 것에 대한 걱정은 없어 다행이었다.<br>그렇지만 늦게 시작한 만큼 포기할 수밖에 없는 기능도 있어서 조금 아쉬웠다.<br>사실 채팅을 넣고 싶었다. 하지만 시간상으로 힘들 것 같아 포기했다.  </p>
+<p>주제가 명확해졌으니 다 같이 모여서 금요일 밤~ 일요일 제출 전까지 달렸다.<br>웹 프레임워크는 장고가 선택되었는데, 장고로 개발하면 사용자 인증 및 CRUD를 빠르게 개발할 수 있어 해커톤에 적합했으며, 우리가 만들어야 할 서비스는 정확히 사용자 인증 및 CRUD API만 구현하면 되기 때문이었다. 그리고 날 제외한 백엔드 개발자는 장고에 익숙했다.<br>나는 스프링부트를 주로 사용하긴 하지만 플라스크로도 개발한 경험이 있었으므로 이 김에 장고를 써보자는 생각으로 장고 선택에 찬성했는데, 장고를 하루 만에 배워서 API 만들기는 생각보다 어려웠다.<br>우선 스프링과 장고는 많은 차이점이 있었는데, 스프링과 달리 장고는 기본적으로 여러 가지 기능을 자동으로 만들어주는 많은 클래스와 함수 등이 있었고 이걸 기존에 알고 있어야 쓸 수 있었다.<br>반면 스프링은 대체로 직접 구현해서 개발한다. 그런 나에게 있어 장고는 매직박스 같았다.<br>게다가 장고로 개발을 하더라도 사람마다 구현하는 방법은 천차만별이었다. 백엔드 팀원끼리도 방식이 완전히 달랐으며 서치해서 나오는 방식도 다 달랐다.<br>중간에 난 차라리 SpringBoot + RPC 로 개발하겠다 했지만 기각됐다.<br>그렇게 혼란 속에서 나는 두 파이썬 개발자의 속성 장고 강의를 받으며 API 몇 개와 DB 모델링을 했다.<br>장고는 모든 개발자가 다 할 줄 알아야 선택할 수 있을 것 같다. 그래도 이번 기회에 장고를 해볼 수 있어서 좋았다.</p>
+<p>일요일 오전부터 크리티컬한 CORS 문제가 터졌다.<br>설정도 다시 해보고 장고 CORS 라이브러리 문제인 줄 알고 찾아보기도 하는 등 많은 시도를 해봤지만, 원인은 의외로 Ainize의 istio 설정문제였다.<br>정확히는 Ainize 측에서 CORS 헤더를 열어줘야하는데 몇 가지 헤더가 누락되어있어 발생 한 문제였다.<br>커먼 컴퓨터측에 문의 하니 신속하게 대처해주셔서 성공적으로 배포할 수 있었으며 이 이슈는 이번 해커톤 이후에 핫픽스 할 예정이라 하셨다.</p>
+<p>마감은 23시 59분이었고 우리 팀은 시간 부족으로 인해 시연 영상을 일부 올리지 못해 아쉬웠으나 23시 56분에 아슬아슬하게 제출했다.  </p>
+<p>그리고 대망의 22일 수요일에 수상자가 발표되었다.</p>
+<p><img src="https://i.imgur.com/eaIWNyC.png" alt="angelhack-libi-win"></p>
+<p><strong>우리 팀은 커먼컴퓨터 부문에 수상하게 되었다!</strong><br>사실 우리 팀은 딱히 수상 기대를 하지 않고 있었다. 그도 그럴 게 굉장한 팀들이 많았기 때문이다.<br>심지어 화상 채팅을 구현한 엄청난 팀도 있었다(그 팀은 코드스테이츠 부문을 수상하셨다)<br>우리 팀이 기술적으로 엄청난 건 없지만 아마 준수한 코드 퀄리티와 BM 덕에 수상할 수 있지 않았을까 라고 생각한다.</p>
+<p>다들 잠도 못 자고 고생을 많이 했지만, 우리 팀은 프론트(풀스택) 1, 백엔드 3, 앱 1로 구성된 팀이라 특히 프론트엔드 개발자분과 기획, 디자인, PPT, 영상까지 하신 앱 개발자분이 고생을 많이 하셨다.<br>특성상 프론트엔드 이슈가 많을 수밖에 없는데 프론트엔드 개발자 팀원님이 혼자 프론트 이슈를 다 처리하셨으며, 앱개발자님은 본인의 전문 분야가 아님에도 불구하고 좋은 디자인과 엄청난 발표자료 및 영상을 만들어주셨다.  </p>
+<p><img src="https://i.imgur.com/gdL9ese.png" alt="angelhack-report"></p>
+<p>그렇게 7월 13일(월) ~ 7월 22일(수)까지 진행된 2020 엔젤핵은 막을 내렸다.</p>
+<p>원활한 운영에 힘써주신 운영진분들, 멘토분들, Ainize분들, 팀원분들 모두 감사합니다 🙇🏼‍♂️</p>
+<hr>
+<p>소스는 GitHub에 공개되어 있습니다 =&gt; <a href="https://github.com/Angelhack-LIBI" target="_blank" rel="noopener">[AngelHack LiBi Repository]</a><br>피칭영상 =&gt; <a href="https://www.youtube.com/watch?v=V6T9jYD6u5Y&feature=youtu.be" target="_blank" rel="noopener">AngelhackSeoul 2020 - Team LiBi, ‘사이’ Pitching</a><br>읽어주셔서 감사합니다.</p>
+<p>#엔젤핵서울 #AngelhackSeoul2020Online #해커톤 #hackathon #개발자 #기획자 #디자이너 #코로나19 #함께이겨내요</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/hackaton/" rel="tag"># hackaton</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/30/202004-202005/" rel="next" title="2020년 4월~5월 회고">
+                <i class="fa fa-chevron-left"></i> 2020년 4월~5월 회고
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/seha_cat.jpg" alt="Sehajyang">
+            
+              <p class="site-author-name" itemprop="name">Sehajyang</p>
+              <div class="site-description motion-element" itemprop="description">Junior Developer</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">75</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+
+
+          
+
+          
+            <div class="links-of-author motion-element" style="padding-bottom: 10px">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/sehajyang" title="GitHub &rarr; https://github.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:sehajyang@gmail.com" title="E-Mail &rarr; mailto:sehajyang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/sehajyang" title="Twitter &rarr; https://twitter.com/sehajyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" title="LinkedIn &rarr; https://www.linkedin.com/in/%EC%9C%A4%EC%A7%80-%EB%82%A8-09b834165/" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            </div>
+          
+
+
+          <p class="site-author-name" style="color:#555;">Category</p>
+          <div class="category-all-page" style="padding-left: 10px; padding-top: 5px">
+          <ul class="category-list">
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Async/">Async</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/DevOps/">DevOps</a>
+                  <span class="category-list-count">2</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Etc/">Etc</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Git/">Git</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Java/">Java</a>
+                  <span class="category-list-count">5</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Kotlin/">Kotlin</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Logs/">Logs</a>
+                  <span class="category-list-count">43</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Scala/">Scala</a>
+                  <span class="category-list-count">9</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Seminar/">Seminar</a>
+                  <span class="category-list-count">6</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Spring/">Spring</a>
+                  <span class="category-list-count">4</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Springboot/">Springboot</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+              <li class="category-list-item" style="font-size: 13.5px">
+                <a class="category-list-link" href="/categories/Tip/">Tip</a>
+                  <span class="category-list-count">1</span>
+              </li>
+            
+          </ul>
+          </div>
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sehajyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://sehajyang.github.io/2020/07/26/20200726-angelhack-2020-seoul-review/";
+    this.page.identifier = "2020/07/26/20200726-angelhack-2020-seoul-review/";
+    this.page.title = 'AngelHack 2020 서울 우승 후기';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-yunjey0-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@latest/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
