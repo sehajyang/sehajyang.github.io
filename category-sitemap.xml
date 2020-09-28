@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://sehajyang.github.io/categories/Seminar/</loc>
+        <lastmod>2020-07-28T04:15:27.370Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://sehajyang.github.io/categories/Logs/</loc>
         <lastmod>2020-05-30T14:47:08.088Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -24,13 +31,6 @@
     <url>
         <loc>https://sehajyang.github.io/categories/Scala/</loc>
         <lastmod>2020-02-16T07:52:59.573Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/categories/Seminar/</loc>
-        <lastmod>2020-02-03T12:11:02.703Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

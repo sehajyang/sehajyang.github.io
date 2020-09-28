@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>https://sehajyang.github.io/2020/07/26/20200726-angelhack-2020-seoul-review/</loc>
+        <lastmod>2020-07-28T04:15:27.370Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/06/13/2019-06-13-angelhack-2019-seoul-win-review/</loc>
+        <lastmod>2020-07-26T12:51:24.022Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://sehajyang.github.io/2020/05/30/202004-202005/</loc>
         <lastmod>2020-05-30T14:47:08.088Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -50,14 +66,6 @@
     <url>
         <loc>https://sehajyang.github.io/2020/01/22/200101-200112/</loc>
         <lastmod>2020-02-16T07:42:20.388Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/2019/06/13/2019-06-13-angelhack-2019-seoul-win-review/</loc>
-        <lastmod>2020-02-03T12:11:02.703Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -472,7 +480,7 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2018/10/07/2018-10-07-181001~181007/</loc>
+        <loc>https://sehajyang.github.io/2018/10/21/2018-10-21-181015~181021/</loc>
         <lastmod>2019-07-15T14:11:55.571Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -480,7 +488,7 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2018/10/21/2018-10-21-181015~181021/</loc>
+        <loc>https://sehajyang.github.io/2018/10/07/2018-10-07-181001~181007/</loc>
         <lastmod>2019-07-15T14:11:55.571Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -512,7 +520,7 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2018/08/26/2018-08-26-180820~180826/</loc>
+        <loc>https://sehajyang.github.io/2018/09/02/2018-09-02-180827~180902/</loc>
         <lastmod>2019-07-15T14:11:55.566Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -520,7 +528,7 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2018/09/02/2018-09-02-180827~180902/</loc>
+        <loc>https://sehajyang.github.io/2018/08/26/2018-08-26-180820~180826/</loc>
         <lastmod>2019-07-15T14:11:55.566Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
