@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sehajyang.github.io/2021/06/20/2021-postmortem-half-of-year/</loc>
+    
+    <lastmod>2021-06-20T05:20:39.321Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sehajyang.github.io/2019/09/02/imperative-programming/</loc>
     
-    <lastmod>2021-02-09T15:48:35.354Z</lastmod>
+    <lastmod>2021-06-20T04:25:47.790Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://sehajyang.github.io/2019/10/11/class-vs-case-class/</loc>
     
-    <lastmod>2021-02-09T15:41:13.532Z</lastmod>
+    <lastmod>2021-06-20T04:25:47.787Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://sehajyang.github.io/2020/10/25/20200801-20201025/</loc>
+    
+    <lastmod>2021-06-20T04:25:47.784Z</lastmod>
     
   </url>
   
@@ -19,13 +33,6 @@
     <loc>https://sehajyang.github.io/2019/07/11/higher-order-function/</loc>
     
     <lastmod>2021-02-09T15:25:56.495Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://sehajyang.github.io/2020/10/25/20200801-20201025/</loc>
-    
-    <lastmod>2021-02-09T15:14:45.577Z</lastmod>
     
   </url>
   
@@ -583,14 +590,14 @@
   </url>
   
   <url>
-    <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-180723~180729/</loc>
+    <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-error-log/</loc>
     
     <lastmod>2019-07-15T14:11:55.559Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-error-log/</loc>
+    <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-180723~180729/</loc>
     
     <lastmod>2019-07-15T14:11:55.559Z</lastmod>
     
