@@ -8,8 +8,24 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2020/12/27/2020-review/</loc>
-        <lastmod>2021-01-03T08:28:43.087Z</lastmod>
+        <loc>https://sehajyang.github.io/2021/06/20/2021-postmortem-half-of-year/</loc>
+        <lastmod>2021-06-20T05:24:15.502Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/09/02/imperative-programming/</loc>
+        <lastmod>2021-06-20T04:25:47.790Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/10/11/class-vs-case-class/</loc>
+        <lastmod>2021-06-20T04:25:47.787Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +33,63 @@
 
     <url>
         <loc>https://sehajyang.github.io/2020/10/25/20200801-20201025/</loc>
-        <lastmod>2020-10-25T15:38:56.601Z</lastmod>
+        <lastmod>2021-06-20T04:25:47.784Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/07/11/higher-order-function/</loc>
+        <lastmod>2021-02-09T15:25:56.495Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/07/11/tail-recursion/</loc>
+        <lastmod>2021-02-09T15:14:45.568Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/07/18/syntactic-conveniences/</loc>
+        <lastmod>2021-02-09T15:14:45.567Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/07/16/standard-library/</loc>
+        <lastmod>2021-02-09T15:14:45.566Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/08/06/oop/</loc>
+        <lastmod>2021-02-09T15:14:45.565Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2019/07/11/lexical-scope/</loc>
+        <lastmod>2021-02-09T15:14:45.564Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/2020/12/27/2020-review/</loc>
+        <lastmod>2021-02-09T15:14:45.559Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -136,32 +208,8 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2019/07/11/tail-recursion/</loc>
-        <lastmod>2019-11-16T08:45:45.571Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://sehajyang.github.io/2019/08/23/pycon2019/</loc>
         <lastmod>2019-11-16T08:45:45.563Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/2019/09/02/imperative-programming/</loc>
-        <lastmod>2019-11-16T08:45:45.561Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/2019/10/11/class-vs-case-class/</loc>
-        <lastmod>2019-11-16T08:45:45.558Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -224,48 +272,8 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2019/08/06/oop/</loc>
-        <lastmod>2019-08-06T16:46:12.912Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/2019/07/18/syntactic-conveniences/</loc>
-        <lastmod>2019-08-06T14:31:35.588Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://sehajyang.github.io/2019/08/05/190722-190804/</loc>
         <lastmod>2019-08-06T14:31:35.583Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/2019/07/16/standard-library/</loc>
-        <lastmod>2019-08-02T14:41:53.812Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/2019/07/11/lexical-scope/</loc>
-        <lastmod>2019-08-02T14:41:53.809Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/2019/07/11/higher-order-function/</loc>
-        <lastmod>2019-08-02T14:41:53.807Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -592,7 +600,7 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-error-log/</loc>
+        <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-180723~180729/</loc>
         <lastmod>2019-07-15T14:11:55.559Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -600,7 +608,7 @@
     </url>
 
     <url>
-        <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-180723~180729/</loc>
+        <loc>https://sehajyang.github.io/2018/07/30/2018-07-30-error-log/</loc>
         <lastmod>2019-07-15T14:11:55.559Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

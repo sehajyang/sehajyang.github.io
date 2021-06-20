@@ -9,7 +9,14 @@
 
     <url>
         <loc>https://sehajyang.github.io/categories/Logs/</loc>
-        <lastmod>2021-01-03T08:28:43.087Z</lastmod>
+        <lastmod>2021-06-20T05:24:15.502Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://sehajyang.github.io/categories/Scala/</loc>
+        <lastmod>2021-06-20T04:25:47.790Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -24,13 +31,6 @@
     <url>
         <loc>https://sehajyang.github.io/categories/Springboot/</loc>
         <lastmod>2020-04-15T08:55:54.807Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://sehajyang.github.io/categories/Scala/</loc>
-        <lastmod>2020-02-16T07:52:59.573Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
